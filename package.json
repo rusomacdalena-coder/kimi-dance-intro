@@ -1,30 +1,28 @@
 {
-  "name": "kimi-dance-intro",
+  "name": "kimidance-site",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "preview": "vite preview --host 127.0.0.1"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.105.4",
+    "@astrojs/react": "^4.2.0",
+    "@astrojs/sitemap": "^3.3.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "astro": "^5.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
-    "jsdom": "^25.0.1",
-    "typescript": "~5.6.3",
-    "vite": "^6.0.11",
-    "vitest": "^2.1.9"
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.19",
+    "typescript": "~5.6.2"
   }
 }

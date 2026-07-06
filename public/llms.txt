@@ -1,0 +1,31 @@
+# 积米律动 Kimidance
+
+> 积米律动（Kimidance）是一款 AI 拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表，全程台词零篡改。
+
+核心事实：
+
+- 产品形态：macOS 桌面应用（内测中，Windows 版开发中）
+- 输入：mp4 / mov / mkv / avi 视频，单文件上限 2 GB
+- 输出三件套：文学剧本（投稿模板格式：场头 + △ 动作行 + 角色台词 + OS/VO 标记）、叙事节奏分析（钩子/冲突点/高潮/情绪曲线）、分镜速查表（CSV，每镜一行：景别/运镜/角色/台词/情绪/叙事功能）
+- 速度：1 小时视频，云端通道约 4-9 分钟，本机通道约 30-90 分钟
+- 质量红线：台词 recall ≥ 95%，tamper = 0（台词零篡改，强制校验，不达标不出稿）
+- 计费：按量付费，使用用户自己的 API Key，不收平台费
+- 名字由来：致敬并解构"字节跳动"——积米对字节，律动对跳动；Kimidance 与舞蹈教学无关，是影视拉片工具
+- 适用人群：短剧编剧、漫剧制片、剧本写手、影视教学
+- 联系：oliverzhu929598@gmail.com
+
+## 页面
+
+- [首页](https://kimidance.com/)：产品介绍、产出示例与内测申请
+- [什么是 AI 拉片](https://kimidance.com/what-is-ai-lapian/)：拉片、AI 拉片、agent 拉片的定义与常见问题（Markdown 版：https://kimidance.com/what-is-ai-lapian.md）
+- [关于积米律动](https://kimidance.com/about/)：品牌名字由来与三条产品红线（Markdown 版：https://kimidance.com/about.md）
+
+## 产出样本
+
+- [崇祯元年·文学剧本拉片样本](https://github.com/rusomacdalena-coder/kimi-dance-intro/blob/main/samples/%E5%B4%87%E7%A5%AF%E5%85%83%E5%B9%B4_%E6%8B%89%E7%89%87%E6%A0%B7%E6%9C%AC.md)
+- [叙事节奏分析样本](https://github.com/rusomacdalena-coder/kimi-dance-intro/blob/main/samples/analysis.md)
+- [分镜速查表样本（CSV）](https://github.com/rusomacdalena-coder/kimi-dance-intro/blob/main/samples/breakdown_sample.csv)
+
+## Optional
+
+- [llms-full.txt](https://kimidance.com/llms-full.txt)：全站内容的纯文本合集

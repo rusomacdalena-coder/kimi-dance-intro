@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm charcoal palette — matches mockup atmosphere */
+    --background: 20 10% 5%;
+    --foreground: 35 28% 96%;
+    --card: 20 8% 10%;
+    --card-foreground: 35 24% 94%;
+    --primary: 32 80% 55%;
+    --primary-foreground: 30 30% 98%;
+    --secondary: 20 6% 13%;
+    --secondary-foreground: 35 12% 78%;
+    --muted: 20 7% 16%;
+    --muted-foreground: 32 13% 76%;
+    --accent: 20 7% 16%;
+    --accent-foreground: 35 15% 85%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 28 10% 24%;
+    --input: 20 7% 17%;
+    --ring: 32 80% 55%;
+    --radius: 0.5rem;
+
+    /* Editorial extras */
+    --warm-glow: 30 60% 12%;
+    --cream: 36 36% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+      'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background:
+      linear-gradient(180deg, hsl(20 10% 6%) 0%, hsl(20 10% 4.5%) 100%);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(32 80% 55%), hsl(40 90% 65%));
+  }
+
+  /* Editorial headline — large serif-like feel */
+  .text-editorial {
+    font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC',
+      Georgia, 'Times New Roman', serif;
+    color: hsl(var(--cream));
+    letter-spacing: 0;
+    text-shadow: 0 1px 18px hsl(35 30% 90% / 0.08);
+  }
+
+  /* Warm atmospheric glow for backgrounds */
+  .bg-warm-glow {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      hsl(30 40% 10%) 0%,
+      hsl(20 10% 5%) 70%
+    );
+  }
+
+  /* Subtle warm gradient overlay */
+  .bg-warm-gradient {
+    background: linear-gradient(
+      180deg,
+      hsl(20 10% 5%) 0%,
+      hsl(25 12% 7%) 50%,
+      hsl(20 10% 5%) 100%
+    );
+  }
+
+  /* Copper accent text */
+  .text-copper {
+    color: hsl(32 70% 60%);
+  }
+
+  /* Cream white text */
+  .text-cream {
+    color: hsl(35 30% 92%);
+  }
+
+  /* Small caps tracking for labels */
+  .label-caps {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: hsl(30 78% 61%);
+    font-weight: 700;
+  }
+
+  .copy-readable {
+    color: hsl(32 15% 80%);
+    line-height: 1.75;
+    font-weight: 450;
+  }
+
+  .surface-glass {
+    background:
+      linear-gradient(180deg, hsl(24 10% 15% / 0.8), hsl(20 10% 10% / 0.62));
+    border: 1px solid hsl(35 32% 86% / 0.17);
+    box-shadow:
+      0 24px 80px hsl(0 0% 0% / 0.3),
+      inset 0 1px 0 hsl(35 35% 98% / 0.12);
+    backdrop-filter: blur(12px) saturate(132%);
+  }
+
+  .surface-glass-soft {
+    background:
+      linear-gradient(180deg, hsl(22 10% 14% / 0.68), hsl(20 10% 9% / 0.5));
+    border: 1px solid hsl(35 30% 86% / 0.14);
+    box-shadow:
+      0 18px 54px hsl(0 0% 0% / 0.2),
+      inset 0 1px 0 hsl(35 35% 98% / 0.1);
+    backdrop-filter: blur(10px) saturate(126%);
+  }
+
+  .preview-frame {
+    background:
+      linear-gradient(180deg, hsl(24 12% 15% / 0.86), hsl(20 11% 8% / 0.76));
+    border: 1px solid hsl(35 34% 88% / 0.2);
+    box-shadow:
+      0 26px 90px hsl(0 0% 0% / 0.32),
+      0 0 0 1px hsl(32 72% 62% / 0.05),
+      inset 0 1px 0 hsl(35 38% 98% / 0.14);
+    backdrop-filter: blur(8px) saturate(135%);
+  }
+
+  .preview-image {
+    filter: contrast(1.08) brightness(1.05) saturate(1.04);
+    image-rendering: auto;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .field-glass {
+    background:
+      linear-gradient(180deg, hsl(24 7% 17% / 0.9), hsl(20 7% 14% / 0.92));
+    border: 1px solid hsl(35 20% 76% / 0.13);
+    box-shadow: inset 0 1px 0 hsl(35 24% 92% / 0.05);
+  }
+}
+
+/* ── Article pages (about / guides) ─────────────────────────────────── */
+@layer components {
+  .article-prose {
+    @apply max-w-2xl mx-auto;
+  }
+  .article-prose h2 {
+    @apply text-editorial text-2xl sm:text-3xl font-bold mt-14 mb-5;
+  }
+  .article-prose h3 {
+    @apply text-cream font-semibold text-lg mt-9 mb-3;
+  }
+  .article-prose p {
+    @apply copy-readable text-[15px] my-4;
+  }
+  .article-prose ul,
+  .article-prose ol {
+    @apply copy-readable text-[15px] my-4 pl-6 space-y-2;
+  }
+  .article-prose ul {
+    @apply list-disc;
+  }
+  .article-prose ol {
+    @apply list-decimal;
+  }
+  .article-prose strong {
+    @apply text-cream font-semibold;
+  }
+  .article-prose a {
+    color: hsl(32 70% 60%);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: hsl(32 70% 60% / 0.4);
+  }
+  .article-prose a:hover {
+    text-decoration-color: hsl(32 70% 60%);
+  }
+  .article-prose table {
+    @apply w-full text-sm my-6 border-collapse;
+  }
+  .article-prose th {
+    @apply text-left text-xs text-muted-foreground font-semibold px-3 py-2.5 border-b border-border;
+  }
+  .article-prose td {
+    @apply px-3 py-2.5 border-b border-border/50 copy-readable text-sm align-top;
+  }
+  .article-prose blockquote {
+    @apply border-l-2 border-primary/50 pl-4 my-6 text-muted-foreground;
+  }
+  .tldr-box {
+    @apply rounded-2xl surface-glass-soft p-6 my-8;
+  }
+}

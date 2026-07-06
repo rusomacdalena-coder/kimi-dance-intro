@@ -1,0 +1,82 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string
+  description: string
+  ogImage?: string
+  ogType?: string
+  jsonLd?: Record<string, unknown>[]
+}
+
+const {
+  title,
+  description,
+  ogImage = '/preview/01-dashboard.png',
+  ogType = 'website',
+  jsonLd = [],
+} = Astro.props
+
+const canonical = new URL(Astro.url.pathname, Astro.site)
+const ogImageAbs = new URL(ogImage, Astro.site)
+
+const ENTITY_SENTENCE =
+  '积米律动（Kimidance）是一款 AI 拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表，全程台词零篡改。'
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: '积米律动',
+  alternateName: 'Kimidance',
+  url: 'https://kimidance.com',
+  logo: 'https://kimidance.com/logo.png',
+  description: ENTITY_SENTENCE,
+  email: 'oliverzhu929598@gmail.com',
+  sameAs: ['https://github.com/rusomacdalena-coder/kimi-dance-intro'],
+}
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: '积米律动 Kimidance',
+  url: 'https://kimidance.com',
+  inLanguage: 'zh-CN',
+}
+
+const jsonLdBlocks = [organization, website, ...jsonLd]
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta property="og:site_name" content="积米律动 Kimidance" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    {
+      jsonLdBlocks.map((block) => (
+        <script type="application/ld+json" set:html={JSON.stringify(block)} />
+      ))
+    }
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

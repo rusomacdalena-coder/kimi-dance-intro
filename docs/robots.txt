@@ -1,0 +1,42 @@
+# kimidance.com — 欢迎所有搜索引擎与 AI 引擎抓取
+User-agent: *
+Allow: /
+
+# AI crawlers explicitly welcome (GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://kimidance.com/sitemap-index.xml

@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro'
+import LandingPage from '../components/LandingPage'
+
+const softwareApplication = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: '积米律动 Kimidance',
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'macOS',
+  url: 'https://kimidance.com',
+  description:
+    '积米律动（Kimidance）是一款 AI 拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表，全程台词零篡改。',
+  featureList: [
+    '文学剧本自动生成（投稿模板格式，台词零篡改）',
+    '叙事节奏分析（钩子、冲突点、高潮、情绪曲线）',
+    '分镜速查表导出（每镜一行：景别、运镜、角色、台词、情绪、叙事功能）',
+    '质量红线强制校验（recall ≥ 95%，tamper = 0）',
+  ],
+  screenshot: 'https://kimidance.com/preview/01-dashboard.png',
+}
+---
+
+<Base
+  title="积米律动 · Kimidance — 全自动 AI 拉片工具"
+  description="输入短剧视频，全自动输出投稿级文学剧本、叙事分析、分镜速查表。台词零篡改，1 小时视频云端通道 4-9 分钟搞定。"
+  jsonLd={[softwareApplication]}
+>
+  <LandingPage client:load />
+</Base>
