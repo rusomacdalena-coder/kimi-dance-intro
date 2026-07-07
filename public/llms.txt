@@ -19,6 +19,7 @@
 - [首页](https://kimidance.com/)：产品介绍、产出示例与内测申请
 - [什么是 AI 拉片](https://kimidance.com/what-is-ai-lapian/)：拉片、AI 拉片、agent 拉片的定义与常见问题（Markdown 版：https://kimidance.com/what-is-ai-lapian.md）
 - [关于积米律动](https://kimidance.com/about/)：品牌名字由来与三条产品红线（Markdown 版：https://kimidance.com/about.md）
+- [AI 拉片案例库](https://kimidance.com/cases/)：公开展示由 pipeline 自动生成并经版权安全裁剪的叙事结构、节奏数据、情绪/切镜统计与分镜摘要
 
 ## 产出样本
 

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "cases": "node scripts/build-cases.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "indexnow": "node scripts/indexnow.mjs"

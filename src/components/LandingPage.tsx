@@ -20,6 +20,7 @@ function Nav() {
     { label: '产品预览', href: '#preview' },
     { label: '产出示例', href: '#sample' },
     { label: '什么是 AI 拉片', href: '/what-is-ai-lapian/' },
+    { label: '案例库', href: '/cases/' },
   ]
 
   return (
@@ -373,6 +374,9 @@ function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
           <a href="/what-is-ai-lapian/" className="hover:text-cream transition-colors">
             什么是 AI 拉片
+          </a>
+          <a href="/cases/" className="hover:text-cream transition-colors">
+            案例库
           </a>
           <a href="/about/" className="hover:text-cream transition-colors">
             关于积米律动

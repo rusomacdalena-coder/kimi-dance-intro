@@ -1,0 +1,118 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro'
+import { cases, type CaseStudy } from '../../data/cases'
+
+export function getStaticPaths() {
+  return cases.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }))
+}
+
+const { item } = Astro.props as { item: CaseStudy }
+
+const caseUrl = `https://kimidance.com/cases/${item.slug}/`
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: item.title,
+  inLanguage: 'zh-CN',
+  datePublished: item.publishedAt,
+  dateModified: item.updatedAt,
+  author: { '@type': 'Organization', name: '积米律动', url: 'https://kimidance.com' },
+  publisher: { '@type': 'Organization', name: '积米律动', url: 'https://kimidance.com' },
+  mainEntityOfPage: caseUrl,
+  description: item.summary,
+}
+---
+
+<ArticleLayout
+  title={`${item.title}｜AI 拉片案例｜积米律动`}
+  description={item.summary}
+  jsonLd={[article]}
+  dateModified={item.updatedAt}
+>
+  <div class="label-caps mb-4">AI Breakdown Case</div>
+  <h1 class="text-editorial text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
+    {item.title}
+  </h1>
+
+  <div class="tldr-box">
+    <div class="label-caps mb-3">太长不看</div>
+    <p class="copy-readable text-sm my-0">{item.summary}</p>
+  </div>
+
+  <h2>核心数据</h2>
+  <div class="grid sm:grid-cols-2 gap-3 my-6">
+    {
+      item.metrics.map((metric) => (
+        <div class="rounded-xl surface-glass-soft p-4">
+          <div class="text-xs text-muted-foreground mb-1">{metric.label}</div>
+          <div class="text-cream text-xl font-bold">{metric.value}</div>
+          {metric.note && <div class="text-xs text-muted-foreground mt-2">{metric.note}</div>}
+        </div>
+      ))
+    }
+  </div>
+
+  <h2>叙事结构摘要</h2>
+  <ul>
+    {item.structure.map((line) => <li>{line}</li>)}
+  </ul>
+
+  <h2>分镜表摘要</h2>
+  <p>
+    以下仅展示经过版权安全裁剪的分镜摘要：保留镜头节奏、场景、画面、情绪和叙事功能，不公开成段台词或完整剧本正文。
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>镜头</th>
+        <th>时间</th>
+        <th>场景</th>
+        <th>画面摘要</th>
+        <th>情绪</th>
+        <th>叙事功能</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        item.shotRows.map((row) => (
+          <tr>
+            <td>{row.shot}</td>
+            <td>{row.time}</td>
+            <td>{row.scene}</td>
+            <td>{row.visual}</td>
+            <td>{row.emotion}</td>
+            <td>{row.narrative}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2>方法论观察</h2>
+  <ul>
+    {item.methodology.map((line) => <li>{line}</li>)}
+  </ul>
+
+  <h2>数据来源与版权边界</h2>
+  <p>
+    本页由积米律动 pipeline 自动生成并裁剪。源产物包括：{item.sourceFiles.join('、')}。公开页只保留结构化分析和摘要，不发布完整剧本正文。
+  </p>
+  <p>
+    Agent 友好 Markdown 镜像：<a href={item.markdownPath}>{item.markdownPath}</a>
+  </p>
+
+  <div class="tldr-box text-center">
+    <p class="copy-readable text-sm mb-5">
+      这份案例由积米律动自动拉片生成。想拆解你自己的视频？
+    </p>
+    <a
+      href="/#beta"
+      class="inline-block px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
+    >
+      申请内测 &rarr;
+    </a>
+  </div>
+</ArticleLayout>
