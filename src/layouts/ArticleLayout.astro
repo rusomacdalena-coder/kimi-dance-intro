@@ -15,8 +15,9 @@ const { title, description, ogImage, jsonLd = [], dateModified } = Astro.props
 const navLinks = [
   { label: '功能', href: '/#features' },
   { label: '产出示例', href: '/#sample' },
-  { label: '什么是 AI 拉片', href: '/what-is-ai-lapian/' },
+  { label: 'AI 拉片', href: '/what-is-ai-lapian/' },
   { label: '案例库', href: '/cases/' },
+  { label: '对比', href: '/compare/ai-lapian-tools/' },
   { label: '关于', href: '/about/' },
 ]
 ---
@@ -82,6 +83,8 @@ const navLinks = [
         >
           <a href="/what-is-ai-lapian/" class="hover:text-cream transition-colors">什么是 AI 拉片</a>
           <a href="/cases/" class="hover:text-cream transition-colors">案例库</a>
+          <a href="/compare/ai-lapian-tools/" class="hover:text-cream transition-colors">工具对比</a>
+          <a href="/guides/lapian-template/" class="hover:text-cream transition-colors">拉片模板</a>
           <a href="/about/" class="hover:text-cream transition-colors">关于积米律动</a>
           <a
             href="https://github.com/rusomacdalena-coder/kimi-dance-intro"

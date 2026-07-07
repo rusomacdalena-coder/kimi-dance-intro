@@ -18,6 +18,10 @@ const urls = [
   `https://${HOST}/what-is-ai-lapian/`,
   `https://${HOST}/about/`,
   `https://${HOST}/cases/`,
+  `https://${HOST}/compare/ai-lapian-tools/`,
+  `https://${HOST}/guides/lapian-template/`,
+  `https://${HOST}/compare-ai-lapian-tools.md`,
+  `https://${HOST}/lapian-template.md`,
   `https://${HOST}/llms.txt`,
   ...caseUrls,
 ]

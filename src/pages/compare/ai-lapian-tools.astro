@@ -1,0 +1,188 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro'
+
+const DATE_MODIFIED = '2026-07-07'
+
+const competitors = [
+  {
+    name: '积米律动 Kimidance',
+    focus: '成片/短剧视频 → 文学剧本、叙事分析、分镜速查表',
+    positioning: 'AI 拉片桌面工具，本地优先，强调台词零篡改和投稿级剧本格式',
+    data: '视频保存在本地，提供本机与云端处理通道',
+    output: '文学剧本、analysis.md、breakdown.csv',
+    fit: '需要批量拆解竞品视频、反推剧本、保留原声台词的编剧和制片',
+  },
+  {
+    name: '创一AI / 咔咔猩',
+    focus: 'AI 评剧本、拆短片、剧本/短剧创作相关工作流',
+    positioning:
+      '公开报道和应用商店页面显示，其能力覆盖智能拉片、视频转分镜、视频转剧本、剧本评估与创作',
+    data: '在线平台口径，数据处理方式以官方服务条款为准',
+    output: '拆短片结果、分镜表、反推剧本、评估/优化建议等',
+    fit: '需要短剧行业全链路创作、评估、拆解和采购服务的团队',
+  },
+  {
+    name: 'StoryPlay AI',
+    focus: '短剧剧本创作平台',
+    positioning:
+      '公开官网口径主打短剧剧本创作全流程，包括题材、策划、初稿、润色、分发和剧本转视频等',
+    data: '在线平台口径，数据处理方式以官方服务条款为准',
+    output: '剧本策划、正文、分镜或多模态内容创作相关结果',
+    fit: '从 0 到 1 创作短剧剧本、管理故事创作流程的作者和团队',
+  },
+  {
+    name: '蝉妈妈 AI 创意大师',
+    focus: '短视频内容与脚本逻辑拆解',
+    positioning:
+      '公开页面提供“一键智能拉片”工具，用于解析视频核心内容与脚本逻辑',
+    data: '在线工具口径，数据处理方式以官方服务条款为准',
+    output: '视频内容解析、脚本逻辑拆解等在线结果',
+    fit: '偏短视频投放、内容创意复盘和爆款拆解的运营/创作者',
+  },
+]
+
+const faq = [
+  {
+    q: 'AI 拉片工具怎么选？',
+    a: '先看任务：如果目标是把已有视频反推成可投稿剧本和分镜数据，优先看台词是否零篡改、是否能导出结构化文件、视频是否本地保留；如果目标是从 0 写短剧，剧本创作平台更合适。',
+  },
+  {
+    q: '为什么台词零篡改重要？',
+    a: '拉片和投稿场景里，原片台词是一手证据。LLM 如果润色台词，后续剧本、分镜表和数据分析都会失真。积米律动把台词作为不可改写数据处理，并用校验强制 tamper = 0。',
+  },
+  {
+    q: '在线 AI 拉片和本地桌面 AI 拉片有什么区别？',
+    a: '在线工具部署和协作更方便，本地桌面工具更适合视频文件较大、素材敏感、需要保留本机工作流的场景。二者不是绝对替代，取决于团队的数据边界和交付格式要求。',
+  },
+]
+
+const article = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'AI 拉片工具对比 2026',
+  inLanguage: 'zh-CN',
+  datePublished: DATE_MODIFIED,
+  dateModified: DATE_MODIFIED,
+  author: { '@type': 'Organization', name: '积米律动', url: 'https://kimidance.com' },
+  publisher: { '@type': 'Organization', name: '积米律动', url: 'https://kimidance.com' },
+  mainEntityOfPage: 'https://kimidance.com/compare/ai-lapian-tools/',
+}
+
+const faqPage = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}
+---
+
+<ArticleLayout
+  title="AI 拉片工具对比 2026：积米律动、创一AI、StoryPlay、蝉妈妈怎么选"
+  description="AI 拉片工具怎么选？本文按任务、输出、台词零篡改、本地/在线和适用人群，对比积米律动、创一AI/咔咔猩、StoryPlay AI、蝉妈妈 AI 创意大师等公开工具。"
+  jsonLd={[article, faqPage]}
+  dateModified={DATE_MODIFIED}
+>
+  <div class="label-caps mb-4">Compare</div>
+  <h1 class="text-editorial text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
+    AI 拉片工具对比 2026
+  </h1>
+
+  <div class="tldr-box">
+    <div class="label-caps mb-3">太长不看</div>
+    <ul class="copy-readable text-sm space-y-2 list-disc pl-5">
+      <li>如果目标是<strong>已有视频 → 可投稿剧本 + 分镜速查表</strong>，重点看台词零篡改、结构化导出和视频数据边界。</li>
+      <li>如果目标是<strong>从 0 写短剧</strong>，StoryPlay、创一AI/咔咔猩这类短剧创作平台更贴近全流程创作。</li>
+      <li>如果目标是<strong>短视频投放复盘</strong>，蝉妈妈这类内容创意工具更贴近运营场景。</li>
+      <li>以下对比基于公开页面与公开报道，具体功能、价格和数据条款以各产品官方最新说明为准。</li>
+    </ul>
+  </div>
+
+  <h2>先按任务分，不要只按品牌分</h2>
+  <p>
+    “AI 拉片工具”这个词下混着几类产品：有的是把成片视频拆成剧本和分镜数据，有的是辅助短剧剧本创作，有的是做投放内容复盘。选型时先确认任务，而不是先比较谁“更 AI”。
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>工具</th>
+        <th>主要任务</th>
+        <th>公开定位</th>
+        <th>数据边界</th>
+        <th>典型输出</th>
+        <th>更适合谁</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        competitors.map((item) => (
+          <tr>
+            <td><strong>{item.name}</strong></td>
+            <td>{item.focus}</td>
+            <td>{item.positioning}</td>
+            <td>{item.data}</td>
+            <td>{item.output}</td>
+            <td>{item.fit}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2>积米律动的差异点</h2>
+  <p>
+    积米律动不是从 0 写剧本的创作平台，而是把已经存在的短剧或长视频拆回可读、可学习、可复用的结构化资料。它的核心差异点是三条：
+  </p>
+  <ul>
+    <li><strong>台词零篡改</strong>：LLM 只做标注和结构化，台词从 ASR 到成稿只做传递，不允许润色或改写。</li>
+    <li><strong>三件套导出</strong>：文学剧本、叙事分析、分镜速查表分别服务投稿、复盘和批量比较。</li>
+    <li><strong>本地优先</strong>：桌面应用跑在用户自己的 Mac 上，适合大视频文件和素材敏感场景。</li>
+  </ul>
+
+  <h2>什么时候不该选积米律动？</h2>
+  <p>
+    如果你没有现成视频，只想直接生成短剧大纲、人物设定和整本剧本，短剧剧本创作平台更合适。如果你主要做广告投放复盘、账号内容运营，运营型智能拉片工具可能更省事。积米律动最擅长的是“视频已经存在，需要把它系统拆开”。
+  </p>
+
+  <h2>选型检查表</h2>
+  <ul>
+    <li>是否需要保留原声台词，一字不改？</li>
+    <li>是否需要导出 CSV 分镜表，后续进 Excel 或数据库？</li>
+    <li>视频文件是否敏感，是否必须留在本机？</li>
+    <li>产出是为了投稿、教学、竞品复盘，还是为了从 0 创作？</li>
+    <li>团队是否需要多人在线协作和剧本管理？</li>
+  </ul>
+
+  <h2>公开资料来源</h2>
+  <ul>
+    <li><a href="https://apps.microsoft.com/detail/9p0h4q9z3fbx?gl=CN&hl=zh-CN" rel="noopener">创一AI Microsoft 应用商店页面</a></li>
+    <li><a href="https://www.lanjinger.com/d/1750758495894335747" rel="noopener">蓝鲸财经《拆剧，内行人已经开始 AI 拉片了》</a></li>
+    <li><a href="https://storyplay.cn/" rel="noopener">StoryPlay AI 官网</a></li>
+    <li><a href="https://cy.chanmama.com/tools/intelligentStoryboardScript.html" rel="noopener">蝉妈妈 AI 创意大师智能拉片页面</a></li>
+  </ul>
+
+  <h2>常见问题</h2>
+  {
+    faq.map((f) => (
+      <>
+        <h3>{f.q}</h3>
+        <p>{f.a}</p>
+      </>
+    ))
+  }
+
+  <div class="tldr-box text-center">
+    <p class="copy-readable text-sm mb-5">
+      已经有一部视频，想把它拆成文学剧本、叙事分析和分镜速查表？
+    </p>
+    <a
+      href="/#beta"
+      class="inline-block px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
+    >
+      申请内测 &rarr;
+    </a>
+  </div>
+</ArticleLayout>
