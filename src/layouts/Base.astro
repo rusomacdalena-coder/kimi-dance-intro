@@ -7,6 +7,7 @@ interface Props {
   ogImage?: string
   ogType?: string
   jsonLd?: Record<string, unknown>[]
+  noindex?: boolean
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   ogImage = '/preview/01-dashboard.png',
   ogType = 'website',
   jsonLd = [],
+  noindex = false,
 } = Astro.props
 
 const canonical = new URL(Astro.url.pathname, Astro.site)
@@ -53,6 +55,7 @@ const jsonLdBlocks = [organization, website, ...jsonLd]
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />

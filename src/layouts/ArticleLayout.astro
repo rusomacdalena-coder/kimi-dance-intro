@@ -8,9 +8,10 @@ interface Props {
   jsonLd?: Record<string, unknown>[]
   /** ISO date, e.g. 2026-07-05 */
   dateModified?: string
+  noindex?: boolean
 }
 
-const { title, description, ogImage, jsonLd = [], dateModified } = Astro.props
+const { title, description, ogImage, jsonLd = [], dateModified, noindex = false } = Astro.props
 
 const navLinks = [
   { label: '功能', href: '/#features' },
@@ -22,7 +23,7 @@ const navLinks = [
 ]
 ---
 
-<Base title={title} description={description} ogImage={ogImage} ogType="article" jsonLd={jsonLd}>
+<Base title={title} description={description} ogImage={ogImage} ogType="article" jsonLd={jsonLd} noindex={noindex}>
   <div class="min-h-screen bg-background text-foreground">
     <nav
       class="fixed top-0 inset-x-0 z-50 bg-background/78 backdrop-blur-xl border-b border-border/60"
