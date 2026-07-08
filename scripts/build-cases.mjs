@@ -33,7 +33,16 @@ function slugify(text) {
     .replace(/['"]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
-  return ascii.length >= 3 ? ascii : `case-${shortHash(text)}`
+  return ascii.length >= 3 && !/^\d+$/.test(ascii) ? ascii : `case-${shortHash(text)}`
+}
+
+function displayTitleFromDir(name) {
+  return name
+    .replace(/_第?\d+(?:-\d+)?集合集$/u, '')
+    .replace(/_合并_\d+集$/u, '')
+    .replace(/_\d+集合集$/u, '')
+    .replace(/_output$/u, '')
+    .trim()
 }
 
 function truncate(text, max) {
@@ -74,9 +83,16 @@ function truncateSentence(text, max) {
 // 从 analysis.md 抽取已声明的权威总数（镜头/场景/时长），作为头部指标的首选来源，
 // 避免与 breakdown.csv（可能是节选）自相矛盾。
 function extractStatedTotals(text) {
-  const shotMatch = text.match(/([\d,]{2,})\s*个?\s*镜头(?!时长)/)
-  const sceneMatch = text.match(/([\d,]+)\s*个?\s*场景/)
-  const minMatch = text.match(/([\d.]+)\s*分钟/)
+  const normalized = text.replace(/\*/g, '')
+  const shotMatch =
+    normalized.match(/([\d,]{2,})\s*个?\s*镜头(?!时长)/u) ||
+    normalized.match(/(?:镜头总数|镜头)\s*[：:=为是]?\s*([\d,]{2,})\s*个?/u)
+  const sceneMatch =
+    normalized.match(/([\d,]+)\s*个?\s*场景/u) ||
+    normalized.match(/(?:场景总数|场景)\s*[：:=为是]?\s*([\d,]+)\s*个?/u)
+  const minMatch =
+    normalized.match(/(?:总时长|时长)\D{0,10}([\d.]+)\s*分钟/u) ||
+    normalized.match(/([\d.]+)\s*分钟/u)
   const shots = shotMatch ? Number(shotMatch[1].replace(/,/g, '')) : NaN
   const scenes = sceneMatch ? Number(sceneMatch[1].replace(/,/g, '')) : NaN
   return {
@@ -171,6 +187,7 @@ function extractSummary(analysisText, title) {
   const candidate = analysisText
     .split(/\r?\n/)
     .map(stripMarkdown)
+    .filter((line) => !/^(基础数据|基本数据|时长|镜头总数|场景总数|平均镜头时长)/.test(line))
     .find((line) => line && !line.startsWith('---') && line.length >= 24)
   return truncateSentence(
     candidate || `${title} 的 AI 拉片案例，公开叙事结构、节奏数据、情绪/切镜统计和分镜表摘要，不公开完整剧本正文。`,
@@ -307,7 +324,8 @@ function buildCase(dir) {
   const analysisText = files.analysis ? readText(files.analysis) : ''
   const rows = files.breakdown ? parseCsv(readText(files.breakdown)) : []
   const sourceTitle = files.title
-  const slug = slugify(sourceTitle)
+  const displayTitle = displayTitleFromDir(sourceTitle)
+  const slug = slugify(displayTitle)
   const sourceFiles = [
     files.script && basename(files.script),
     files.analysis && 'analysis.md',
@@ -316,8 +334,9 @@ function buildCase(dir) {
 
   const item = {
     slug,
-    title: `${sourceTitle}｜AI 拉片案例`,
+    title: `${displayTitle}｜AI 拉片案例`,
     sourceTitle,
+    displayTitle,
     summary: extractSummary(analysisText, sourceTitle),
     publishedAt: TODAY,
     updatedAt: TODAY,

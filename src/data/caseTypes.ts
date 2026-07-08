@@ -17,6 +17,7 @@ export interface CaseStudy {
   slug: string
   title: string
   sourceTitle: string
+  displayTitle?: string
   summary: string
   publishedAt: string
   updatedAt: string
