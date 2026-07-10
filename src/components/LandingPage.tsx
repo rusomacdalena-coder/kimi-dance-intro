@@ -20,6 +20,7 @@ function Nav() {
     { label: '产出示例', href: '#sample' },
     { label: 'AI 拉片', href: '/what-is-ai-lapian/' },
     { label: '案例库', href: '/cases/' },
+    { label: '下载', href: '/download/' },
   ]
 
   return (
@@ -382,6 +383,9 @@ function Footer() {
           </a>
           <a href="/guides/lapian-template/" className="hover:text-cream transition-colors">
             拉片模板
+          </a>
+          <a href="/download/" className="hover:text-cream transition-colors">
+            下载客户端
           </a>
           <a href="/about/" className="hover:text-cream transition-colors">
             关于积米律动

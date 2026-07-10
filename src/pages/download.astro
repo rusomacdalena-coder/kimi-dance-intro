@@ -1,0 +1,151 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro'
+
+const DATE_MODIFIED = '2026-07-10'
+
+const MAC_VERSION = '0.2.2.8'
+const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.2.2.8.dmg'
+const MAC_SHA256 = '2e94fb3012b3b12051d137d92c769b7409f1043b92baea75549a04baa70e1a73'
+const MAC_SIZE = '约 440 MB'
+
+const WIN_VERSION = '0.1.0'
+const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-0.1.0-x64.msi'
+const WIN_SHA256 = '65ba4314f991f9b84c78b62e003312605ca88a60e4ea3d75a25f7e2ed617e595'
+const WIN_SIZE = '约 335 MB'
+
+const softwareApp = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Kimidance 积米律动',
+  operatingSystem: 'macOS, Windows',
+  applicationCategory: 'MultimediaApplication',
+  inLanguage: 'zh-CN',
+  url: 'https://kimidance.com/download/',
+  softwareVersion: MAC_VERSION,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'CNY',
+    description: '公测期邀请制，注册即赠送体验积分',
+  },
+}
+---
+
+<ArticleLayout
+  title="下载积米律动 Kimidance — macOS / Windows 客户端"
+  description="下载积米律动（Kimidance）AI 拉片工具桌面客户端：macOS（Apple Silicon）与 Windows 10/11 版本。公测期凭邀请码注册，赠送体验积分，台词零篡改。"
+  jsonLd={[softwareApp]}
+  dateModified={DATE_MODIFIED}
+>
+  <div class="label-caps mb-4">Download</div>
+  <h1 class="text-editorial text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
+    下载积米律动客户端
+  </h1>
+
+  <p>
+    积米律动目前处于<strong>公测期，采用邀请码注册</strong>。你可以先下载安装客户端，然后<a
+      href="/#beta">在首页申请邀请码</a
+    >——通过后凭码注册，即赠送体验积分，导入视频就能跑出第一份剧本。
+  </p>
+
+  <!-- 平台下载卡片 -->
+  <div class="grid sm:grid-cols-2 gap-5 my-10 not-prose">
+    <div class="rounded-2xl surface-glass p-6 flex flex-col gap-3">
+      <div class="text-2xl">🍎</div>
+      <div class="text-lg font-bold text-cream">macOS</div>
+      <div class="text-xs text-muted-foreground leading-relaxed">
+        版本 {MAC_VERSION} · {MAC_SIZE}<br />
+        Apple Silicon（M1 及以后）专用<br />
+        建议 macOS 14 及以上
+      </div>
+      <a
+        href={MAC_URL}
+        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 text-primary-foreground hover:bg-primary transition-colors"
+      >
+        下载 .dmg
+      </a>
+    </div>
+    <div class="rounded-2xl surface-glass p-6 flex flex-col gap-3">
+      <div class="text-2xl">🪟</div>
+      <div class="text-lg font-bold text-cream">Windows</div>
+      <div class="text-xs text-muted-foreground leading-relaxed">
+        版本 {WIN_VERSION} · {WIN_SIZE}<br />
+        Windows 10 / 11（64 位）<br />
+        安装到当前用户目录，无需管理员权限
+      </div>
+      <a
+        href={WIN_URL}
+        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 text-primary-foreground hover:bg-primary transition-colors"
+      >
+        下载 .msi
+      </a>
+    </div>
+  </div>
+
+  <h2>安装指引</h2>
+  <p>
+    公测期安装包暂未购买商店签名证书，首次打开时系统会提示"无法验证开发者"——这是未签名应用的正常提示，
+    并非安全问题。你可以用下方的 SHA-256 校验值确认安装包完整未被篡改，然后按以下步骤放行：
+  </p>
+
+  <h3>macOS</h3>
+  <ol>
+    <li>双击下载的 <code>.dmg</code>，把 Kimidance 拖入"应用程序"文件夹；</li>
+    <li>首次打开时若提示"无法打开，因为无法验证开发者"，点"完成"（不要点"移到废纸篓"）；</li>
+    <li>
+      打开<strong>系统设置 → 隐私与安全性</strong>，滚动到底部，找到"已阻止 Kimidance"，点<strong
+        >仍要打开</strong
+      >；
+    </li>
+    <li>再次确认后即可正常启动，之后不会再提示。</li>
+  </ol>
+
+  <h3>Windows</h3>
+  <ol>
+    <li>双击下载的 <code>.msi</code> 开始安装；</li>
+    <li>
+      若出现 SmartScreen 蓝色提示框，点<strong>更多信息 → 仍要运行</strong>；
+    </li>
+    <li>安装完成后从开始菜单启动 Kimidance。</li>
+  </ol>
+
+  <h2>校验安装包完整性（可选）</h2>
+  <p>下载完成后可比对 SHA-256 校验值，确认文件与官方发布完全一致：</p>
+  <pre><code># macOS（终端）
+shasum -a 256 ~/Downloads/Kimidance-Mac-0.2.2.8.dmg
+# 应输出：{MAC_SHA256}
+
+# Windows（命令提示符）
+certutil -hashfile "%USERPROFILE%\Downloads\Kimidance-Windows-0.1.0-x64.msi" SHA256
+# 应输出：{WIN_SHA256}</code></pre>
+
+  <h2>快速开始</h2>
+  <ol>
+    <li><a href="/#beta">申请邀请码</a>（通常 1 个工作日内通过邮件回复）；</li>
+    <li>打开客户端，凭邀请码注册账号——注册即赠送体验积分；</li>
+    <li>登录后导入一部短剧或长视频；</li>
+    <li>等待处理完成，导出文学剧本、叙事节奏分析和分镜速查表。</li>
+  </ol>
+
+  <h2>常见问题</h2>
+  <h3>积分是什么？用完了怎么办？</h3>
+  <p>
+    积分是处理视频的计量单位，按视频时长消耗。注册赠送的积分足够体验完整流程；用完后可在客户端内通过微信扫码购买。
+  </p>
+  <h3>我的视频会上传吗？</h3>
+  <p>
+    视频在你的电脑本地处理。分析过程中仅将必要的关键帧与台词文本发送至 Kimidance
+    网关完成 AI 标注，不会上传完整视频文件。
+  </p>
+  <h3>支持 Intel 芯片的 Mac 吗？</h3>
+  <p>
+    当前 macOS 版本仅支持 Apple Silicon（M1 及以后）。Intel Mac 支持在计划中，欢迎<a
+      href="mailto:oliverzhu929598@gmail.com">邮件</a
+    >告诉我们你的需求。
+  </p>
+  <h3>遇到问题找谁？</h3>
+  <p>
+    邮件联系 <a href="mailto:oliverzhu929598@gmail.com">oliverzhu929598@gmail.com</a
+    >，注明系统版本和问题现象即可。
+  </p>
+</ArticleLayout>
