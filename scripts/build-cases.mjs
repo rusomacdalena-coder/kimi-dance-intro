@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { basename, join } from 'node:path'
+import { pinyin } from 'pinyin-pro'
 
 const DEFAULT_INPUT = '/Users/oliver/Documents/SEO｜GEO/P1-案例库素材投放区'
 const INPUT_DIR = process.argv[2] || DEFAULT_INPUT
@@ -27,7 +28,10 @@ function shortHash(text) {
 }
 
 function slugify(text) {
-  const ascii = text
+  // 中文剧名转拼音 slug（剧名是案例页要接住的核心搜索词，URL 里必须带上），
+  // 非中文字符原样保留后统一清洗；兜底才用哈希。
+  const roman = pinyin(text, { toneType: 'none', type: 'array', nonZh: 'consecutive' }).join('-')
+  const ascii = roman
     .normalize('NFKD')
     .toLowerCase()
     .replace(/['"]/g, '')
@@ -162,7 +166,8 @@ function formatDuration(seconds) {
 function findCaseDirs(inputDir) {
   if (!dirExists(inputDir)) return []
   return readdirSync(inputDir)
-    .filter((name) => !name.startsWith('.') && name !== 'README.md')
+    // "_" 前缀目录视为暂存/禁用（例如待重跑的问题素材），不参与发布
+    .filter((name) => !name.startsWith('.') && !name.startsWith('_') && name !== 'README.md')
     .map((name) => join(inputDir, name))
     .filter((path) => dirExists(path))
 }

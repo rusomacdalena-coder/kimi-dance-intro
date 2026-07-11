@@ -2,13 +2,13 @@ import type { CaseStudy } from './caseTypes'
 
 export const generatedCases = [
   {
-    "slug": "case-e5e1aa7a",
+    "slug": "da-ming-li-jing-long-de-bie-yang-ren-sheng",
     "title": "大明，李景隆的别样人生｜AI 拉片案例",
     "sourceTitle": "大明，李景隆的别样人生_合并_71集",
     "displayTitle": "大明，李景隆的别样人生",
     "summary": "切换节奏密度判断：每分钟换景2.09次，属于快节奏，适合短时间内传递大量信息与情感变化。",
-    "publishedAt": "2026-07-08",
-    "updatedAt": "2026-07-08",
+    "publishedAt": "2026-07-11",
+    "updatedAt": "2026-07-11",
     "durationLabel": "11分56秒",
     "sourceFiles": [
       "大明，李景隆的别样人生_合并_71集+拉片.md",
@@ -137,16 +137,16 @@ export const generatedCases = [
         "narrative": "探讨问题"
       }
     ],
-    "markdownPath": "/cases/case-e5e1aa7a.md"
+    "markdownPath": "/cases/da-ming-li-jing-long-de-bie-yang-ren-sheng.md"
   },
   {
-    "slug": "case-08276dd5",
+    "slug": "fan-ren-bai-shi-shu",
     "title": "凡人百世书｜AI 拉片案例",
     "sourceTitle": "凡人百世书_81集合集",
     "displayTitle": "凡人百世书",
     "summary": "切换节奏密度判断：场景切换率为4.08次/分钟（551场景 / 135.1分钟），显示出高频率的场景变换，节奏较快。",
-    "publishedAt": "2026-07-08",
-    "updatedAt": "2026-07-08",
+    "publishedAt": "2026-07-11",
+    "updatedAt": "2026-07-11",
     "durationLabel": "135分04秒",
     "sourceFiles": [
       "凡人百世书_81集合集+拉片.md",
@@ -275,154 +275,16 @@ export const generatedCases = [
         "narrative": "冲突"
       }
     ],
-    "markdownPath": "/cases/case-08276dd5.md"
+    "markdownPath": "/cases/fan-ren-bai-shi-shu.md"
   },
   {
-    "slug": "case-79ffb035",
-    "title": "婚姻正义联盟｜AI 拉片案例",
-    "sourceTitle": "婚姻正义联盟_合并_43集",
-    "displayTitle": "婚姻正义联盟",
-    "summary": "切换节奏密度判断：每分钟0.77场景切换，判断为快速切换节奏。",
-    "publishedAt": "2026-07-08",
-    "updatedAt": "2026-07-08",
-    "durationLabel": "7分02秒",
-    "sourceFiles": [
-      "婚姻正义联盟_合并_43集+拉片.md",
-      "analysis.md",
-      "breakdown.csv"
-    ],
-    "metrics": [
-      {
-        "label": "镜头数",
-        "value": "179",
-        "note": "来自 analysis.md"
-      },
-      {
-        "label": "视频时长",
-        "value": "44.4 分钟",
-        "note": "来自 analysis.md"
-      },
-      {
-        "label": "场景数",
-        "value": "34",
-        "note": "来自 analysis.md"
-      },
-      {
-        "label": "主要情绪",
-        "value": "愤怒",
-        "note": "10 个镜头"
-      },
-      {
-        "label": "最高频叙事功能",
-        "value": "冲突",
-        "note": "92 个镜头"
-      }
-    ],
-    "structure": [
-      "切换节奏密度判断：每分钟0.77场景切换，判断为快速切换节奏。",
-      "整体节奏策略：通过紧凑的镜头和高频冲突提升观众的紧张感。",
-      "视觉策略推断：强情绪，通过近景和特写传达人物的内心冲突和情感。",
-      "镜头语言服务短剧核心目标：有效抓住注意力，自始自终推动冲突与情绪的升级。",
-      "钩子位置与方式：钩子出现在00:02:40和00:02:45，前面均为冲突情境。",
-      "00:00:00 - 00:00:12（冲突频繁）"
-    ],
-    "methodology": [
-      "本案例公开 10 条分镜摘要样本，用于观察节奏和叙事功能分布。",
-      "高频叙事功能集中在：冲突（92）、铺垫（44）、过渡（21）。",
-      "叙事观察来自 analysis.md，并在公开页中删除成段台词和完整剧本正文。"
-    ],
-    "shotRows": [
-      {
-        "shot": "shot_0001",
-        "time": "00:00:00 → 00:00:03",
-        "scene": "客厅",
-        "visual": "白衣女子李悠悠低头道歉，表情难过",
-        "emotion": "悲伤/委屈",
-        "narrative": "冲突"
-      },
-      {
-        "shot": "shot_0018",
-        "time": "00:00:32 → 00:00:35",
-        "scene": "厨房",
-        "visual": "周昕放下手中的活查看手机信息",
-        "emotion": "幸福",
-        "narrative": "铺垫"
-      },
-      {
-        "shot": "shot_0035",
-        "time": "00:01:15 → 00:01:17",
-        "scene": "卧室",
-        "visual": "手机屏幕显示暧昧的聊天记录",
-        "emotion": "震惊/愤怒",
-        "narrative": "铺垫"
-      },
-      {
-        "shot": "shot_0052",
-        "time": "00:02:04 → 00:02:06",
-        "scene": "户外·小径",
-        "visual": "白衣女子带头行走，背景有人举着横幅",
-        "emotion": "愤怒/激进",
-        "narrative": "冲突"
-      },
-      {
-        "shot": "shot_0069",
-        "time": "00:02:48 → 00:02:50",
-        "scene": "公寓·客厅（回忆）",
-        "visual": "简历特写，上面显示着“李悠悠”的名字和照片",
-        "emotion": "正式",
-        "narrative": "铺垫"
-      },
-      {
-        "shot": "shot_0086",
-        "time": "00:03:35 → 00:03:37",
-        "scene": "别墅外大门",
-        "visual": "人群举着横幅涌向别墅的大门",
-        "emotion": "混乱",
-        "narrative": "冲突"
-      },
-      {
-        "shot": "shot_0103",
-        "time": "00:04:01 → 00:04:03",
-        "scene": "豪华公寓·客厅",
-        "visual": "棕衣女子趴在地板上回头质问",
-        "emotion": "惊愕",
-        "narrative": "冲突"
-      },
-      {
-        "shot": "shot_0120",
-        "time": "00:04:30 → 00:04:32",
-        "scene": "豪华公寓·客厅",
-        "visual": "棕衣女子被一群人围在客厅中央羞辱",
-        "emotion": "混乱/压抑",
-        "narrative": "冲突"
-      },
-      {
-        "shot": "shot_0137",
-        "time": "00:05:03 → 00:05:05",
-        "scene": "豪宅·客厅",
-        "visual": "白衣女子神色阴沉地低头看着棕衣女子",
-        "emotion": "威逼",
-        "narrative": "冲突"
-      },
-      {
-        "shot": "shot_0154",
-        "time": "00:05:43 → 00:05:45",
-        "scene": "办公室/室内",
-        "visual": "手机聊天界面中备注名称为狐狸精",
-        "emotion": "荒诞/凄凉",
-        "narrative": "转折"
-      }
-    ],
-    "markdownPath": "/cases/case-79ffb035.md"
-  },
-  {
-    "slug": "case-45659879",
+    "slug": "mo-shi-cong-ban-kong-quan-qiu-cang-ku-kai-shi-di-yi-ji",
     "title": "末世：从搬空全球仓库开始第一季｜AI 拉片案例",
     "sourceTitle": "末世：从搬空全球仓库开始第一季_合并_130集",
     "displayTitle": "末世：从搬空全球仓库开始第一季",
     "summary": "节奏密度判断：属于极高频、快节奏的叙事风格。平均 2.43 秒切换一次镜头，且超过 90% 的镜头时长在 5 秒以内，完全符合当下短剧/漫剧“开篇即冲突、高频信息轰炸”的市场主流诉求。",
-    "publishedAt": "2026-07-08",
-    "updatedAt": "2026-07-08",
+    "publishedAt": "2026-07-11",
+    "updatedAt": "2026-07-11",
     "durationLabel": "125分47秒",
     "sourceFiles": [
       "末世：从搬空全球仓库开始第一季_合并_130集+拉片.md",
@@ -551,16 +413,16 @@ export const generatedCases = [
         "narrative": "收束"
       }
     ],
-    "markdownPath": "/cases/case-45659879.md"
+    "markdownPath": "/cases/mo-shi-cong-ban-kong-quan-qiu-cang-ku-kai-shi-di-yi-ji.md"
   },
   {
-    "slug": "case-38c71eb6",
+    "slug": "ri-xin-yi-wan-wo-zai-bo-wu-guan-zhi-ye-ban",
     "title": "日薪一万，我在博物馆值夜班｜AI 拉片案例",
     "sourceTitle": "日薪一万，我在博物馆值夜班_合并_70集",
     "displayTitle": "日薪一万，我在博物馆值夜班",
     "summary": "切换节奏密度判断：每分钟 3.38次 场景切换，总体节奏属于快节奏的类型，观众需要快速跟随情节的发展。",
-    "publishedAt": "2026-07-08",
-    "updatedAt": "2026-07-08",
+    "publishedAt": "2026-07-11",
+    "updatedAt": "2026-07-11",
     "durationLabel": "86分03秒",
     "sourceFiles": [
       "日薪一万，我在博物馆值夜班_合并_70集+拉片.md",
@@ -689,16 +551,16 @@ export const generatedCases = [
         "narrative": "冲突"
       }
     ],
-    "markdownPath": "/cases/case-38c71eb6.md"
+    "markdownPath": "/cases/ri-xin-yi-wan-wo-zai-bo-wu-guan-zhi-ye-ban.md"
   },
   {
-    "slug": "case-9ce183d2",
+    "slug": "shi-guang-he-ni-dou-hen-mei",
     "title": "时光和你都很美｜AI 拉片案例",
     "sourceTitle": "时光和你都很美_70集合集",
     "displayTitle": "时光和你都很美",
     "summary": "节奏策略：典型的“高密度信息流”策略。通过极短的平均镜头时长和频繁的场景切换，强行制造感官刺激，弥补单场景深度的不足。",
-    "publishedAt": "2026-07-08",
-    "updatedAt": "2026-07-08",
+    "publishedAt": "2026-07-11",
+    "updatedAt": "2026-07-11",
     "durationLabel": "163分56秒",
     "sourceFiles": [
       "时光和你都很美_70集合集+拉片.md",
@@ -827,154 +689,16 @@ export const generatedCases = [
         "narrative": "冲突"
       }
     ],
-    "markdownPath": "/cases/case-9ce183d2.md"
+    "markdownPath": "/cases/shi-guang-he-ni-dou-hen-mei.md"
   },
   {
-    "slug": "case-11f71928",
-    "title": "西游散伙人，开局策反孙悟空｜AI 拉片案例",
-    "sourceTitle": "西游散伙人，开局策反孙悟空_合并_89集",
-    "displayTitle": "西游散伙人，开局策反孙悟空",
-    "summary": "切换节奏密度判断：切换节奏很快，切换率为0.63次/分钟，意味着每分钟会有约0.63次场景切换，整体节奏偏快。",
-    "publishedAt": "2026-07-08",
-    "updatedAt": "2026-07-08",
-    "durationLabel": "2分51秒",
-    "sourceFiles": [
-      "西游散伙人，开局策反孙悟空_合并_89集+拉片.md",
-      "analysis.md",
-      "breakdown.csv"
-    ],
-    "metrics": [
-      {
-        "label": "镜头数",
-        "value": "109",
-        "note": "来自 analysis.md"
-      },
-      {
-        "label": "视频时长",
-        "value": "124.7 分钟",
-        "note": "来自 analysis.md"
-      },
-      {
-        "label": "场景数",
-        "value": "78",
-        "note": "来自 analysis.md"
-      },
-      {
-        "label": "主要情绪",
-        "value": "轻松",
-        "note": "12 个镜头"
-      },
-      {
-        "label": "最高频叙事功能",
-        "value": "铺垫",
-        "note": "33 个镜头"
-      }
-    ],
-    "structure": [
-      "切换节奏密度判断：切换节奏很快，切换率为0.63次/分钟，意味着每分钟会有约0.63次场景切换，整体节奏偏快。",
-      "景别分布特点：特写（55）和中景（41）镜头数量较多，远景（1）和全景（1）几乎没有，主要集中于人物表情和细节，强调情感。",
-      "钩子位置与方式：开篇5秒就设定背景，随后迅速引入角色与象征，快速抓住观众注意力。",
-      "主要冲突节点：冲突节点的密集出现从00:01:27到00:02:46，其中可见多个冲突引入与冲突展示，形成强烈的叙事驱动力。",
-      "00:01:27 - 冲突",
-      "00:01:41 - 冲突"
-    ],
-    "methodology": [
-      "本案例公开 10 条分镜摘要样本，用于观察节奏和叙事功能分布。",
-      "高频叙事功能集中在：铺垫（33）、冲突（14）、冲突引入（10）。",
-      "叙事观察来自 analysis.md，并在公开页中删除成段台词和完整剧本正文。"
-    ],
-    "shotRows": [
-      {
-        "shot": "shot_0001",
-        "time": "00:00:00 → 00:00:05",
-        "scene": "火山/地牢",
-        "visual": "一个被锁链束缚的猴子坐在熔岩旁",
-        "emotion": "压抑",
-        "narrative": "设置背景"
-      },
-      {
-        "shot": "shot_0011",
-        "time": "00:00:28 → 00:00:33",
-        "scene": "火山/地牢",
-        "visual": "焦点集中在猴子生气的脸上",
-        "emotion": "挑衅",
-        "narrative": "角色对话"
-      },
-      {
-        "shot": "shot_0021",
-        "time": "00:01:04 → 00:01:05",
-        "scene": "奇境",
-        "visual": "角色轻声絮叨",
-        "emotion": "感慨",
-        "narrative": "内心独白"
-      },
-      {
-        "shot": "shot_0031",
-        "time": "00:01:34 → 00:01:37",
-        "scene": "未知",
-        "visual": "角色注视前方，神态认真",
-        "emotion": "严肃",
-        "narrative": "冲突引入"
-      },
-      {
-        "shot": "shot_0041",
-        "time": "00:02:07 → 00:02:10",
-        "scene": "未知",
-        "visual": "角色神情复杂，似乎在质问",
-        "emotion": "质疑",
-        "narrative": "转折"
-      },
-      {
-        "shot": "shot_0051",
-        "time": "00:02:33 → 00:02:36",
-        "scene": "未知",
-        "visual": "特写镜头展示角色的嘴部",
-        "emotion": "神秘",
-        "narrative": "铺垫"
-      },
-      {
-        "shot": "shot_0059_v003",
-        "time": "00:00:00 → 00:00:00",
-        "scene": "花果山",
-        "visual": "猴子坐在高处，吃着香蕉",
-        "emotion": "轻松/无忧",
-        "narrative": "铺垫"
-      },
-      {
-        "shot": "shot_0059_v013",
-        "time": "00:00:00 → 00:00:00",
-        "scene": "龙宫",
-        "visual": "猴子坐在高处悠闲地吃香蕉",
-        "emotion": "悠闲",
-        "narrative": "引入情节"
-      },
-      {
-        "shot": "shot_0059_v023",
-        "time": "00:00:00 → 00:00:00",
-        "scene": "观音禅院",
-        "visual": "一只猴子坐在高处吃香蕉",
-        "emotion": "紧张/混乱",
-        "narrative": "冲突引入"
-      },
-      {
-        "shot": "shot_0059_v033",
-        "time": "00:00:00 → 00:00:00",
-        "scene": "屋檐下",
-        "visual": "猴子坐在屋檐上悠闲地吃香蕉",
-        "emotion": "轻松/悠闲",
-        "narrative": "铺垫"
-      }
-    ],
-    "markdownPath": "/cases/case-11f71928.md"
-  },
-  {
-    "slug": "case-9980efbd",
+    "slug": "ying-he-bao-zi-pu",
     "title": "硬核包子铺｜AI 拉片案例",
     "sourceTitle": "硬核包子铺_合并_60集",
     "displayTitle": "硬核包子铺",
     "summary": "切换节奏密度判断：每分钟3.24次场景变化（高频），节奏较快。",
-    "publishedAt": "2026-07-08",
-    "updatedAt": "2026-07-08",
+    "publishedAt": "2026-07-11",
+    "updatedAt": "2026-07-11",
     "durationLabel": "21分35秒",
     "sourceFiles": [
       "硬核包子铺_合并_60集+拉片.md",
@@ -1103,6 +827,6 @@ export const generatedCases = [
         "narrative": "冲突"
       }
     ],
-    "markdownPath": "/cases/case-9980efbd.md"
+    "markdownPath": "/cases/ying-he-bao-zi-pu.md"
   }
 ] satisfies CaseStudy[]

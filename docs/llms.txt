@@ -19,7 +19,8 @@
 - [首页](https://kimidance.com/)：产品介绍、产出示例与内测申请
 - [什么是 AI 拉片](https://kimidance.com/what-is-ai-lapian/)：拉片、AI 拉片、agent 拉片的定义与常见问题（Markdown 版：https://kimidance.com/what-is-ai-lapian.md）
 - [关于积米律动](https://kimidance.com/about/)：品牌名字由来与三条产品红线（Markdown 版：https://kimidance.com/about.md）
-- [AI 拉片案例库](https://kimidance.com/cases/)：首批 8 个公开案例，展示由 pipeline 自动生成并经版权安全裁剪的叙事结构、节奏数据、情绪/切镜统计与分镜摘要
+- [AI 拉片案例库](https://kimidance.com/cases/)：6 个公开案例（经数据一致性校验），展示由 pipeline 自动生成并经版权安全裁剪的叙事结构、节奏数据、情绪/切镜统计与分镜摘要
+- [短剧叙事节奏数据（拉片指数）](https://kimidance.com/data/)：13,087 个实测镜头的统计——平均镜头 2.5 秒、每分钟切镜 23.4 次、特写+近景 52.4%（Markdown 版：https://kimidance.com/lapian-data.md）
 - [AI 拉片工具对比 2026](https://kimidance.com/compare/ai-lapian-tools/)：按任务、输出、台词零篡改、本地/在线和适用人群对比公开工具（Markdown 版：https://kimidance.com/compare-ai-lapian-tools.md）
 - [拉片模板](https://kimidance.com/guides/lapian-template/)：短剧和长视频拆解表字段说明、CSV 表头和方法论（Markdown 版：https://kimidance.com/lapian-template.md）
 

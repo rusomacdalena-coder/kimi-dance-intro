@@ -378,6 +378,9 @@ function Footer() {
           <a href="/cases/" className="hover:text-cream transition-colors">
             案例库
           </a>
+          <a href="/data/" className="hover:text-cream transition-colors">
+            拉片数据
+          </a>
           <a href="/compare/ai-lapian-tools/" className="hover:text-cream transition-colors">
             工具对比
           </a>
