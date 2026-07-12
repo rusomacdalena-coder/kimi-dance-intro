@@ -394,13 +394,6 @@ function Footer() {
             关于积米律动
           </a>
           <a
-            href="https://github.com/rusomacdalena-coder/kimi-dance-intro"
-            className="hover:text-cream transition-colors"
-            rel="noopener"
-          >
-            GitHub
-          </a>
-          <a
             href="mailto:oliverzhu929598@gmail.com"
             className="hover:text-cream transition-colors"
           >

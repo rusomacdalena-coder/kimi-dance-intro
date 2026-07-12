@@ -26,9 +26,6 @@
 
 ## 产出样本
 
-- [崇祯元年·文学剧本拉片样本](https://github.com/rusomacdalena-coder/kimi-dance-intro/blob/main/samples/%E5%B4%87%E7%A5%AF%E5%85%83%E5%B9%B4_%E6%8B%89%E7%89%87%E6%A0%B7%E6%9C%AC.md)
-- [叙事节奏分析样本](https://github.com/rusomacdalena-coder/kimi-dance-intro/blob/main/samples/analysis.md)
-- [分镜速查表样本（CSV）](https://github.com/rusomacdalena-coder/kimi-dance-intro/blob/main/samples/breakdown_sample.csv)
 
 ## Optional
 

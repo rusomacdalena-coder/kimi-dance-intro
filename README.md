@@ -58,7 +58,7 @@ npm run indexnow   # 部署后向 IndexNow（Bing/博查）推送收录
 
 ### 案例库生成
 
-把每部剧的拉片产出放进 `/Users/oliver/Documents/SEO｜GEO/P1-案例库素材投放区/剧名/`，优先包含：
+把每部剧的拉片产出放进 `~/Documents/SEO｜GEO/P1-案例库素材投放区/剧名/`，优先包含：
 
 - `analysis.md`
 - `breakdown.csv`
