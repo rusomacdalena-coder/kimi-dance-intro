@@ -1,0 +1,116 @@
+---
+import ArticleLayout from '../layouts/ArticleLayout.astro'
+
+const DOWNLOAD_URL =
+  'https://api.kimidance.com/downloads/Kimidance-Test-Mac-0.2.3.0.dmg'
+---
+
+<ArticleLayout
+  title="积米律动邀请码 — 复制邀请码并下载 App"
+  description="复制积米律动公测邀请码，下载 macOS App，并在注册页粘贴邀请码完成注册。"
+>
+  <div class="label-caps mb-4">Invitation</div>
+  <h1 class="text-editorial text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+    你的积米律动邀请码
+  </h1>
+
+  <section
+    id="invite-card"
+    class="not-prose my-8 rounded-2xl surface-glass p-6 sm:p-8"
+    hidden
+  >
+    <p class="m-0 text-sm text-muted-foreground">邀请码</p>
+    <div class="mt-3 flex flex-col gap-3 sm:flex-row">
+      <input
+        id="invite-code"
+        class="min-w-0 flex-1 rounded-xl border border-white/15 bg-black/20 px-4 py-3 font-mono text-xl font-semibold tracking-wider text-cream outline-none focus:border-primary"
+        type="text"
+        value=""
+        readonly
+        aria-label="邀请码"
+      />
+      <button
+        id="copy-invite"
+        class="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+        type="button"
+      >
+        复制邀请码
+      </button>
+    </div>
+    <p id="copy-status" class="mb-0 mt-3 text-sm text-primary" aria-live="polite">
+      正在复制…
+    </p>
+  </section>
+
+  <section id="no-code" class="not-prose my-8 rounded-2xl surface-glass p-6 sm:p-8" hidden>
+    <h2 class="m-0 text-xl font-bold text-cream">链接里没有邀请码</h2>
+    <p class="mb-0 mt-3 text-sm leading-relaxed text-muted-foreground">
+      请向邀请人索取完整链接，或先下载 App，之后在注册页手动粘贴邀请码。
+    </p>
+  </section>
+
+  <h2>三步开始使用</h2>
+  <ol>
+    <li><strong>复制邀请码</strong>：页面会自动复制；如未成功，请点上方按钮。</li>
+    <li><strong>下载 App</strong>：下载当前公测版 macOS 安装包。</li>
+    <li><strong>打开 App</strong>：在注册页粘贴邀请码，填写邮箱和密码，一步完成注册。</li>
+  </ol>
+
+  <p class="not-prose my-8">
+    <a
+      href={DOWNLOAD_URL}
+      class="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+    >
+      下载 macOS App
+    </a>
+  </p>
+
+  <p class="text-sm text-muted-foreground">
+    公测安装包暂未购买商店签名证书。首次打开如遇系统提示，请前往“系统设置 →
+    隐私与安全性”选择“仍要打开”。
+  </p>
+</ArticleLayout>
+
+<script>
+  import { readInviteCode } from '../lib/invite-code.mjs'
+
+  const inviteCard = document.querySelector<HTMLElement>('#invite-card')
+  const noCode = document.querySelector<HTMLElement>('#no-code')
+  const input = document.querySelector<HTMLInputElement>('#invite-code')
+  const copyButton = document.querySelector<HTMLButtonElement>('#copy-invite')
+  const status = document.querySelector<HTMLElement>('#copy-status')
+
+  function fallbackCopy() {
+    if (!input) return false
+    input.focus()
+    input.select()
+    return document.execCommand('copy')
+  }
+
+  async function copyInviteCode() {
+    if (!input?.value || !status) return
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(input.value)
+      } else if (!fallbackCopy()) {
+        throw new Error('copy unavailable')
+      }
+      status.textContent = '已复制邀请码，可以去 App 注册了。'
+    } catch {
+      input.focus()
+      input.select()
+      status.textContent = '自动复制失败，请长按或按 ⌘C 复制选中的邀请码。'
+    }
+  }
+
+  const code = readInviteCode(window.location.search)
+  if (code && inviteCard && input) {
+    input.value = code
+    inviteCard.hidden = false
+    void copyInviteCode()
+  } else if (noCode) {
+    noCode.hidden = false
+  }
+
+  copyButton?.addEventListener('click', () => void copyInviteCode())
+</script>
