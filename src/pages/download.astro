@@ -43,9 +43,9 @@ const softwareApp = {
   </h1>
 
   <p>
-    积米律动目前处于<strong>公测期，采用邀请码注册</strong>。macOS 客户端现已开放下载，你可以先<a
+    积米律动目前处于<strong>公测期，采用邀请码注册</strong>。macOS 与 Windows 客户端均已开放下载，你可以先<a
       href="/#beta">在首页申请邀请码</a
-    >——通过后凭码注册即赠送体验积分。Windows 客户端仍按当前公测节奏开放。
+    >——通过后凭码注册即赠送体验积分。
   </p>
 
   <!-- 平台下载卡片 -->
@@ -85,11 +85,12 @@ const softwareApp = {
         Windows 10 / 11（64 位）<br />
         安装到当前用户目录，无需管理员权限
       </div>
-      <span
-        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-muted/40 text-muted-foreground cursor-not-allowed select-none"
+      <a
+        href={WIN_URL}
+        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
       >
-        暂未开放下载
-      </span>
+        下载 Windows 版
+      </a>
     </div>
   </div>
 
