@@ -3,9 +3,9 @@ import ArticleLayout from '../layouts/ArticleLayout.astro'
 
 const DATE_MODIFIED = '2026-07-15'
 
-const MAC_VERSION = '0.3.1'
-const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.3.1-arm64.dmg'
-const MAC_SHA256 = '73f44ef0ec9c9f8fcdb6fa7880027826918893261eee68e8a6fc9c69020b7e60'
+const MAC_VERSION = '0.3.2'
+const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.3.2-arm64.dmg'
+const MAC_SHA256 = '5d6540503e16e52f222e05ee1c4a11d935f56a4e713bd7fd4259e2716f943c03'
 const MAC_SIZE = '约 42 MB'
 
 const WIN_VERSION = '0.1.0'
@@ -118,7 +118,7 @@ const softwareApp = {
   <h2>校验安装包完整性（可选）</h2>
   <p>下载完成后可比对 SHA-256 校验值，确认文件与官方发布完全一致：</p>
   <pre class="overflow-x-auto"><code># macOS（终端）
-shasum -a 256 ~/Downloads/Kimidance-Mac-0.3.1-arm64.dmg
+shasum -a 256 ~/Downloads/Kimidance-Mac-0.3.2-arm64.dmg
 # 应输出：{MAC_SHA256}
 
 # Windows（命令提示符）
