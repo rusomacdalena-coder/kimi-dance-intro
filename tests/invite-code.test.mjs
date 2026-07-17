@@ -18,7 +18,7 @@ test('returns an empty string when the code is absent or empty', () => {
   assert.equal(readInviteCode('?code='), '')
 })
 
-test('invite page exposes copy, fallback, guidance, and the verified download', async () => {
+test('invite page exposes copy, fallback, guidance, and the verified downloads', async () => {
   const page = await readFile(new URL('../src/pages/invite.astro', import.meta.url), 'utf8')
 
   assert.match(page, /readInviteCode/)
@@ -31,6 +31,13 @@ test('invite page exposes copy, fallback, guidance, and the verified download', 
   assert.match(page, /没有邀请码/)
   assert.match(
     page,
-    /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Test-Mac-0\.2\.3\.0\.dmg/,
+    /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-0\.3\.2-arm64\.dmg/,
   )
+  assert.match(
+    page,
+    /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Windows-Setup-0\.2\.4-x64\.exe/,
+  )
+  assert.doesNotMatch(page, /Kimidance-Test-Mac/)
+  assert.doesNotMatch(page, /未购买商店签名证书/)
+  assert.doesNotMatch(page, /仍要打开/)
 })

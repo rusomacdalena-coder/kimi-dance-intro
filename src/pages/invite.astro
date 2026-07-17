@@ -1,13 +1,13 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
-const DOWNLOAD_URL =
-  'https://api.kimidance.com/downloads/Kimidance-Test-Mac-0.2.3.0.dmg'
+const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.3.2-arm64.dmg'
+const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2.4-x64.exe'
 ---
 
 <ArticleLayout
   title="积米律动邀请码 — 复制邀请码并下载 App"
-  description="复制积米律动公测邀请码，下载 macOS App，并在注册页粘贴邀请码完成注册。"
+  description="复制积米律动公测邀请码，下载 macOS 或 Windows App，并在注册页粘贴邀请码完成注册。"
 >
   <div class="label-caps mb-4">Invitation</div>
   <h1 class="text-editorial text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
@@ -52,22 +52,27 @@ const DOWNLOAD_URL =
   <h2>三步开始使用</h2>
   <ol>
     <li><strong>复制邀请码</strong>：页面会自动复制；如未成功，请点上方按钮。</li>
-    <li><strong>下载 App</strong>：下载当前公测版 macOS 安装包。</li>
+    <li><strong>下载 App</strong>：根据你的电脑选择 macOS 或 Windows 安装包。</li>
     <li><strong>打开 App</strong>：在注册页粘贴邀请码，填写邮箱和密码，一步完成注册。</li>
   </ol>
 
-  <p class="not-prose my-8">
+  <div class="not-prose my-8 flex flex-col gap-3 sm:flex-row">
     <a
-      href={DOWNLOAD_URL}
+      href={MAC_URL}
       class="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
     >
       下载 macOS App
     </a>
-  </p>
+    <a
+      href={WIN_URL}
+      class="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+    >
+      下载 Windows App
+    </a>
+  </div>
 
   <p class="text-sm text-muted-foreground">
-    公测安装包暂未购买商店签名证书。首次打开如遇系统提示，请前往“系统设置 →
-    隐私与安全性”选择“仍要打开”。
+    Windows 首次安装如遇 SmartScreen 提示：点击“更多信息”，再点击“仍要运行”。首次安装可能需要较长时间，请勿关闭安装窗口。
   </p>
 </ArticleLayout>
 
