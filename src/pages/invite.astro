@@ -2,7 +2,8 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
 const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.3.2-arm64.dmg'
-const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2.4-x64.exe'
+// Windows download withheld 2026-07-17 (G4: r9 GUI has no registration flow).
+// const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2.4-x64.exe'
 ---
 
 <ArticleLayout
@@ -52,7 +53,7 @@ const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2
   <h2>三步开始使用</h2>
   <ol>
     <li><strong>复制邀请码</strong>：页面会自动复制；如未成功，请点上方按钮。</li>
-    <li><strong>下载 App</strong>：根据你的电脑选择 macOS 或 Windows 安装包。</li>
+    <li><strong>下载 App</strong>：下载当前公测版 macOS 安装包。</li>
     <li><strong>打开 App</strong>：在注册页粘贴邀请码，填写邮箱和密码，一步完成注册。</li>
   </ol>
 
@@ -63,17 +64,21 @@ const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2
     >
       下载 macOS App
     </a>
+    {/* Windows download withheld 2026-07-17 (G4: no registration flow in r9 GUI):
     <a
       href={WIN_URL}
       class="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold !text-primary-foreground !no-underline transition-colors hover:bg-primary/90"
     >
       下载 Windows App
     </a>
+    */}
   </div>
 
+  {/* Pending until Windows re-opens:
   <p class="text-sm text-muted-foreground">
     Windows 首次安装如遇 SmartScreen 提示：点击“更多信息”，再点击“仍要运行”。首次安装可能需要较长时间，请勿关闭安装窗口。
   </p>
+  */}
 </ArticleLayout>
 
 <script>
