@@ -18,7 +18,7 @@ test('returns an empty string when the code is absent or empty', () => {
   assert.equal(readInviteCode('?code='), '')
 })
 
-test('invite page exposes copy, fallback, guidance, and the verified macOS download', async () => {
+test('invite page exposes copy, fallback, guidance, and the verified downloads', async () => {
   const page = await readFile(new URL('../src/pages/invite.astro', import.meta.url), 'utf8')
   const built = await readFile(new URL('../docs/invite/index.html', import.meta.url), 'utf8')
 
@@ -37,7 +37,8 @@ test('invite page exposes copy, fallback, guidance, and the verified macOS downl
   assert.doesNotMatch(page, /Kimidance-Test-Mac/)
   assert.doesNotMatch(page, /未购买商店签名证书/)
   assert.doesNotMatch(page, /仍要打开/)
-  // Windows entry is withheld (G4 No-Go): no clickable Windows link ships.
-  assert.doesNotMatch(built, /Kimidance-Windows-Setup-[^"']*\.exe/)
-  assert.doesNotMatch(built, /下载 Windows App/)
+  // Shipped HTML exposes both download entries.
+  assert.match(built, /Kimidance-Mac-0\.3\.2-arm64\.dmg/)
+  assert.match(built, /Kimidance-Windows-Setup-0\.2\.6-x64\.exe/)
+  assert.match(built, /仍要运行/)
 })

@@ -7,12 +7,8 @@ const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.3.2-arm64.d
 const MAC_SHA256 = '5d6540503e16e52f222e05ee1c4a11d935f56a4e713bd7fd4259e2716f943c03'
 const MAC_SIZE = '约 42 MB'
 
-// Windows r9 (0.2.4) withheld 2026-07-17: GUI has no registration flow, so new
-// invite users would hit a dead end (G4 acceptance: No-Go). The frozen build
-// stays on the server for existing-account internal use; public download is
-// closed until a build with the registration flow ships.
-// const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2.4-x64.exe'
-// const WIN_SIZE = '约 322 MB'
+const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2.6-x64.exe'
+const WIN_SIZE = '约 322 MB'
 
 const softwareApp = {
   '@context': 'https://schema.org',
@@ -32,8 +28,8 @@ const softwareApp = {
 ---
 
 <ArticleLayout
-  title="下载积米律动 Kimidance — macOS 客户端"
-  description="下载积米律动（Kimidance）AI 拉片工具 macOS 客户端。公测期凭邀请码注册，赠送体验积分，台词零篡改。"
+  title="下载积米律动 Kimidance — macOS / Windows 客户端"
+  description="下载积米律动（Kimidance）AI 拉片工具 macOS 与 Windows 客户端。公测期凭邀请码注册，赠送体验积分，台词零篡改。"
   jsonLd={[softwareApp]}
   dateModified={DATE_MODIFIED}
 >
@@ -43,7 +39,7 @@ const softwareApp = {
   </h1>
 
   <p>
-    积米律动目前处于<strong>公测期，采用邀请码注册</strong>。macOS 客户端现已开放下载，你可以先<a
+    积米律动目前处于<strong>公测期，采用邀请码注册</strong>。macOS 与 Windows 客户端现已开放下载，你可以先<a
       href="/#beta">在首页申请邀请码</a
     >——通过后凭码注册即赠送体验积分。
   </p>
@@ -81,14 +77,15 @@ const softwareApp = {
       </svg>
       <div class="text-lg font-bold text-cream">Windows</div>
       <div class="text-xs text-muted-foreground leading-relaxed">
-        Windows 10 / 11（64 位）<br />
-        下载入口暂时关闭
+        {WIN_SIZE}<br />
+        Windows 10 / 11（64 位）
       </div>
-      <span
-        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-muted/40 text-muted-foreground"
+      <a
+        href={WIN_URL}
+        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
       >
-        Windows 版即将开放
-      </span>
+        Download for Windows
+      </a>
     </div>
   </div>
 
@@ -101,15 +98,12 @@ const softwareApp = {
     <li>在"应用程序"中双击 Kimidance 即可使用。安装包已通过 Apple 公证，无需在系统设置中手动放行。</li>
   </ol>
 
-  {/* Windows install guidance — keep as pending content until the Windows
-      download re-opens (see withheld note in the frontmatter):
   <h3>Windows</h3>
   <ol>
     <li>双击下载的 <code>.exe</code> 安装程序；</li>
     <li>如出现 SmartScreen 提示：点击"更多信息"，再点击"仍要运行"；</li>
     <li>首次安装可能需要较长时间，请勿关闭安装窗口。</li>
   </ol>
-  */}
 
   <h2>校验安装包完整性（可选）</h2>
   <p>下载完成后可比对 SHA-256 校验值，确认文件与官方发布完全一致：</p>
