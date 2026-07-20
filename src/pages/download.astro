@@ -3,7 +3,6 @@ import ArticleLayout from '../layouts/ArticleLayout.astro'
 
 const DATE_MODIFIED = '2026-07-17'
 
-const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.3.2-arm64.dmg'
 const MAC_SHA256 = '5d6540503e16e52f222e05ee1c4a11d935f56a4e713bd7fd4259e2716f943c03'
 const MAC_SIZE = '约 42 MB'
 
@@ -63,16 +62,11 @@ const softwareApp = {
         Apple Silicon（M1 及以后）专用<br />
         建议 macOS 14 及以上
       </div>
-      <!-- `!text-` + `no-underline`: .article-prose a (global.css) forces an amber
-           link color/underline on any <a> in article body, which would render this
-           button's label invisible on the amber fill. The not-prose wrapper does not
-           help — this project's prose CSS is hand-rolled and ignores it. -->
-      <a
-        href={MAC_URL}
-        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
+      <span
+        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-muted/40 text-muted-foreground"
       >
-        Download for macOS
-      </a>
+        尽请期待
+      </span>
     </div>
     <div class="rounded-2xl surface-glass p-6 flex flex-col gap-3">
       <svg class="w-7 h-7 text-cream" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

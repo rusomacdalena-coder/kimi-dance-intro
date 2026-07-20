@@ -1,7 +1,6 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
-const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.3.2-arm64.dmg'
 // Windows download withheld 2026-07-18 (Day 0 No-Go: r11 bundle uninstall
 // fails with exit 2 — guard cannot remove the "高级工具" Start Menu dir).
 // const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2.6-x64.exe'
@@ -59,12 +58,11 @@ const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.3.2-arm64.d
   </ol>
 
   <div class="not-prose my-8 flex flex-col gap-3 sm:flex-row">
-    <a
-      href={MAC_URL}
-      class="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold !text-primary-foreground !no-underline transition-colors hover:bg-primary/90"
+    <span
+      class="inline-flex items-center justify-center rounded-full bg-muted/40 px-7 py-3 text-sm font-semibold text-muted-foreground"
     >
-      下载 macOS App
-    </a>
+      尽请期待
+    </span>
     {/* Windows download withheld 2026-07-18 (Day 0 No-Go: r11 uninstall defect):
     <a
       href={WIN_URL}

@@ -18,7 +18,7 @@ test('returns an empty string when the code is absent or empty', () => {
   assert.equal(readInviteCode('?code='), '')
 })
 
-test('invite page exposes copy, fallback, guidance, and the verified macOS download', async () => {
+test('invite page exposes copy and fallback guidance while withholding downloads', async () => {
   const page = await readFile(new URL('../src/pages/invite.astro', import.meta.url), 'utf8')
   const built = await readFile(new URL('../docs/invite/index.html', import.meta.url), 'utf8')
 
@@ -30,14 +30,12 @@ test('invite page exposes copy, fallback, guidance, and the verified macOS downl
   assert.match(page, /下载 App/)
   assert.match(page, /打开 App/)
   assert.match(page, /没有邀请码/)
-  assert.match(
-    page,
-    /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-0\.3\.2-arm64\.dmg/,
-  )
+  assert.match(page, /尽请期待/)
+  assert.doesNotMatch(page, /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-/)
   assert.doesNotMatch(page, /Kimidance-Test-Mac/)
   assert.doesNotMatch(page, /未购买商店签名证书/)
   assert.doesNotMatch(page, /仍要打开/)
-  // Shipped HTML must not expose a clickable Windows download entry.
-  assert.match(built, /Kimidance-Mac-0\.3\.2-arm64\.dmg/)
+  assert.match(built, /尽请期待/)
+  assert.doesNotMatch(built, /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-/)
   assert.doesNotMatch(built, /Kimidance-Windows-Setup-[^"']*\.exe/)
 })
