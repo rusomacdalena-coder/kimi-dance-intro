@@ -1,9 +1,7 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
-// Windows download withheld 2026-07-18 (Day 0 No-Go: r11 bundle uninstall
-// fails with exit 2 — guard cannot remove the "高级工具" Start Menu dir).
-// const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2.6-x64.exe'
+const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.4.7-arm64.dmg'
 ---
 
 <ArticleLayout
@@ -58,26 +56,13 @@ import ArticleLayout from '../layouts/ArticleLayout.astro'
   </ol>
 
   <div class="not-prose my-8 flex flex-col gap-3 sm:flex-row">
-    <span
-      class="inline-flex items-center justify-center rounded-full bg-muted/40 px-7 py-3 text-sm font-semibold text-muted-foreground"
-    >
-      尽请期待
-    </span>
-    {/* Windows download withheld 2026-07-18 (Day 0 No-Go: r11 uninstall defect):
     <a
-      href={WIN_URL}
+      href={MAC_URL}
       class="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold !text-primary-foreground !no-underline transition-colors hover:bg-primary/90"
     >
-      下载 Windows App
+      下载 macOS App 0.4.7
     </a>
-    */}
   </div>
-
-  {/* Pending until Windows re-opens:
-  <p class="text-sm text-muted-foreground">
-    Windows 首次安装如遇 SmartScreen 提示：点击“更多信息”，再点击“仍要运行”。首次安装可能需要较长时间，请勿关闭安装窗口。
-  </p>
-  */}
 </ArticleLayout>
 
 <script>

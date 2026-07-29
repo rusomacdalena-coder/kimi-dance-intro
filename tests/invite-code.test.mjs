@@ -18,7 +18,7 @@ test('returns an empty string when the code is absent or empty', () => {
   assert.equal(readInviteCode('?code='), '')
 })
 
-test('invite page exposes copy and fallback guidance while withholding downloads', async () => {
+test('invite page exposes copy guidance and the verified macOS download', async () => {
   const page = await readFile(new URL('../src/pages/invite.astro', import.meta.url), 'utf8')
   const built = await readFile(new URL('../docs/invite/index.html', import.meta.url), 'utf8')
 
@@ -30,12 +30,13 @@ test('invite page exposes copy and fallback guidance while withholding downloads
   assert.match(page, /下载 App/)
   assert.match(page, /打开 App/)
   assert.match(page, /没有邀请码/)
-  assert.match(page, /尽请期待/)
-  assert.doesNotMatch(page, /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-/)
+  assert.match(page, /下载 macOS App 0\.4\.7/)
+  assert.match(page, /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-0\.4\.7-arm64\.dmg/)
   assert.doesNotMatch(page, /Kimidance-Test-Mac/)
   assert.doesNotMatch(page, /未购买商店签名证书/)
   assert.doesNotMatch(page, /仍要打开/)
-  assert.match(built, /尽请期待/)
-  assert.doesNotMatch(built, /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-/)
-  assert.doesNotMatch(built, /Kimidance-Windows-Setup-[^"']*\.exe/)
+  assert.doesNotMatch(page, /https:\/\/api\.kimidance\.com\/downloads\/[^"' ]+\.(?:exe|msi)/)
+  assert.match(built, /下载 macOS App 0\.4\.7/)
+  assert.match(built, /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-0\.4\.7-arm64\.dmg/)
+  assert.doesNotMatch(built, /https:\/\/api\.kimidance\.com\/downloads\/[^"' ]+\.(?:exe|msi)/)
 })

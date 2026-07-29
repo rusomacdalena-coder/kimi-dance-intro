@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import BetaForm from './BetaForm'
 import SamplePreview from './SamplePreview'
-import ProductPreview from './ProductPreview'
 
 /* ─── Nav ─────────────────────────────────────────────────────────────── */
 function Nav() {
@@ -238,20 +237,20 @@ const steps = [
   {
     num: '01',
     title: '把视频丢进来',
-    desc: '拖入 .mp4 / .mov / .mkv，或粘贴本地文件路径',
+    desc: '新建任务并选择一个本地视频文件',
     detail: 'mp4 · mov · mkv · avi · 单文件上限 2 GB',
   },
   {
     num: '02',
-    title: 'AI 全自动处理',
-    desc: '语音转录 → 逐镜头标注 → 角色确认 → 剧本生成',
-    detail: '云端 4-9 分钟 / 本机 30-90 分钟 · 实时费用预估',
+    title: '确认费用并处理',
+    desc: '查看本次任务的费用预估，确认后开始处理',
+    detail: '处理前明确展示预计消耗积分',
   },
   {
     num: '03',
-    title: '下载成品',
-    desc: '一键导出 ZIP：剧本 + 分析 + 分镜表 + 角色关系图',
-    detail: '质量红线：recall ≥ 95%  ·  tamper = 0',
+    title: '打开成品文件夹',
+    desc: '任务完成后，从任务历史打开成品文件夹',
+    detail: '查看文学剧本、叙事分析和分镜表',
   },
 ]
 
@@ -298,7 +297,7 @@ function Workflow() {
 const diffs = [
   { title: '台词零篡改', desc: '全流程台词只做传递，LLM 不被允许改写' },
   { title: '三层架构', desc: '识别、分析、成稿分层处理' },
-  { title: '按量付费', desc: '用你自己的 API Key，不收平台费' },
+  { title: '费用确认', desc: '开始任务前查看费用预估并确认' },
   { title: '本地运行', desc: '跑在你的 mac 上，极致的速度' },
   { title: '投稿格式', desc: '自动输出行业标准投稿模板格式' },
   { title: '质量红线', desc: 'recall ≥ 95%  ·  tamper = 0 强制校验' },
@@ -333,7 +332,7 @@ function Differentiators() {
 /* ─── Who ──────────────────────────────────────────────────────────────── */
 const personas = [
   { label: '短剧编剧', desc: '快速拆解竞品剧本结构' },
-  { label: '漫剧制片', desc: '批量生成分镜速查表' },
+  { label: '漫剧制片', desc: '生成分镜速查表' },
   { label: '剧本写手', desc: '从爆款视频学节奏设计' },
   { label: '影视教学', desc: 'AI 辅助拉片作业' },
 ]
@@ -416,7 +415,6 @@ export default function LandingPage() {
       <Hero />
       <Features />
       <Workflow />
-      <ProductPreview />
       <Differentiators />
       <SamplePreview />
       <ForWho />
@@ -429,7 +427,7 @@ export default function LandingPage() {
             申请内测名额
           </h2>
           <p className="text-center copy-readable mb-12">
-            目前仅限 Mac 用户，Windows 版即将到来
+            目前提供 macOS 客户端，凭邀请码注册
           </p>
           <BetaForm />
         </div>

@@ -4,8 +4,6 @@
 
 官网：**[kimidance.com](https://kimidance.com)** ｜ 内测申请：[kimidance.com/#beta](https://kimidance.com/#beta)
 
-![KimiDance UI](assets/ui-dashboard.png)
-
 ## 它能做什么
 
 | 输入 | 输出 |
@@ -41,8 +39,6 @@ LLM 只做标注和结构化生成，绝不改写原始台词。质量校验强�
 
 - ✅ 核心流水线：转录 → 切镜标注 → 角色识别 → 成稿 全流程稳定运行
 - ✅ macOS 桌面安装包内测发放中
-- 🔄 Windows 版打包中
-- 🔄 拉片 MCP（让 Claude / ChatGPT 等 agent 直接调用拉片）开发中
 
 ## 本仓库
 

@@ -1,23 +1,17 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
-const DATE_MODIFIED = '2026-07-17'
+const DATE_MODIFIED = '2026-07-29'
 
-const MAC_SHA256 = '5d6540503e16e52f222e05ee1c4a11d935f56a4e713bd7fd4259e2716f943c03'
+const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.4.7-arm64.dmg'
+const MAC_SHA256 = '3c155a643d7df3f6a3d813333e977ab05cd77cacb0a4a79ea72f3f6b22343075'
 const MAC_SIZE = '约 42 MB'
-
-// Windows r11 (0.2.6) withheld 2026-07-18: Day 0 activation test No-Go —
-// the bundle uninstall fails (exit 2) because the uninstall guard cannot
-// remove the installer-created "高级工具" Start Menu directory, leaving the
-// app body behind. Public download closed until an r12 with the uninstall
-// fix ships. Server file retained for internal use.
-// const WIN_URL = 'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.2.6-x64.exe'
-// const WIN_SIZE = '约 322 MB'
 
 const softwareApp = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Kimidance 积米律动',
+  softwareVersion: '0.4.7',
   operatingSystem: 'macOS',
   applicationCategory: 'MultimediaApplication',
   inLanguage: 'zh-CN',
@@ -49,7 +43,7 @@ const softwareApp = {
   </p>
 
   <!-- 平台下载卡片 -->
-  <div class="grid sm:grid-cols-2 gap-5 my-10 not-prose">
+  <div class="max-w-xl my-10 not-prose">
     <div class="rounded-2xl surface-glass p-6 flex flex-col gap-3">
       <svg class="w-7 h-7 text-cream" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path
@@ -58,32 +52,16 @@ const softwareApp = {
       </svg>
       <div class="text-lg font-bold text-cream">Mac</div>
       <div class="text-xs text-muted-foreground leading-relaxed">
-        {MAC_SIZE}<br />
+        版本 0.4.7 · {MAC_SIZE}<br />
         Apple Silicon（M1 及以后）专用<br />
         建议 macOS 14 及以上
       </div>
-      <span
-        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-muted/40 text-muted-foreground"
+      <a
+        href={MAC_URL}
+        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
       >
-        尽请期待
-      </span>
-    </div>
-    <div class="rounded-2xl surface-glass p-6 flex flex-col gap-3">
-      <svg class="w-7 h-7 text-cream" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path
-          d="M0 3.449 9.75 2.1v9.451H0V3.449zM10.949 1.949 24 0v11.4H10.949V1.949zM0 12.6h9.75v9.451L0 20.699V12.6zM10.949 12.6H24V24l-12.9-1.801-.151-9.599z"
-        ></path>
-      </svg>
-      <div class="text-lg font-bold text-cream">Windows</div>
-      <div class="text-xs text-muted-foreground leading-relaxed">
-        Windows 10 / 11（64 位）<br />
-        下载入口暂时关闭
-      </div>
-      <span
-        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-muted/40 text-muted-foreground"
-      >
-        Windows 版即将开放
-      </span>
+        下载 macOS 版 0.4.7
+      </a>
     </div>
   </div>
 
@@ -96,20 +74,10 @@ const softwareApp = {
     <li>在"应用程序"中双击 Kimidance 即可使用。安装包已通过 Apple 公证，无需在系统设置中手动放行。</li>
   </ol>
 
-  {/* Windows install guidance — pending content until the Windows download
-      re-opens (see withheld note in the frontmatter):
-  <h3>Windows</h3>
-  <ol>
-    <li>双击下载的 <code>.exe</code> 安装程序；</li>
-    <li>如出现 SmartScreen 提示：点击"更多信息"，再点击"仍要运行"；</li>
-    <li>首次安装可能需要较长时间，请勿关闭安装窗口。</li>
-  </ol>
-  */}
-
   <h2>校验安装包完整性（可选）</h2>
   <p>下载完成后可比对 SHA-256 校验值，确认文件与官方发布完全一致：</p>
   <pre class="overflow-x-auto"><code># macOS（终端）
-shasum -a 256 ~/Downloads/Kimidance-Mac-0.3.2-arm64.dmg
+shasum -a 256 ~/Downloads/Kimidance-Mac-0.4.7-arm64.dmg
 # 应输出：{MAC_SHA256}</code></pre>
 
   <h2>快速开始</h2>
@@ -117,25 +85,18 @@ shasum -a 256 ~/Downloads/Kimidance-Mac-0.3.2-arm64.dmg
     <li><a href="/#beta">申请邀请码</a>（通常 1 个工作日内通过邮件回复）；</li>
     <li>打开客户端，凭邀请码注册账号——注册即赠送体验积分；</li>
     <li>登录后导入一部短剧或长视频；</li>
-    <li>等待处理完成，导出文学剧本、叙事节奏分析和分镜速查表。</li>
+    <li>等待处理完成，在任务历史中打开成品文件夹。</li>
   </ol>
 
   <h2>常见问题</h2>
   <h3>积分是什么？用完了怎么办？</h3>
   <p>
-    积分是处理视频的计量单位，按视频时长消耗。注册赠送的积分足够体验完整流程；需要更多积分时，欢迎<a
-      href="mailto:oliverzhu929598@gmail.com">邮件联系我们</a>，应用内充值即将上线。
-  </p>
-  <h3>我的视频会上传吗？</h3>
-  <p>
-    视频在你的电脑本地处理。分析过程中仅将必要的关键帧与台词文本发送至 Kimidance
-    网关完成 AI 标注，不会上传完整视频文件。
+    登录后可查看积分和积分流水。新建单视频任务时，App 会先给出费用预估并等待确认；需要更多积分时，可在
+    App 内从三档套餐中选择，并使用微信扫码充值。
   </p>
   <h3>支持 Intel 芯片的 Mac 吗？</h3>
   <p>
-    当前 macOS 版本仅支持 Apple Silicon（M1 及以后）。Intel Mac 支持在计划中，欢迎<a
-      href="mailto:oliverzhu929598@gmail.com">邮件</a
-    >告诉我们你的需求。
+    当前 macOS 版本仅支持 Apple Silicon（M1 及以后），不支持 Intel Mac。
   </p>
   <h3>遇到问题找谁？</h3>
   <p>
