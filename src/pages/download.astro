@@ -1,18 +1,24 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
-const DATE_MODIFIED = '2026-07-29'
+const DATE_MODIFIED = '2026-08-15'
 
 const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.4.8-arm64.dmg'
 const MAC_SHA256 = '2502c7c178d6a0374d4b680d7e254bb08675ab4c6dab24dc71756913e2d453a8'
 const MAC_SIZE = '约 42 MB'
+
+const WIN_URL =
+  'https://github.com/rusomacdalena-coder/kimi-dance-intro/releases/download/windows-v0.4.8-r13/Kimidance-Windows-Setup-0.4.8-r13-x64.exe'
+const WIN_SHA256 = '5c449a17926a433551caa653f7a89716871936ab63375537d33599948e25fc7a'
+const WIN_SIZE = '约 93 MB'
+const WIN_FILENAME = 'Kimidance-Windows-Setup-0.4.8-r13-x64.exe'
 
 const softwareApp = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Kimidance 积米律动',
   softwareVersion: '0.4.8',
-  operatingSystem: 'macOS',
+  operatingSystem: ['macOS', 'Windows'],
   applicationCategory: 'MultimediaApplication',
   inLanguage: 'zh-CN',
   url: 'https://kimidance.com/download/',
@@ -26,8 +32,8 @@ const softwareApp = {
 ---
 
 <ArticleLayout
-  title="下载积米律动 Kimidance — macOS 客户端"
-  description="下载积米律动（Kimidance）AI 拉片工具 macOS 客户端。公测期凭邀请码注册，赠送体验积分，台词零篡改。"
+  title="下载积米律动 Kimidance — macOS 与 Windows 客户端"
+  description="下载积米律动（Kimidance）AI 拉片工具 macOS 与 Windows 客户端。公测期凭邀请码注册，赠送体验积分，台词零篡改。"
   jsonLd={[softwareApp]}
   dateModified={DATE_MODIFIED}
 >
@@ -37,13 +43,13 @@ const softwareApp = {
   </h1>
 
   <p>
-    积米律动目前处于<strong>公测期，采用邀请码注册</strong>。macOS 客户端现已开放下载，你可以先<a
+    积米律动目前处于<strong>公测期，采用邀请码注册</strong>。macOS 与 Windows 客户端均已开放下载，你可以先<a
       href="/#beta">在首页申请邀请码</a
     >——通过后凭码注册即赠送体验积分。
   </p>
 
   <!-- 平台下载卡片 -->
-  <div class="max-w-xl my-10 not-prose">
+  <div class="grid gap-4 sm:grid-cols-2 max-w-3xl my-10 not-prose">
     <div class="rounded-2xl surface-glass p-6 flex flex-col gap-3">
       <svg class="w-7 h-7 text-cream" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path
@@ -63,22 +69,86 @@ const softwareApp = {
         下载 macOS 版 0.4.8
       </a>
     </div>
+
+    <div class="rounded-2xl surface-glass p-6 flex flex-col gap-3">
+      <svg class="w-7 h-7 text-cream" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path
+          d="M3 5.5 10.2 4.5v7.05H3V5.5Zm0 13 7.2 1V12.5H3v6ZM11.3 4.35 21 3v8.55h-9.7V4.35Zm0 8.15H21V21l-9.7-1.35V12.5Z"
+        ></path>
+      </svg>
+      <div class="text-lg font-bold text-cream">Windows</div>
+      <div class="text-xs text-muted-foreground leading-relaxed">
+        版本 0.4.8 · {WIN_SIZE}<br />
+        Windows 10 / 11（64 位）<br />
+        安装到当前用户，通常无需管理员权限
+      </div>
+      <a
+        href={WIN_URL}
+        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
+      >
+        下载 Windows 版 0.4.8
+      </a>
+    </div>
   </div>
 
   <h2>安装指引</h2>
-  <p>macOS 安装包已使用 Developer ID 签名并通过 Apple 公证，双击即可正常运行。</p>
 
   <h3>macOS</h3>
+  <p>macOS 安装包已使用 Developer ID 签名并通过 Apple 公证，双击即可正常运行。</p>
   <ol>
     <li>双击下载的 <code>.dmg</code>，把 Kimidance 拖入"应用程序"文件夹；</li>
     <li>在"应用程序"中双击 Kimidance 即可使用。安装包已通过 Apple 公证，无需在系统设置中手动放行。</li>
   </ol>
 
-  <h2>校验安装包完整性（可选）</h2>
-  <p>下载完成后可比对 SHA-256 校验值，确认文件与官方发布完全一致：</p>
+  <h3>Windows</h3>
+  <p>
+    Windows 安装包<strong>没有购买代码签名证书</strong>，所以首次运行时系统会拦一次。这是一个"系统不认识这个发布者"的提示，不是说文件有问题——你可以先用下面的 SHA-256
+    核对，确认下载到的就是官方文件，再按下面三步安装。
+  </p>
+  <ol>
+    <li>双击下载的 <code>.exe</code>；</li>
+    <li>
+      如果出现蓝色的<strong>"Windows 已保护你的电脑"</strong>窗口，点左下角<strong>"更多信息"</strong>，再点<strong
+        >"仍要运行"</strong
+      >；
+    </li>
+    <li>按提示完成安装，桌面和开始菜单会出现 Kimidance 图标。</li>
+  </ol>
+  <p>
+    绝大多数 Windows 10 / 11 电脑<strong>双击即装，全程不需要管理员权限</strong>，程序装在当前用户目录下（<code
+      >%LOCALAPPDATA%</code
+    >），不影响这台电脑上的其他账号。
+  </p>
+  <p>
+    少数被精简过的系统——例如某些企业定制镜像、LTSC 精简版——缺少 <strong>Microsoft Edge WebView2 运行时</strong>，安装包会自动补装它，<strong
+      >这一步需要管理员权限</strong
+    >，系统会弹出授权提示。如果你的账号本身是管理员，点"是"即可；如果不是，可以：
+  </p>
+  <ul>
+    <li>请管理员在弹窗中输入密码；或</li>
+    <li>
+      先自行安装 <a
+        href="https://developer.microsoft.com/microsoft-edge/webview2/"
+        rel="nofollow noopener"
+        target="_blank">Microsoft Edge WebView2 Runtime</a
+      >（微软官方，免费），装好后再运行 Kimidance 安装包，就不会再出现这一步。
+    </li>
+  </ul>
+
+  <h2>校验安装包完整性</h2>
+  <p>
+    下载完成后可比对 SHA-256 校验值，确认文件与官方发布完全一致。<strong>Windows 用户建议做一次</strong
+    >——安装包未签名，这是你自己确认"下载到的确实是官方文件"最直接的办法。
+  </p>
   <pre class="overflow-x-auto"><code># macOS（终端）
 shasum -a 256 ~/Downloads/Kimidance-Mac-0.4.8-arm64.dmg
 # 应输出：{MAC_SHA256}</code></pre>
+  <pre class="overflow-x-auto"><code># Windows（PowerShell）
+Get-FileHash -Algorithm SHA256 "$env:USERPROFILE\Downloads\{WIN_FILENAME}"
+# Hash 应为：{WIN_SHA256}</code></pre>
+  <p class="text-sm">
+    PowerShell 输出的是大写，网页上是小写，<strong>大小写不影响</strong>，逐位一致即可。对不上就别装，重新下载或来邮件问我们。
+  </p>
 
   <h2>快速开始</h2>
   <ol>
@@ -98,6 +168,25 @@ shasum -a 256 ~/Downloads/Kimidance-Mac-0.4.8-arm64.dmg
   <p>
     当前 macOS 版本仅支持 Apple Silicon（M1 及以后），不支持 Intel Mac。
   </p>
+  <h3>Windows 为什么会弹蓝色警告？安全吗？</h3>
+  <p>
+    因为我们暂时没有购买 Windows 代码签名证书。SmartScreen 对所有未签名、下载量还不大的程序都会给这个提示，它表达的是"系统不认识这个发布者"，不是"检测到病毒"。判断文件是否可信，用上面的
+    SHA-256 核对最可靠。我们会在下载量积累后评估是否购买证书。
+  </p>
+  <h3>杀毒软件报毒 / 直接删掉了安装包怎么办？</h3>
+  <p>
+    未签名的新程序偶尔会被误判。请先核对 SHA-256，确认无误后在杀毒软件里把该文件或 Kimidance 安装目录加入信任（白名单），再重新安装。如果你不确定，把报毒的软件名称和提示截图发邮件给我们。
+  </p>
+  <h3>公司电脑装不了，要给 IT 什么信息？</h3>
+  <p>
+    通常提供这些就够 IT 加白名单：程序名 Kimidance（积米律动）；安装包 <code>{WIN_FILENAME}</code>；SHA-256
+    <code>{WIN_SHA256}</code>；安装位置为当前用户目录 <code>%LOCALAPPDATA%\Programs\Kimidance</code>，不写系统目录、不安装驱动或服务；运行时仅访问我们的服务端
+    <code>api.kimidance.com</code>（HTTPS）。
+  </p>
+  <h3>怎么卸载？</h3>
+  <p>
+    "设置 → 应用 → 已安装的应用"里找到 Kimidance，点卸载即可；你自己生成的成品文件不会被删除。</p
+  >
   <h3>遇到问题找谁？</h3>
   <p>
     邮件联系 <a href="mailto:oliverzhu929598@gmail.com">oliverzhu929598@gmail.com</a

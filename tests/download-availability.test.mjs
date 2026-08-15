@@ -20,3 +20,28 @@ test('download page publishes the verified macOS 0.4.8 release', async () => {
     assert.doesNotMatch(content, /https:\/\/api\.kimidance\.com\/downloads\/[^"' ]+\.(?:exe|msi)/)
   }
 })
+
+test('download page publishes the authorized Windows 0.4.8-r13 release', async () => {
+  const page = await readFile(new URL('../src/pages/download.astro', import.meta.url), 'utf8')
+  const built = await readFile(new URL('../docs/download/index.html', import.meta.url), 'utf8')
+
+  for (const content of [page, built]) {
+    // exact authorized bytes: registry candidate setup_sha256 for 0.4.8/r13
+    assert.match(content, /5c449a17926a433551caa653f7a89716871936ab63375537d33599948e25fc7a/)
+    assert.match(content, /Kimidance-Windows-Setup-0\.4\.8-r13-x64\.exe/)
+    assert.match(content, /下载 Windows 版 0\.4\.8/)
+    // the asset must come from a public GitHub release, never the private source repo
+    assert.match(
+      content,
+      /https:\/\/github\.com\/rusomacdalena-coder\/kimi-dance-intro\/releases\/download\/windows-v0\.4\.8-r13\//,
+    )
+    assert.doesNotMatch(content, /github\.com\/rusomacdalena-coder\/kimidance-rs/)
+    // unsigned build ships with SmartScreen guidance; never claim it is signed
+    assert.match(content, /更多信息/)
+    assert.match(content, /仍要运行/)
+    assert.doesNotMatch(content, /Windows[^。]{0,40}已签名/)
+    // WebView2 elevation caveat must stay on the page
+    assert.match(content, /WebView2/)
+    assert.match(content, /需要管理员权限/)
+  }
+})
