@@ -8,16 +8,16 @@ const MAC_SHA256 = '2502c7c178d6a0374d4b680d7e254bb08675ab4c6dab24dc71756913e2d4
 const MAC_SIZE = '约 42 MB'
 
 const WIN_URL =
-  'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.8-r13-x64.exe'
-const WIN_SHA256 = '5c449a17926a433551caa653f7a89716871936ab63375537d33599948e25fc7a'
+  'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.9-r14-x64.exe'
+const WIN_SHA256 = '622672f678cd40d03cdda52ca2f5664be21a179b14a6331ad590156aa5f26b64'
 const WIN_SIZE = '约 93 MB'
-const WIN_FILENAME = 'Kimidance-Windows-Setup-0.4.8-r13-x64.exe'
+const WIN_FILENAME = 'Kimidance-Windows-Setup-0.4.9-r14-x64.exe'
 
 const softwareApp = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Kimidance 积米律动',
-  softwareVersion: '0.4.8',
+  softwareVersion: '0.4.9',
   operatingSystem: ['macOS', 'Windows'],
   applicationCategory: 'MultimediaApplication',
   inLanguage: 'zh-CN',
@@ -78,7 +78,7 @@ const softwareApp = {
       </svg>
       <div class="text-lg font-bold text-cream">Windows</div>
       <div class="text-xs text-muted-foreground leading-relaxed">
-        版本 0.4.8 · {WIN_SIZE}<br />
+        版本 0.4.9 · {WIN_SIZE}<br />
         Windows 10 / 11（64 位）<br />
         安装到当前用户，通常无需管理员权限
       </div>
@@ -86,7 +86,7 @@ const softwareApp = {
         href={WIN_URL}
         class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
       >
-        下载 Windows 版 0.4.8
+        下载 Windows 版 0.4.9
       </a>
     </div>
   </div>
@@ -101,10 +101,9 @@ const softwareApp = {
   </ol>
 
   <h3>Windows</h3>
-  <div class="rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-4 not-prose text-sm leading-relaxed">
-    <strong>之前装过 Kimidance 的老用户请注意：</strong>请先卸载旧版本，再安装本版，否则安装会报错
-    <code>0x80070002</code>。卸载方法：打开"设置 → 应用 → 已安装的应用"，找到 Kimidance，点卸载；完成后确认文件夹
-    <code>%LOCALAPPDATA%\Programs\Kimidance</code> 已不存在，再运行新安装包。卸载不会删除你的成品文件目录，但仍建议先备份。首次安装的新用户不受影响，直接往下看。
+  <div class="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 my-4 not-prose text-sm leading-relaxed">
+    <strong>已经装过 0.4.8 的老用户：</strong>直接安装本版即可，<strong>不需要先卸载</strong>。0.4.8
+    升级时会报 <code>0x80070002</code> 的问题已在本版修复。你的成品文件目录不受影响。
   </div>
   <p>
     Windows 安装包<strong>没有购买代码签名证书</strong>，所以首次运行时系统会拦一次。这是一个"系统不认识这个发布者"的提示，不是说文件有问题——你可以先用下面的 SHA-256

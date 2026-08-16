@@ -20,24 +20,24 @@ test('download page publishes the verified macOS 0.4.8 release', async () => {
     // only the authorized r13 installer may be served from api.kimidance.com
     assert.doesNotMatch(
       content,
-      /https:\/\/api\.kimidance\.com\/downloads\/(?!Kimidance-Windows-Setup-0\.4\.8-r13-x64\.exe)[^"' ]+\.(?:exe|msi)/,
+      /https:\/\/api\.kimidance\.com\/downloads\/(?!Kimidance-Windows-Setup-0\.4\.9-r14-x64\.exe)[^"' ]+\.(?:exe|msi)/,
     )
   }
 })
 
-test('download page publishes the authorized Windows 0.4.8-r13 release', async () => {
+test('download page publishes the authorized Windows 0.4.9-r14 release', async () => {
   const page = await readFile(new URL('../src/pages/download.astro', import.meta.url), 'utf8')
   const built = await readFile(new URL('../docs/download/index.html', import.meta.url), 'utf8')
 
   for (const content of [page, built]) {
-    // exact authorized bytes: registry candidate setup_sha256 for 0.4.8/r13
-    assert.match(content, /5c449a17926a433551caa653f7a89716871936ab63375537d33599948e25fc7a/)
-    assert.match(content, /Kimidance-Windows-Setup-0\.4\.8-r13-x64\.exe/)
-    assert.match(content, /下载 Windows 版 0\.4\.8/)
+    // exact authorized bytes: registry candidate setup_sha256 for 0.4.9/r14
+    assert.match(content, /622672f678cd40d03cdda52ca2f5664be21a179b14a6331ad590156aa5f26b64/)
+    assert.match(content, /Kimidance-Windows-Setup-0\.4\.9-r14-x64\.exe/)
+    assert.match(content, /下载 Windows 版 0\.4\.9/)
     // sole download source: the domestic mirror (never the private source repo)
     assert.match(
       content,
-      /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Windows-Setup-0\.4\.8-r13-x64\.exe/,
+      /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Windows-Setup-0\.4\.9-r14-x64\.exe/,
     )
     assert.doesNotMatch(content, /releases\/download\/windows-v0\.4\.8-r13/)
     assert.doesNotMatch(content, /备用下载/)
@@ -49,5 +49,8 @@ test('download page publishes the authorized Windows 0.4.8-r13 release', async (
     // WebView2 elevation caveat must stay on the page
     assert.match(content, /WebView2/)
     assert.match(content, /需要管理员权限/)
+    // the guard fix landed: never tell upgraders to uninstall first again
+    assert.doesNotMatch(content, /请先卸载旧版本/)
+    assert.match(content, /不需要先卸载/)
   }
 })
