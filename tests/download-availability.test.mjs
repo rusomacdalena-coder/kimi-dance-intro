@@ -34,16 +34,13 @@ test('download page publishes the authorized Windows 0.4.8-r13 release', async (
     assert.match(content, /5c449a17926a433551caa653f7a89716871936ab63375537d33599948e25fc7a/)
     assert.match(content, /Kimidance-Windows-Setup-0\.4\.8-r13-x64\.exe/)
     assert.match(content, /下载 Windows 版 0\.4\.8/)
-    // primary: domestic VPS mirror; backup: public GitHub release (never the private source repo)
+    // sole download source: the domestic mirror (never the private source repo)
     assert.match(
       content,
       /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Windows-Setup-0\.4\.8-r13-x64\.exe/,
     )
-    assert.match(
-      content,
-      /https:\/\/github\.com\/rusomacdalena-coder\/kimi-dance-intro\/releases\/download\/windows-v0\.4\.8-r13\//,
-    )
-    assert.match(content, /备用下载（海外/)
+    assert.doesNotMatch(content, /releases\/download\/windows-v0\.4\.8-r13/)
+    assert.doesNotMatch(content, /备用下载/)
     assert.doesNotMatch(content, /github\.com\/rusomacdalena-coder\/kimidance-rs/)
     // unsigned build ships with SmartScreen guidance; never claim it is signed
     assert.match(content, /更多信息/)
