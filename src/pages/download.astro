@@ -1,13 +1,15 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
-const DATE_MODIFIED = '2026-08-15'
+const DATE_MODIFIED = '2026-08-16'
 
 const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.4.8-arm64.dmg'
 const MAC_SHA256 = '2502c7c178d6a0374d4b680d7e254bb08675ab4c6dab24dc71756913e2d453a8'
 const MAC_SIZE = '约 42 MB'
 
 const WIN_URL =
+  'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.8-r13-x64.exe'
+const WIN_URL_OVERSEAS =
   'https://github.com/rusomacdalena-coder/kimi-dance-intro/releases/download/windows-v0.4.8-r13/Kimidance-Windows-Setup-0.4.8-r13-x64.exe'
 const WIN_SHA256 = '5c449a17926a433551caa653f7a89716871936ab63375537d33599948e25fc7a'
 const WIN_SIZE = '约 93 MB'
@@ -87,6 +89,12 @@ const softwareApp = {
         class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
       >
         下载 Windows 版 0.4.8
+      </a>
+      <a
+        href={WIN_URL_OVERSEAS}
+        class="text-center text-xs text-muted-foreground !no-underline hover:text-cream transition-colors"
+      >
+        备用下载（海外 · GitHub）
       </a>
     </div>
   </div>
