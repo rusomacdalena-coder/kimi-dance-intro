@@ -30,8 +30,8 @@ test('download page publishes the authorized Windows 0.4.9-r14 release', async (
   const built = await readFile(new URL('../docs/download/index.html', import.meta.url), 'utf8')
 
   for (const content of [page, built]) {
-    // exact authorized bytes: registry candidate setup_sha256 for 0.4.9/r14
-    assert.match(content, /622672f678cd40d03cdda52ca2f5664be21a179b14a6331ad590156aa5f26b64/)
+    // exact authorized bytes: _candD1 setup_sha256 for 0.4.9/r14 (five-gate green rebuild)
+    assert.match(content, /ff4ca723c071fbbec52e29eb15fa0f90de0ec46d5cbca2c0a5a209adf60fcf10/)
     assert.match(content, /Kimidance-Windows-Setup-0\.4\.9-r14-x64\.exe/)
     assert.match(content, /下载 Windows 版 0\.4\.9/)
     // sole download source: the domestic mirror (never the private source repo)

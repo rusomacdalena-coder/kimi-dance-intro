@@ -13,7 +13,7 @@ Apple Silicon（M1 及以后）专用<br>
 </div> <a href="https://api.kimidance.com/downloads/Kimidance-Mac-0.4.8-arm64.dmg" class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors">
 下载 macOS 版 0.4.8
 </a> </div> <div class="rounded-2xl surface-glass p-6 flex flex-col gap-3"> <svg class="w-7 h-7 text-cream" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"> <path d="M3 5.5 10.2 4.5v7.05H3V5.5Zm0 13 7.2 1V12.5H3v6ZM11.3 4.35 21 3v8.55h-9.7V4.35Zm0 8.15H21V21l-9.7-1.35V12.5Z"></path> </svg> <div class="text-lg font-bold text-cream">Windows</div> <div class="text-xs text-muted-foreground leading-relaxed">
-版本 0.4.9 · 约 93 MB<br>
+版本 0.4.9 · 约 98 MB<br>
 Windows 10 / 11（64 位）<br>
 安装到当前用户，通常无需管理员权限
 </div> <a href="https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.9-r14-x64.exe" class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors">
@@ -37,7 +37,7 @@ Windows 安装包<strong>没有购买代码签名证书</strong>，所以首次�
 shasum -a 256 ~/Downloads/Kimidance-Mac-0.4.8-arm64.dmg
 # 应输出：2502c7c178d6a0374d4b680d7e254bb08675ab4c6dab24dc71756913e2d453a8</code></pre> <pre class="overflow-x-auto"><code># Windows（PowerShell）
 Get-FileHash -Algorithm SHA256 "$env:USERPROFILE\Downloads\Kimidance-Windows-Setup-0.4.9-r14-x64.exe"
-# Hash 应为：622672f678cd40d03cdda52ca2f5664be21a179b14a6331ad590156aa5f26b64</code></pre> <p class="text-sm">
+# Hash 应为：ff4ca723c071fbbec52e29eb15fa0f90de0ec46d5cbca2c0a5a209adf60fcf10</code></pre> <p class="text-sm">
 PowerShell 输出的是大写，网页上是小写，<strong>大小写不影响</strong>，逐位一致即可。对不上就别装，重新下载或来邮件问我们。
 </p> <h2>快速开始</h2> <ol> <li><a href="/#beta">申请邀请码</a>（通常 1 个工作日内通过邮件回复）；</li> <li>打开客户端，凭邀请码注册账号——注册即赠送体验积分；</li> <li>登录后导入一部短剧或长视频；</li> <li>等待处理完成，在任务历史中打开成品文件夹。</li> </ol> <h2>常见问题</h2> <h3>积分是什么？用完了怎么办？</h3> <p>
 登录后可查看积分和积分流水。新建单视频任务时，App 会先给出费用预估并等待确认；需要更多积分时，可在
@@ -51,13 +51,13 @@ PowerShell 输出的是大写，网页上是小写，<strong>大小写不影响<
 未签名的新程序偶尔会被误判。请先核对 SHA-256，确认无误后在杀毒软件里把该文件或 Kimidance 安装目录加入信任（白名单），再重新安装。如果你不确定，把报毒的软件名称和提示截图发邮件给我们。
 </p> <h3>公司电脑装不了，要给 IT 什么信息？</h3> <p>
 通常提供这些就够 IT 加白名单：程序名 Kimidance（积米律动）；安装包 <code>Kimidance-Windows-Setup-0.4.9-r14-x64.exe</code>；SHA-256
-<code>622672f678cd40d03cdda52ca2f5664be21a179b14a6331ad590156aa5f26b64</code>；安装位置为当前用户目录 <code>%LOCALAPPDATA%\Programs\Kimidance</code>，不写系统目录、不安装驱动或服务；运行时仅访问我们的服务端
+<code>ff4ca723c071fbbec52e29eb15fa0f90de0ec46d5cbca2c0a5a209adf60fcf10</code>；安装位置为当前用户目录 <code>%LOCALAPPDATA%\Programs\Kimidance</code>，不写系统目录、不安装驱动或服务；运行时仅访问我们的服务端
 <code>api.kimidance.com</code>（HTTPS）。
 </p> <h3>怎么卸载？</h3> <p>
 "设置 → 应用 → 已安装的应用"里找到 Kimidance，点卸载即可；卸载不会删除你的成品文件目录，但仍建议先备份。</p> <h3>遇到问题找谁？</h3> <p>
 邮件联系 <a href="mailto:oliverzhu929598@gmail.com">oliverzhu929598@gmail.com</a>，注明系统版本和问题现象即可。
 </p>  <p class="text-xs text-muted-foreground/50 mt-14">
-最后更新于 2026-08-16 </p> </article> </main> <footer class="border-t border-border/40 py-10 px-6"> <div class="max-w-5xl mx-auto space-y-5"> <p class="text-xs text-muted-foreground/70 text-center max-w-xl mx-auto leading-relaxed">
+最后更新于 2026-08-18 </p> </article> </main> <footer class="border-t border-border/40 py-10 px-6"> <div class="max-w-5xl mx-auto space-y-5"> <p class="text-xs text-muted-foreground/70 text-center max-w-xl mx-auto leading-relaxed">
 积米律动（Kimidance）是一款 AI
           拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表，全程台词零篡改。
 </p> <div class="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground"> <a href="/what-is-ai-lapian/" class="hover:text-cream transition-colors">什么是 AI 拉片</a> <a href="/cases/" class="hover:text-cream transition-colors">案例库</a> <a href="/data/" class="hover:text-cream transition-colors">拉片数据</a> <a href="/compare/ai-lapian-tools/" class="hover:text-cream transition-colors">工具对比</a> <a href="/guides/lapian-template/" class="hover:text-cream transition-colors">拉片模板</a> <a href="/download/" class="hover:text-cream transition-colors">下载客户端</a> <a href="/about/" class="hover:text-cream transition-colors">关于积米律动</a> <a href="mailto:oliverzhu929598@gmail.com" class="hover:text-cream transition-colors">
