@@ -10,7 +10,7 @@ const MAC_SIZE = '约 42 MB'
 const WIN_URL =
   'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.9-r14-x64.exe'
 const WIN_SHA256 = 'ff4ca723c071fbbec52e29eb15fa0f90de0ec46d5cbca2c0a5a209adf60fcf10'
-const WIN_SIZE = '约 98 MB'
+const WIN_SIZE = '约 93 MB'
 const WIN_FILENAME = 'Kimidance-Windows-Setup-0.4.9-r14-x64.exe'
 
 const softwareApp = {
@@ -104,6 +104,11 @@ const softwareApp = {
   <div class="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 my-4 not-prose text-sm leading-relaxed">
     <strong>已经装过 0.4.8 的老用户：</strong>直接安装本版即可，<strong>不需要先卸载</strong>。0.4.8
     升级时会报 <code>0x80070002</code> 的问题已在本版修复。你的成品文件目录不受影响。
+  </div>
+  <div class="rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-4 not-prose text-sm leading-relaxed">
+    <strong>装的是 0.2.x 或更早版本的老用户：</strong>请先卸载旧版本，再安装本版。免卸载升级只在 0.4.8
+    上验证过，0.2.x 及更早不在其列。卸载方法：打开"设置 → 应用 → 已安装的应用"，找到 Kimidance，点卸载；完成后确认文件夹
+    <code>%LOCALAPPDATA%\Programs\Kimidance</code> 已不存在，再运行新安装包。卸载不会删除你的成品文件目录，但仍建议先备份。首次安装的新用户不受影响，直接往下看。
   </div>
   <p>
     Windows 安装包<strong>没有购买代码签名证书</strong>，所以首次运行时系统会拦一次。这是一个"系统不认识这个发布者"的提示，不是说文件有问题——你可以先用下面的 SHA-256

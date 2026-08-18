@@ -49,8 +49,18 @@ test('download page publishes the authorized Windows 0.4.9-r14 release', async (
     // WebView2 elevation caveat must stay on the page
     assert.match(content, /WebView2/)
     assert.match(content, /需要管理员权限/)
-    // the guard fix landed: never tell upgraders to uninstall first again
-    assert.doesNotMatch(content, /请先卸载旧版本/)
+    // Upgrade guidance is split by installed version, because the in-place
+    // upgrade fix was only ever verified against 0.4.8.
+    //
+    // The previous blanket `assert.doesNotMatch(content, /请先卸载旧版本/)` is
+    // deliberately removed, not worked around: it asserted that nobody is ever
+    // told to uninstall first, which is false for 0.2.x and earlier. Those
+    // users were publicly served 0.1.0 / 0.2.4 / 0.2.6 builds, were covered by
+    // the old generic warning, and are not covered by the fix — so the
+    // uninstall-first instruction must remain on the page for them.
+    assert.match(content, /已经装过 0\.4\.8 的老用户/)
     assert.match(content, /不需要先卸载/)
+    assert.match(content, /0\.2\.x 或更早版本的老用户/)
+    assert.match(content, /请先卸载旧版本/)
   }
 })
