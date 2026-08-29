@@ -1,0 +1,76 @@
+/* Hero film (印张) — scoped port of the Broadsheet tokens and .cmyk plate
+ * grammar the composition was authored against (_ds styles.css). Everything
+ * lives under .kd-heroloop so nothing leaks into the site's own system, and
+ * no external font or CDN is referenced: "Source Serif 4" resolves only if
+ * the visitor has it; the stack falls through Noto Serif SC / system serif.
+ */
+.kd-heroloop {
+  /* Broadsheet tokens, verbatim values */
+  --color-bg: #f3f2f2;
+  --color-text: #201e1d;
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-900: #2d2b2b;
+
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1920 / 1080;
+  border: 1px solid hsl(35 32% 86% / 0.16);
+  border-radius: 2px;
+  background: var(--color-bg);
+  box-shadow: 0 30px 80px hsl(0 0% 0% / 0.5);
+
+  /* pre-hydration / no-JS scale ladder: box = min(100vw - padding, 896px).
+     Approximate on purpose — the aspect box clips any residue; the mounted
+     ResizeObserver replaces this with the exact clientWidth / 1920. */
+  --kd-hero-scale: 0.4667;
+}
+
+@media (max-width: 960px) { .kd-heroloop { --kd-hero-scale: 0.45; } }
+@media (max-width: 864px) { .kd-heroloop { --kd-hero-scale: 0.4; } }
+@media (max-width: 768px) { .kd-heroloop { --kd-hero-scale: 0.355; } }
+@media (max-width: 672px) { .kd-heroloop { --kd-hero-scale: 0.31; } }
+@media (max-width: 576px) { .kd-heroloop { --kd-hero-scale: 0.26; } }
+@media (max-width: 480px) { .kd-heroloop { --kd-hero-scale: 0.215; } }
+@media (max-width: 400px) { .kd-heroloop { --kd-hero-scale: 0.178; } }
+@media (max-width: 340px) { .kd-heroloop { --kd-hero-scale: 0.15; } }
+
+.kd-heroloop-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  transform: scale(var(--kd-hero-scale));
+  transform-origin: 0 0;
+}
+
+/* .cmyk plate grammar, verbatim from the Broadsheet stylesheet, scoped */
+.kd-heroloop .cmyk {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.kd-heroloop .cmyk img:first-child {
+  opacity: 0; /* layout sizer and alt carrier; the plates do the printing */
+}
+
+.kd-heroloop .cmyk img + img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+
+.kd-heroloop .cmyk .sep-c { filter: url(#sep-c); }
+.kd-heroloop .cmyk .sep-m { filter: url(#sep-m); }
+.kd-heroloop .cmyk .sep-y { filter: url(#sep-y); }
+.kd-heroloop .cmyk .sep-k { filter: url(#sep-k); }

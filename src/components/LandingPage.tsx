@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import BetaForm from './BetaForm'
+import HeroFilm from './hero/HeroFilm'
 import SamplePreview from './SamplePreview'
 
 /* ─── Nav ─────────────────────────────────────────────────────────────── */
@@ -115,7 +116,7 @@ function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-6 text-center">
+      <div className="relative w-full max-w-4xl mx-auto px-6 text-center">
         <div className="label-caps mb-8">Private Beta &middot; 2026</div>
 
         <h1 className="text-editorial text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.15] tracking-tight">
@@ -167,6 +168,10 @@ function Hero() {
           >
             &darr; 看看产出长什么样
           </a>
+        </div>
+
+        <div className="mt-14 sm:mt-16 text-left">
+          <HeroFilm />
         </div>
       </div>
     </section>
