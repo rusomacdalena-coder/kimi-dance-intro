@@ -31,6 +31,10 @@ function SepDefs() {
         <filter colorInterpolationFilters="sRGB" id="sep-m"><feColorMatrix type="matrix" values="0 0.161 0 0 0.839  0 1 0 0 0  0 0.576 0 0 0.424  0 0 0 0 1" /></filter>
         <filter colorInterpolationFilters="sRGB" id="sep-y"><feColorMatrix type="matrix" values="0 0 0.071 0 0.929  0 0 0.267 0 0.733  0 0 1 0 0  0 0 0 0 1" /></filter>
         <filter colorInterpolationFilters="sRGB" id="sep-k"><feColorMatrix type="matrix" values="0.112 0.375 0.038 0 0.475  0.113 0.379 0.038 0 0.471  0.113 0.380 0.038 0 0.468  0 0 0 0 1" /></filter>
+        {/* ink-edition additive plates: disjoint channels, screen-recombine */}
+        <filter colorInterpolationFilters="sRGB" id="sep-r"><feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0 1" /></filter>
+        <filter colorInterpolationFilters="sRGB" id="sep-g"><feColorMatrix type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 0 1" /></filter>
+        <filter colorInterpolationFilters="sRGB" id="sep-b"><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 0 1" /></filter>
       </defs>
     </svg>
   )

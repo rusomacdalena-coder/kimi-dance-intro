@@ -178,7 +178,7 @@ function Hero() {
 /* ─── Film band — full-width press-sheet strip, right after the hero ──── */
 function FilmBand() {
   return (
-    <section aria-label="产品演示胶片" className="relative bg-[#f3f2f2]">
+    <section aria-label="产品演示胶片" className="relative">
       <div className="mx-auto max-w-6xl">
         <HeroFilm />
       </div>

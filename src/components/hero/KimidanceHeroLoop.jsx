@@ -286,7 +286,7 @@ export function KimidanceHeroPiece(props) {
             </div>
             <div style={{
               position: 'absolute', left: 0, right: 0, top: `${scan * 100}%`, height: 74,
-              marginTop: -74, opacity: scanAlpha * 0.45, mixBlendMode: 'multiply',
+              marginTop: -74, opacity: scanAlpha * 0.45, mixBlendMode: 'screen',
               backgroundImage: 'linear-gradient(to top, var(--color-neutral-500), transparent)',
             }} />
             <div style={{
@@ -368,9 +368,9 @@ export function KimidanceHeroPiece(props) {
             display: 'flex', alignItems: 'center', gap: 44,
             padding: '0 40px 32px', boxSizing: 'border-box',
           }}>
-            <Micro style={{ fontSize: 22, color: HAIR, letterSpacing: '0.32em' }}>TRUST</Micro>
+            <Micro style={{ fontSize: 22, color: 'var(--lq-onvoid)', letterSpacing: '0.32em' }}>TRUST</Micro>
             <div style={{ fontSize: 56, fontWeight: 700, letterSpacing: '0.02em' }}>台词零篡改</div>
-            <div style={{ marginLeft: 'auto', fontSize: 28, color: HAIR, fontVariantNumeric: 'tabular-nums' }}>
+            <div style={{ marginLeft: 'auto', fontSize: 28, color: 'var(--lq-onvoid)', fontVariantNumeric: 'tabular-nums' }}>
               {tally}/60 句一字未改 · 8 分钟测试视频
             </div>
           </div>
@@ -387,7 +387,7 @@ export function KimidanceHeroPiece(props) {
 
       {/* newsprint grain, stepped — lives on the paper, not in the camera */}
       <div style={{
-        position: 'absolute', inset: -8, opacity: 0.05, mixBlendMode: 'multiply',
+        position: 'absolute', inset: -8, opacity: 0.05, mixBlendMode: 'screen',
         backgroundImage: 'radial-gradient(circle, var(--color-neutral-900) 22%, transparent 24%)',
         backgroundSize: '3px 3px',
         backgroundPosition: `${grainStep * 0.7}px ${(grainStep * 1.3) % 3}px`,
@@ -395,7 +395,7 @@ export function KimidanceHeroPiece(props) {
       {/* register slam — one frame of extra ink through the whole sheet */}
       <div style={{
         position: 'absolute', inset: 0, background: INK,
-        opacity: flash * 0.055, mixBlendMode: 'multiply',
+        opacity: flash * 0.055, mixBlendMode: 'screen',
       }} />
     </div>
   );

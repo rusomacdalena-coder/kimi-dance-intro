@@ -5,16 +5,21 @@
  * the visitor has it; the stack falls through Noto Serif SC / system serif.
  */
 .kd-heroloop {
-  /* Broadsheet tokens, verbatim values */
-  --color-bg: #f3f2f2;
-  --color-text: #201e1d;
-  --color-neutral-100: #f8f4f4;
-  --color-neutral-300: #d7d3d3;
-  --color-neutral-400: #bab6b6;
-  --color-neutral-500: #9b9797;
-  --color-neutral-600: #7d7979;
-  --color-neutral-700: #605d5d;
-  --color-neutral-900: #2d2b2b;
+  /* Ink edition — the film repainted in the site's own warm-dark palette
+     (global.css tokens), Kimi-K3 style: the canvas IS the page background,
+     contrast comes from the strokes, never from a differently-colored slab.
+     Paper edition (Broadsheet verbatim) kept at the end of this file. */
+  --color-bg: hsl(20 10% 5%);
+  --color-text: hsl(36 36% 96%);
+  --color-neutral-100: hsl(20 8% 10%);
+  --color-neutral-300: hsl(35 32% 86% / 0.22);
+  --color-neutral-400: hsl(35 24% 80% / 0.34);
+  --color-neutral-500: hsl(35 24% 80%);
+  --color-neutral-600: hsl(32 13% 76%);
+  --color-neutral-700: hsl(32 10% 62%);
+  --color-neutral-900: hsl(36 30% 88%);
+  /* labels inside the single light block (TRUST) */
+  --lq-onvoid: hsl(20 8% 32%);
 
   position: relative;
   overflow: hidden;
@@ -64,10 +69,28 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: multiply;
+  /* ink edition: additive plates on a dark ground (CMYK multiply only
+     reconstructs on white; disjoint R/G/B channels under screen recombine
+     into the photograph EXACTLY when in register, and split into chromatic
+     ghosts when misregistered) */
+  mix-blend-mode: screen;
 }
 
-.kd-heroloop .cmyk .sep-c { filter: url(#sep-c); }
-.kd-heroloop .cmyk .sep-m { filter: url(#sep-m); }
-.kd-heroloop .cmyk .sep-y { filter: url(#sep-y); }
-.kd-heroloop .cmyk .sep-k { filter: url(#sep-k); }
+.kd-heroloop .cmyk .sep-c { filter: url(#sep-r); }
+.kd-heroloop .cmyk .sep-m { filter: url(#sep-g); }
+.kd-heroloop .cmyk .sep-y { filter: url(#sep-b); }
+/* three additive plates recombine exactly; a fourth would double-expose */
+.kd-heroloop .cmyk .sep-k { display: none; }
+
+/* ── Paper edition (Broadsheet verbatim), kept for one-line revert ──────
+.kd-heroloop {
+  --color-bg: #f3f2f2; --color-text: #201e1d;
+  --color-neutral-100: #f8f4f4; --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6; --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979; --color-neutral-700: #605d5d;
+  --color-neutral-900: #2d2b2b; --lq-onvoid: var(--color-neutral-300);
+}
+.kd-heroloop .cmyk img + img { mix-blend-mode: multiply; }
+.kd-heroloop .cmyk .sep-c { filter: url(#sep-c); } … .sep-k { filter: url(#sep-k); }
+(jsx blend spots: screen → multiply ×3)
+─────────────────────────────────────────────────────────────────────── */
