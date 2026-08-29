@@ -2,21 +2,25 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
-test('download page publishes the verified macOS 0.4.8 release', async () => {
+test('download page publishes the verified macOS 0.4.10 release', async () => {
   const page = await readFile(new URL('../src/pages/download.astro', import.meta.url), 'utf8')
   const built = await readFile(new URL('../docs/download/index.html', import.meta.url), 'utf8')
 
   for (const content of [page, built]) {
     assert.match(
       content,
-      /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-0\.4\.8-arm64\.dmg/,
+      /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Mac-0\.4\.10-arm64\.dmg/,
     )
-    assert.match(content, /2502c7c178d6a0374d4b680d7e254bb08675ab4c6dab24dc71756913e2d453a8/)
-    assert.match(content, /下载 macOS 版 0\.4\.8/)
+    assert.match(content, /f97d4ff36427db02d2d1e62fae0335473dab63f7394a69c48a70a75d6e405d0c/)
+    assert.match(content, /下载 macOS 版 0\.4\.10/)
     assert.match(content, /微信扫码充值/)
     assert.doesNotMatch(content, /应用内充值即将上线/)
     assert.doesNotMatch(content, /0\.3\.2/)
     assert.doesNotMatch(content, /5d6540503e16e52f222e05ee1c4a11d935f56a4e713bd7fd4259e2716f943c03/)
+    // superseded 0.4.8 Mac artifacts must not resurface on the page
+    // (the plain string "0.4.8" stays legal: Windows upgrade guidance cites it)
+    assert.doesNotMatch(content, /Kimidance-Mac-0\.4\.8-arm64\.dmg/)
+    assert.doesNotMatch(content, /2502c7c178d6a0374d4b680d7e254bb08675ab4c6dab24dc71756913e2d453a8/)
     // only the authorized r13 installer may be served from api.kimidance.com
     assert.doesNotMatch(
       content,

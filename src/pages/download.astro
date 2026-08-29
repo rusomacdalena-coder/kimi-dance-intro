@@ -1,11 +1,11 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
-const DATE_MODIFIED = '2026-08-18'
+const DATE_MODIFIED = '2026-08-29'
 
-const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.4.8-arm64.dmg'
-const MAC_SHA256 = '2502c7c178d6a0374d4b680d7e254bb08675ab4c6dab24dc71756913e2d453a8'
-const MAC_SIZE = '约 42 MB'
+const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.4.10-arm64.dmg'
+const MAC_SHA256 = 'f97d4ff36427db02d2d1e62fae0335473dab63f7394a69c48a70a75d6e405d0c'
+const MAC_SIZE = '约 38 MB'
 
 const WIN_URL =
   'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.9-r14-x64.exe'
@@ -17,7 +17,7 @@ const softwareApp = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Kimidance 积米律动',
-  softwareVersion: '0.4.9',
+  softwareVersion: '0.4.10',
   operatingSystem: ['macOS', 'Windows'],
   applicationCategory: 'MultimediaApplication',
   inLanguage: 'zh-CN',
@@ -58,7 +58,7 @@ const softwareApp = {
       </svg>
       <div class="text-lg font-bold text-cream">Mac</div>
       <div class="text-xs text-muted-foreground leading-relaxed">
-        版本 0.4.8 · {MAC_SIZE}<br />
+        版本 0.4.10 · {MAC_SIZE}<br />
         Apple Silicon（M1 及以后）专用<br />
         建议 macOS 14 及以上
       </div>
@@ -66,7 +66,7 @@ const softwareApp = {
         href={MAC_URL}
         class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
       >
-        下载 macOS 版 0.4.8
+        下载 macOS 版 0.4.10
       </a>
     </div>
 
@@ -150,7 +150,7 @@ const softwareApp = {
     >——安装包未签名，这是你自己确认"下载到的确实是官方文件"最直接的办法。
   </p>
   <pre class="overflow-x-auto"><code># macOS（终端）
-shasum -a 256 ~/Downloads/Kimidance-Mac-0.4.8-arm64.dmg
+shasum -a 256 ~/Downloads/Kimidance-Mac-0.4.10-arm64.dmg
 # 应输出：{MAC_SHA256}</code></pre>
   <pre class="overflow-x-auto"><code># Windows（PowerShell）
 Get-FileHash -Algorithm SHA256 "$env:USERPROFILE\Downloads\{WIN_FILENAME}"
