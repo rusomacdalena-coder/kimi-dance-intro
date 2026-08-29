@@ -170,9 +170,17 @@ function Hero() {
           </a>
         </div>
 
-        <div className="mt-14 sm:mt-16 text-left">
-          <HeroFilm />
-        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Film band — full-width press-sheet strip, right after the hero ──── */
+function FilmBand() {
+  return (
+    <section aria-label="产品演示胶片" className="relative bg-[#f3f2f2]">
+      <div className="mx-auto max-w-6xl">
+        <HeroFilm />
       </div>
     </section>
   )
@@ -418,6 +426,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
       <Hero />
+      <FilmBand />
       <Features />
       <Workflow />
       <Differentiators />
