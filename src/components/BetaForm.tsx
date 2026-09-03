@@ -60,9 +60,7 @@ export default function BetaForm() {
         <div className="text-4xl mb-4">🎉</div>
         <h3 className="text-xl font-semibold mb-2">收到申请！</h3>
         <p className="copy-readable text-sm">
-          我会统一审核并生成邀请码，再发到你的邮箱。
-          <br />
-          请留意收件箱（和垃圾箱）。
+          收到申请后人工审核，通过后联系你。
         </p>
       </div>
     )
@@ -149,7 +147,7 @@ export default function BetaForm() {
       </button>
 
       <p className="text-xs text-muted-foreground/60 text-center">
-        邮箱仅用于发送邀请码和安装包，不会发送营销邮件
+        邮箱仅用于处理本次申请，不会发送营销邮件
       </p>
     </form>
   )
