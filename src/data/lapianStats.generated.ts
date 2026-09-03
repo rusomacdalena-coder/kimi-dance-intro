@@ -1,59 +1,130 @@
 // 由 scripts/build-data.mjs 生成，禁止手改；数字全部来自投放区原始 breakdown.csv。
-export const lapianAggregate = {
-  "updatedAt": "2026-09-03",
+export const lapianAnnotated = {
   "dramaCount": 6,
   "totalMinutes": 544,
   "totalShots": 13087,
   "avgShotSec": 2.5,
-  "medianShotsPerMin": 23.4,
+  "medianShotsPerMin": 23,
+  "windowCount": 541,
   "le2Share": 45.5,
   "le5Share": 93.2,
+  "closeupShare": 52.4
+} as const
+
+export const lapianAggregate = {
+  "updatedAt": "2026-09-03",
+  "dramaCount": 4,
+  "totalMinutes": 511,
+  "totalShots": 12382,
+  "avgShotSec": 2.48,
+  "medianShotsPerMin": 23,
+  "windowCount": 509,
+  "le2Share": 46,
+  "le5Share": 93.4,
   "closeupShare": 52.4,
-  "hookSampleCount": 5,
-  "hookWithin5s": 3,
-  "medianFirstHookSec": 5,
   "narrativeTop": [
     {
       "name": "铺垫",
-      "count": 4216,
-      "share": 32.2
+      "count": 4100,
+      "share": 33.1
     },
     {
       "name": "冲突",
-      "count": 3037,
-      "share": 23.2
+      "count": 2823,
+      "share": 22.8
     },
     {
       "name": "过渡",
-      "count": 2244,
-      "share": 17.1
+      "count": 2161,
+      "share": 17.5
     },
     {
       "name": "转折",
-      "count": 778,
+      "count": 735,
       "share": 5.9
     },
     {
       "name": "高潮",
-      "count": 487,
-      "share": 3.7
+      "count": 471,
+      "share": 3.8
     },
     {
       "name": "收束",
-      "count": 400,
-      "share": 3.1
+      "count": 376,
+      "share": 3
     }
   ]
 } as const
+
+export const lapianTypeRows = [
+  {
+    "type": "真人",
+    "titles": [
+      "时光和你都很美"
+    ],
+    "dramaCount": 1,
+    "totalMinutes": 164,
+    "totalShots": 3443,
+    "avgShotSec": 2.86,
+    "medianShotsPerMin": 21,
+    "windowCount": 163,
+    "le2Share": 33.4,
+    "le5Share": 91.9,
+    "closeupShare": 58.3
+  },
+  {
+    "type": "AI 漫剧",
+    "titles": [
+      "凡人百世书",
+      "日薪一万，我在博物馆值夜班"
+    ],
+    "dramaCount": 2,
+    "totalMinutes": 221,
+    "totalShots": 5828,
+    "avgShotSec": 2.28,
+    "medianShotsPerMin": 25,
+    "windowCount": 221,
+    "le2Share": 52.5,
+    "le5Share": 94.5,
+    "closeupShare": 51.4
+  },
+  {
+    "type": "3D 动漫",
+    "titles": [
+      "末世：从搬空全球仓库开始第一季"
+    ],
+    "dramaCount": 1,
+    "totalMinutes": 126,
+    "totalShots": 3111,
+    "avgShotSec": 2.43,
+    "medianShotsPerMin": 24,
+    "windowCount": 125,
+    "le2Share": 47.5,
+    "le5Share": 93.1,
+    "closeupShare": 47.6
+  }
+] as const
 
 export const lapianDramas = [
   {
     "title": "时光和你都很美",
     "slug": "shi-guang-he-ni-dou-hen-mei",
+    "type": "真人",
+    "typeBasis": "公开报道 + 抽帧",
+    "aspect": "竖屏 720×1280",
+    "inAggregate": true,
+    "note": "",
+    "evidence": [
+      {
+        "label": "搜狐报道（横店摄制真人短剧）",
+        "url": "https://www.sohu.com/a/1037271510_532230"
+      }
+    ],
     "shots": 3443,
     "minutes": 163.9,
     "avgShotSec": 2.86,
-    "shotsPerMin": 21,
+    "shotsPerMinMedian": 21,
+    "windowCount": 163,
     "le2Share": 33.4,
     "le5Share": 91.9,
     "closeupShare": 58.3,
@@ -114,10 +185,26 @@ export const lapianDramas = [
   {
     "title": "凡人百世书",
     "slug": "fan-ren-bai-shi-shu",
+    "type": "AI 漫剧",
+    "typeBasis": "公开页面 + 抽帧",
+    "aspect": "横屏 1280×720",
+    "inAggregate": true,
+    "note": "",
+    "evidence": [
+      {
+        "label": "短剧百科（AI漫剧）",
+        "url": "https://www.duanjubaike.net/manju/info-7670854490097994814.html"
+      },
+      {
+        "label": "百度百科",
+        "url": "https://baike.baidu.com/item/%E5%87%A1%E4%BA%BA%E7%99%BE%E4%B8%96%E4%B9%A6/67910935"
+      }
+    ],
     "shots": 3221,
     "minutes": 135.1,
     "avgShotSec": 2.52,
-    "shotsPerMin": 23.8,
+    "shotsPerMinMedian": 23,
+    "windowCount": 135,
     "le2Share": 44,
     "le5Share": 92.8,
     "closeupShare": 48.1,
@@ -178,10 +265,17 @@ export const lapianDramas = [
   {
     "title": "末世：从搬空全球仓库开始第一季",
     "slug": "mo-shi-cong-ban-kong-quan-qiu-cang-ku-kai-shi-di-yi-ji",
+    "type": "3D 动漫",
+    "typeBasis": "公开片库（132 集）+ 抽帧",
+    "aspect": "竖屏 720×1280",
+    "inAggregate": true,
+    "note": "",
+    "evidence": [],
     "shots": 3111,
     "minutes": 125.8,
     "avgShotSec": 2.43,
-    "shotsPerMin": 24.7,
+    "shotsPerMinMedian": 24,
+    "windowCount": 125,
     "le2Share": 47.5,
     "le5Share": 93.1,
     "closeupShare": 47.6,
@@ -242,10 +336,26 @@ export const lapianDramas = [
   {
     "title": "日薪一万，我在博物馆值夜班",
     "slug": "ri-xin-yi-wan-wo-zai-bo-wu-guan-zhi-ye-ban",
+    "type": "AI 漫剧",
+    "typeBasis": "公开页面 + 抽帧",
+    "aspect": "横屏 1280×720",
+    "inAggregate": true,
+    "note": "",
+    "evidence": [
+      {
+        "label": "新浪（红果 AI 漫剧榜单）",
+        "url": "https://www.sina.cn/news/detail/5298437427824619.html"
+      },
+      {
+        "label": "爱奇艺",
+        "url": "https://www.iqiyi.com/a_cuba3wif29.html"
+      }
+    ],
     "shots": 2607,
     "minutes": 86,
     "avgShotSec": 1.98,
-    "shotsPerMin": 30.3,
+    "shotsPerMinMedian": 30,
+    "windowCount": 86,
     "le2Share": 63.1,
     "le5Share": 96.6,
     "closeupShare": 55.5,
@@ -302,10 +412,17 @@ export const lapianDramas = [
   {
     "title": "硬核包子铺",
     "slug": "ying-he-bao-zi-pu",
+    "type": "AI 漫剧",
+    "typeBasis": "抽帧判断（未找到公开页）",
+    "aspect": "竖屏 720×1280",
+    "inAggregate": false,
+    "note": "片段 21.6 分",
+    "evidence": [],
     "shots": 493,
     "minutes": 21.6,
     "avgShotSec": 2.63,
-    "shotsPerMin": 22.9,
+    "shotsPerMinMedian": 23,
+    "windowCount": 21,
     "le2Share": 38.9,
     "le5Share": 92.9,
     "closeupShare": 55.8,
@@ -362,10 +479,22 @@ export const lapianDramas = [
   {
     "title": "大明，李景隆的别样人生",
     "slug": "da-ming-li-jing-long-de-bie-yang-ren-sheng",
+    "type": "AI 漫剧",
+    "typeBasis": "公开页面 + 抽帧",
+    "aspect": "横屏 1280×720",
+    "inAggregate": false,
+    "note": "片段约前 12 分 · 早期版本产出",
+    "evidence": [
+      {
+        "label": "bilibili（标 AI短剧）",
+        "url": "https://www.bilibili.com/video/BV1vhgf6pEz9/"
+      }
+    ],
     "shots": 212,
     "minutes": 11.9,
     "avgShotSec": 3.38,
-    "shotsPerMin": 17.8,
+    "shotsPerMinMedian": 18,
+    "windowCount": 11,
     "le2Share": 32.1,
     "le5Share": 80.2,
     "closeupShare": 49.1,

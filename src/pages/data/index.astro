@@ -1,14 +1,25 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro'
-import { lapianAggregate as a, lapianDramas } from '../../data/lapianStats.generated'
+import {
+  lapianAggregate as a,
+  lapianAnnotated as all,
+  lapianTypeRows,
+  lapianDramas,
+} from '../../data/lapianStats.generated'
 
 const DATE_MODIFIED = a.updatedAt
+const n = (x: number) => x.toLocaleString('en-US')
+const typeLabel = (x: string) => (/^[A-Za-z0-9]/.test(x) ? ` ${x}` : x)
+const typeSummary = lapianTypeRows.map((t) => `${t.dramaCount} 部${typeLabel(t.type)}`).join('、')
+const fullDramas = lapianDramas.filter((d) => d.inAggregate)
+const fragments = lapianDramas.filter((d) => !d.inAggregate)
+const liveDramas = fullDramas.filter((d) => d.type === '真人')
 
 const dataset = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
-  name: '短剧叙事节奏数据集（积米律动拉片指数）',
-  description: `${a.dramaCount} 部短剧/长剧、${a.totalMinutes} 分钟、${a.totalShots} 个镜头的逐镜头结构化数据：镜头时长、景别、切镜频率、叙事功能与首个钩子出现时间。由积米律动 AI 拉片 pipeline 自动生成。`,
+  name: '微短剧叙事节奏数据集（积米律动拉片指数）',
+  description: `已标注 ${all.dramaCount} 部微短剧、${all.totalMinutes} 分钟、${all.totalShots} 个镜头；统计汇总取其中 ${a.dramaCount} 部全片（${typeSummary}），${a.totalMinutes} 分钟、${a.totalShots} 个镜头的逐镜头结构化数据：镜头时长、景别、切镜频率、叙事功能与首个钩子出现时间。由积米律动 AI 拉片 pipeline 自动生成。`,
   url: 'https://kimidance.com/data/',
   creator: { '@type': 'Organization', name: '积米律动', url: 'https://kimidance.com' },
   license: 'https://kimidance.com/data/',
@@ -19,7 +30,7 @@ const dataset = {
 const article = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: '短剧叙事节奏数据：平均镜头 2.5 秒的世界',
+  headline: `微短剧叙事节奏数据：平均镜头 ${a.avgShotSec} 秒`,
   inLanguage: 'zh-CN',
   datePublished: DATE_MODIFIED,
   dateModified: DATE_MODIFIED,
@@ -30,23 +41,28 @@ const article = {
 ---
 
 <ArticleLayout
-  title={`短剧叙事节奏数据（拉片指数 v0）：${a.totalShots.toLocaleString('en-US')} 个镜头的实测统计 | 积米律动`}
-  description={`基于 ${a.dramaCount} 部剧、${a.totalMinutes} 分钟、${a.totalShots.toLocaleString('en-US')} 个镜头的实测数据：短剧平均镜头时长 ${a.avgShotSec} 秒，每分钟切镜中位数 ${a.medianShotsPerMin} 次，特写+近景占 ${a.closeupShare}%。全部数字由 AI 拉片 pipeline 自动统计。`}
+  title={`微短剧叙事节奏数据（拉片指数 v0）：${n(a.totalShots)} 个镜头的实测统计 | 积米律动`}
+  description={`基于 ${a.dramaCount} 部微短剧全片（${typeSummary}）、${a.totalMinutes} 分钟、${n(a.totalShots)} 个镜头的实测数据：平均镜头时长 ${a.avgShotSec} 秒，每分钟切镜中位数 ${a.medianShotsPerMin} 次，特写+近景占 ${a.closeupShare}%。全部数字由 AI 拉片 pipeline 自动统计。`}
   jsonLd={[dataset, article]}
   dateModified={DATE_MODIFIED}
 >
   <div class="label-caps mb-4">Data</div>
-  <h1 class="text-editorial text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
-    短剧叙事节奏数据<br /><span class="text-gradient">拉片指数 v0</span>
+  <h1 class="text-editorial text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+    微短剧叙事节奏数据<br /><span class="text-gradient">拉片指数 v0</span>
   </h1>
+
+  <p class="copy-readable mb-8">
+    已标注 <strong>{all.dramaCount} 部 / {all.totalMinutes} 分 / {n(all.totalShots)} 镜头</strong>（工作量事实）。统计汇总取其中
+    <strong>{a.dramaCount} 部全片（{a.totalMinutes} 分 / {n(a.totalShots)} 镜头）</strong>；{fragments.length} 部片段单列不入汇总。
+  </p>
 
   <div class="tldr-box">
     <div class="label-caps mb-3">可直接引用的数字</div>
     <ul class="copy-readable text-sm space-y-2 list-disc pl-5">
-      <li>短剧的平均镜头时长是 <strong>{a.avgShotSec} 秒</strong>，每分钟切镜中位数 <strong>{a.medianShotsPerMin} 次</strong>。</li>
+      <li>微短剧的平均镜头时长是 <strong>{a.avgShotSec} 秒</strong>，每分钟切镜中位数 <strong>{a.medianShotsPerMin} 次</strong>（各片 60 秒窗口取中位）。</li>
       <li><strong>{a.le5Share}%</strong> 的镜头不超过 5 秒，<strong>{a.le2Share}%</strong> 不超过 2 秒。</li>
-      <li>特写 + 近景合计占全部镜头的 <strong>{a.closeupShare}%</strong>——短剧是"脸的艺术"。</li>
-      <li>样本：{a.dramaCount} 部公开案例，共 {a.totalMinutes} 分钟、{a.totalShots.toLocaleString('en-US')} 个镜头（镜头加权统计）。</li>
+      <li>特写 + 近景合计占全部镜头的 <strong>{a.closeupShare}%</strong>。</li>
+      <li>样本：{a.dramaCount} 部微短剧全片（{typeSummary}），共 {a.totalMinutes} 分钟、{n(a.totalShots)} 个镜头（镜头加权统计）；另 {fragments.length} 部片段未入汇总。</li>
     </ul>
   </div>
 
@@ -54,71 +70,114 @@ const article = {
     本页数字全部来自积米律动（Kimidance）AI 拉片 pipeline 对完整视频的逐镜头标注，由脚本自动统计生成，不做人工修饰。每个样本的完整拆解见<a href="/cases/">案例库</a>。<strong>欢迎引用本页数据，请注明来源：积米律动（kimidance.com/data/）。</strong>
   </p>
 
-  <h2>短剧的切镜节奏有多快？</h2>
+  <h2>微短剧的切镜节奏有多快？</h2>
   <p>
-    在 {a.totalShots.toLocaleString('en-US')} 个实测镜头里，平均镜头时长只有 {a.avgShotSec} 秒。短剧观众每分钟要经历约 {a.medianShotsPerMin} 次画面切换，{a.le2Share}% 的镜头在 2 秒内就切走。这不是剪辑师的偏好，而是竖屏注意力经济下的生存策略。
+    在 {a.dramaCount} 部全片的 {n(a.totalShots)} 个实测镜头里，平均镜头时长 {a.avgShotSec} 秒；按 60 秒窗口数，每分钟切镜中位数 {a.medianShotsPerMin} 次（共 {a.windowCount} 个窗口）。{a.le2Share}% 的镜头在 2 秒内就切走，{a.le5Share}% 不超过 5 秒。
   </p>
 
-  <h2>短剧为什么全是脸？</h2>
+  <h2>汇总与分型</h2>
+  <div class="overflow-x-auto">
+    <table>
+      <thead>
+        <tr>
+          <th>口径</th><th>部数</th><th>时长(分)</th><th>镜头数</th><th>平均镜头(秒)</th><th>每分钟切镜（60 秒窗口中位）</th><th>≤5s 占比</th><th>特写+近景</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>汇总（全片）</strong></td>
+          <td>{a.dramaCount}</td><td>{a.totalMinutes}</td><td>{n(a.totalShots)}</td><td>{a.avgShotSec}</td><td>{a.medianShotsPerMin}</td><td>{a.le5Share}%</td><td>{a.closeupShare}%</td>
+        </tr>
+        {lapianTypeRows.map((t) => (
+          <tr>
+            <td>{t.type}（{t.titles.join('、')}）</td>
+            <td>{t.dramaCount}</td><td>{t.totalMinutes}</td><td>{n(t.totalShots)}</td><td>{t.avgShotSec}</td><td>{t.medianShotsPerMin}</td><td>{t.le5Share}%</td><td>{t.closeupShare}%</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p>真人样本只有 1 部，本页不做真人与漫剧的比较，只列数。</p>
+
+  <h2>特写与近景占比</h2>
   <p>
-    特写与近景合计占 {a.closeupShare}%。短剧把叙事重心完全压在演员的面部微表情和身体反应上，用"脸"替代"环境"来传递信息——这也是为什么角色识别（谁在说话）是 AI 拉片的核心难题之一。
+    汇总 {a.closeupShare}%；分型：{lapianTypeRows.map((t) => `${t.type} ${t.closeupShare}%`).join(' / ')}。
   </p>
+  {liveDramas.map((d) => (
+    <p>
+      <a href={`/cases/${d.slug}/`}>{d.title}</a>（真人）：特写 + 近景 {d.closeupShare}%，镜头多贴在演员的面部表情上。
+    </p>
+  ))}
 
   <h2>第一个钩子出现在什么时候？</h2>
   <p>首个被标注为"钩子"的镜头出现时间，逐部列出，不做汇总（样本太少，不下分布结论）：</p>
   <ul>
     {lapianDramas.map((d) => (
-      <li><a href={`/cases/${d.slug}/`}>{d.title}</a>：{d.firstHookSec === null ? '未标注' : `${d.firstHookSec} 秒`}</li>
+      <li>
+        <a href={`/cases/${d.slug}/`}>{d.title}</a>{d.inAggregate ? '' : '（片段）'}：{d.firstHookSec === null ? '未标注' : `${d.firstHookSec} 秒`}
+      </li>
     ))}
   </ul>
 
-  <h2>镜头都在做什么：叙事功能分布</h2>
+  <h2>镜头都在做什么：叙事功能分布（{a.dramaCount} 部全片）</h2>
   <table>
     <thead>
       <tr><th>叙事功能</th><th>镜头数</th><th>占比</th></tr>
     </thead>
     <tbody>
-      {a.narrativeTop.map((n) => (
+      {a.narrativeTop.map((x) => (
         <tr>
-          <td><strong>{n.name}</strong></td>
-          <td>{n.count.toLocaleString('en-US')}</td>
-          <td>{n.share}%</td>
+          <td><strong>{x.name}</strong></td>
+          <td>{n(x.count)}</td>
+          <td>{x.share}%</td>
         </tr>
       ))}
     </tbody>
   </table>
-  <p>
-    约三分之一的镜头在做"铺垫"，近四分之一在呈现"冲突"——短剧的节奏感不是靠高潮堆出来的，而是靠铺垫与冲突的高频交替维持张力。
-  </p>
 
   <h2>各作品数据一览</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>作品</th><th>时长(分)</th><th>镜头数</th><th>平均镜头(秒)</th><th>每分钟切镜</th><th>≤5s 占比</th><th>特写+近景</th><th>首钩(秒)</th>
-      </tr>
-    </thead>
-    <tbody>
-      {lapianDramas.map((d) => (
+  <div class="overflow-x-auto">
+    <table>
+      <thead>
         <tr>
-          <td><a href={`/cases/${d.slug}/`}>{d.title}</a></td>
-          <td>{d.minutes}</td>
-          <td>{d.shots.toLocaleString('en-US')}</td>
-          <td>{d.avgShotSec}</td>
-          <td>{d.shotsPerMin}</td>
-          <td>{d.le5Share}%</td>
-          <td>{d.closeupShare}%</td>
-          <td>{d.firstHookSec ?? '—'}</td>
+          <th>作品</th><th>类型</th><th>画幅</th><th>时长(分)</th><th>镜头数</th><th>平均镜头(秒)</th><th>每分钟切镜（60 秒窗口中位）</th><th>≤5s 占比</th><th>特写+近景</th><th>首钩(秒)</th><th>依据</th>
         </tr>
-      ))}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {lapianDramas.map((d) => (
+          <tr>
+            <td>
+              <a href={`/cases/${d.slug}/`}>{d.title}</a>
+              {!d.inAggregate && <><br /><span class="text-xs">{d.note} · 不入汇总</span></>}
+            </td>
+            <td>{d.type}</td>
+            <td>{d.aspect}</td>
+            <td>{d.minutes}</td>
+            <td>{n(d.shots)}</td>
+            <td>{d.avgShotSec}</td>
+            <td>{d.shotsPerMinMedian ?? '—'}</td>
+            <td>{d.le5Share}%</td>
+            <td>{d.closeupShare}%</td>
+            <td>{d.firstHookSec === null ? '未标注' : d.firstHookSec}</td>
+            <td class="text-xs">
+              画幅 ffprobe；{d.typeBasis}
+              {d.evidence.map((e) => (
+                <>；<a href={e.url} rel="nofollow noopener" target="_blank">{e.label}</a></>
+              ))}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 
   <h2>方法论与口径</h2>
   <ul>
     <li>数据由积米律动 AI 拉片 pipeline 生成：对完整视频逐镜头标注时长、景别、运镜、情绪与叙事功能。</li>
-    <li>本页所有数字由脚本从原始分镜表自动重算；只汇总完整全片的真人短剧；动漫与片段样本另列。</li>
-    <li>聚合口径为镜头加权（不是按部平均）；"每分钟切镜"取各作品中位数。</li>
+    <li>本页所有数字由脚本从原始分镜表自动重算；只汇总完整全片，片段单列不入汇总；汇总之下按类型（真人 / AI 漫剧 / 3D 动漫）给分型子行。</li>
+    <li>聚合口径为镜头加权（不是按部平均）。</li>
+    <li>每分钟切镜次数按各片 60 秒窗口取中位：丢掉末尾不足 60 秒的窗口，数每个窗口内起始的镜头数，全部窗口合并取中位。</li>
+    <li>类型与画幅依据：画幅 = ffprobe 读取本机源片分辨率；类型 = 公开页面（表中链接）+ 抽帧目检。</li>
     <li>Markdown 版本（供 AI/agent 引用）：<a href="/lapian-data.md">kimidance.com/lapian-data.md</a></li>
   </ul>
 
