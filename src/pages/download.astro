@@ -188,9 +188,13 @@ Get-FileHash -Algorithm SHA256 "$env:USERPROFILE\Downloads\{WIN_FILENAME}"
   </p>
   <h3>公司电脑装不了，要给 IT 什么信息？</h3>
   <p>
-    通常提供这些就够 IT 加白名单：程序名 Kimidance（积米律动）；安装包 <code>{WIN_FILENAME}</code>；SHA-256
-    <code>{WIN_SHA256}</code>；安装位置为当前用户目录 <code>%LOCALAPPDATA%\Programs\Kimidance</code>，不写系统目录、不安装驱动或服务；运行时仅访问我们的服务端
-    <code>api.kimidance.com</code>（HTTPS）。
+    安装位置：<code>%LOCALAPPDATA%\Programs\Kimidance</code>（当前用户目录，无需管理员权限）。不安装服务、驱动或计划任务，不设置开机自启；注册表仅写入 HKCU。
+  </p>
+  <p>
+    运行时联网：<code>api.kimidance.com</code>（HTTPS；登录、任务、积分与更新检查全部经此）；<code>kimidance.com</code>（仅在"发现新版本"时由系统浏览器打开）；<code>*.xunhupay.com</code>（充值二维码图片）。WebView2 运行时自身的更新与遥测由微软 Edge 组件决定，不在本清单内。
+  </p>
+  <p>
+    安装时：安装包内嵌 Microsoft 签名的 WebView2 引导程序，安装器本身不联网获取它；仅当机器未安装 WebView2 时，该引导程序会从微软服务器下载运行时，相关域名以微软官方 WebView2 文档为准。
   </p>
   <h3>怎么卸载？</h3>
   <p>
