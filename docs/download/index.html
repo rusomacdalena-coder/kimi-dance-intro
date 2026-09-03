@@ -52,7 +52,7 @@ PowerShell 输出的是大写，网页上是小写，<strong>大小写不影响<
     SHA-256 核对文件是否与官方发布一致。我们会在下载量积累后评估是否购买证书。
 </p> <h3>杀毒软件报毒 / 直接删掉了安装包怎么办？</h3> <p>
 未签名的新程序可能被杀毒软件拦截。请先核对 SHA-256 确认文件与官方发布一致，再决定是否在杀毒软件里把该文件或 Kimidance 安装目录加入信任（白名单）并重新安装。如果你不确定，把报毒的软件名称和提示截图发邮件给我们。
-</p> <h3>公司电脑装不了，要给 IT 什么信息？</h3> <p>
+</p> <h3>公司电脑装不了，要给 IT 什么信息？</h3> <p>程序名 Kimidance（积米律动）；安装包 <code>Kimidance-Windows-Setup-0.4.11-r16-x64.exe</code>；SHA-256 <code>66735b16d67c7b42ef2514ee34e287a80cb052dd16cc7a7d5594b9d4807c6118</code></p> <p>
 安装位置：<code>%LOCALAPPDATA%\Programs\Kimidance</code>（当前用户目录，无需管理员权限）。不安装服务、驱动或计划任务，不设置开机自启；注册表仅写入 HKCU。
 </p> <p>
 运行时联网：<code>api.kimidance.com</code>（HTTPS；登录、任务、积分与更新检查全部经此）；<code>kimidance.com</code>（仅在"发现新版本"时由系统浏览器打开）；<code>*.xunhupay.com</code>（充值二维码图片）。WebView2 运行时自身的更新与遥测由微软 Edge 组件决定，不在本清单内。
