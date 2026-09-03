@@ -440,13 +440,13 @@ export default function LandingPage() {
           <div className="p-8 rounded-2xl surface-glass text-center">
             <p className="copy-readable text-sm mb-6">
               发邮件到{' '}
-              <a href="mailto:oliverzhu929598@gmail.com?subject=%E5%86%85%E6%B5%8B%E7%94%B3%E8%AF%B7" className="text-copper underline underline-offset-4">
+              <a href="mailto:oliverzhu929598@gmail.com?subject=%E5%86%85%E6%B5%8B%E7%94%B3%E8%AF%B7&body=%E6%88%91%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%9A%0A%E6%83%B3%E6%8B%86%E5%93%AA%E7%B1%BB%E8%A7%86%E9%A2%91%EF%BC%9A%0A%E4%BB%8E%E5%93%AA%E7%9C%8B%E5%88%B0%20kimidance%20%E7%9A%84%EF%BC%88%E7%9F%A5%E4%B9%8E%20/%20%E5%B0%8F%E7%BA%A2%E4%B9%A6%20/%20%E6%9C%8B%E5%8F%8B%E6%8E%A8%E8%8D%90%20/%20%E5%85%B6%E5%AE%83%EF%BC%89%EF%BC%9A%0A" className="text-copper underline underline-offset-4">
                 oliverzhu929598@gmail.com
               </a>
               ，写上：你是做什么的、想拆哪类视频。人工审核，通过后回信附邀请码。
             </p>
             <a
-              href="mailto:oliverzhu929598@gmail.com?subject=%E5%86%85%E6%B5%8B%E7%94%B3%E8%AF%B7"
+              href="mailto:oliverzhu929598@gmail.com?subject=%E5%86%85%E6%B5%8B%E7%94%B3%E8%AF%B7&body=%E6%88%91%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%9A%0A%E6%83%B3%E6%8B%86%E5%93%AA%E7%B1%BB%E8%A7%86%E9%A2%91%EF%BC%9A%0A%E4%BB%8E%E5%93%AA%E7%9C%8B%E5%88%B0%20kimidance%20%E7%9A%84%EF%BC%88%E7%9F%A5%E4%B9%8E%20/%20%E5%B0%8F%E7%BA%A2%E4%B9%A6%20/%20%E6%9C%8B%E5%8F%8B%E6%8E%A8%E8%8D%90%20/%20%E5%85%B6%E5%AE%83%EF%BC%89%EF%BC%9A%0A"
               className="inline-block px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
             >
               写邮件申请 &rarr;
