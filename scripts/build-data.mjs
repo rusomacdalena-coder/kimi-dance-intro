@@ -222,7 +222,7 @@ ${a.dramaCount} 部已公开案例的短剧/长剧，合计 ${a.totalMinutes} �
 - 平均镜头时长 ${a.avgShotSec} 秒；每分钟切镜中位数 ${a.medianShotsPerMin} 次。
 - ${a.le2Share}% 的镜头不超过 2 秒；${a.le5Share}% 的镜头不超过 5 秒。
 - 特写 + 近景占全部镜头的 ${a.closeupShare}%。
-- ${a.hookSampleCount} 部可测样本中，${a.hookWithin5s} 部在开场 5 秒内出现首个"钩子"镜头；其余作品（多集合集）首钩出现在 4-5 分钟段，分布呈双峰。
+- 首个"钩子"镜头的出现时间不做汇总，逐部见下表"首钩(秒)"列。
 
 ## 叙事功能分布（Top）
 

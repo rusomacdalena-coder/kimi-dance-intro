@@ -46,7 +46,6 @@ const article = {
       <li>短剧的平均镜头时长是 <strong>{a.avgShotSec} 秒</strong>，每分钟切镜中位数 <strong>{a.medianShotsPerMin} 次</strong>。</li>
       <li><strong>{a.le5Share}%</strong> 的镜头不超过 5 秒，<strong>{a.le2Share}%</strong> 不超过 2 秒。</li>
       <li>特写 + 近景合计占全部镜头的 <strong>{a.closeupShare}%</strong>——短剧是"脸的艺术"。</li>
-      <li>{a.hookSampleCount} 部可测样本中 <strong>{a.hookWithin5s} 部在开场 5 秒内</strong>埋下第一个钩子镜头。</li>
       <li>样本：{a.dramaCount} 部公开案例，共 {a.totalMinutes} 分钟、{a.totalShots.toLocaleString('en-US')} 个镜头（镜头加权统计）。</li>
     </ul>
   </div>
@@ -62,13 +61,16 @@ const article = {
 
   <h2>短剧为什么全是脸？</h2>
   <p>
-    特写与近景合计占 {a.closeupShare}%，而远景、全景加起来不到一成。短剧把叙事重心完全压在演员的面部微表情和身体反应上，用"脸"替代"环境"来传递信息——这也是为什么角色识别（谁在说话）是 AI 拉片的核心难题之一。
+    特写与近景合计占 {a.closeupShare}%。短剧把叙事重心完全压在演员的面部微表情和身体反应上，用"脸"替代"环境"来传递信息——这也是为什么角色识别（谁在说话）是 AI 拉片的核心难题之一。
   </p>
 
   <h2>第一个钩子出现在什么时候？</h2>
-  <p>
-    {a.hookSampleCount} 部可测样本中，{a.hookWithin5s} 部在开场 5 秒内出现了第一个被标注为"钩子"的镜头；其余作品（多集合集）的首钩出现在 4-5 分钟段，分布呈双峰——头部作品倾向"开场即钩"，合集类内容则把钩子埋在第一个叙事段落的结尾。样本量仍在扩充，这个数字会持续更新。
-  </p>
+  <p>首个被标注为"钩子"的镜头出现时间，逐部列出，不做汇总（样本太少，不下分布结论）：</p>
+  <ul>
+    {lapianDramas.map((d) => (
+      <li><a href={`/cases/${d.slug}/`}>{d.title}</a>：{d.firstHookSec === null ? '未标注' : `${d.firstHookSec} 秒`}</li>
+    ))}
+  </ul>
 
   <h2>镜头都在做什么：叙事功能分布</h2>
   <table>
