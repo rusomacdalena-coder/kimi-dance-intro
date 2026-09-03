@@ -215,7 +215,7 @@ const md = `# 短剧叙事节奏数据（拉片指数 v0）
 
 ## 样本
 
-${a.dramaCount} 部已公开案例的短剧/长剧，合计 ${a.totalMinutes} 分钟、${a.totalShots.toLocaleString('en-US')} 个镜头。仅收录"分镜表覆盖全片且与叙事分析一致"的作品，源数据不一致的样本会被剔除。
+${a.dramaCount} 部已公开案例的短剧/长剧，合计 ${a.totalMinutes} 分钟、${a.totalShots.toLocaleString('en-US')} 个镜头。只汇总完整全片的真人短剧；动漫与片段样本另列。
 
 ## 核心数字（镜头加权）
 
@@ -243,7 +243,7 @@ ${publicDramas
 
 - 数据由积米律动（Kimidance）AI 拉片 pipeline 生成：全片逐镜头标注景别、运镜、时长、场景、情绪与叙事功能。
 - 本页所有数字由脚本从原始分镜表（breakdown.csv）自动重算，不做人工修饰。
-- 入库前做一致性校验：分镜表覆盖时长与叙事分析声明不一致的作品不进入统计。
+- 只汇总完整全片的真人短剧；动漫与片段样本另列。
 - 样本量仍在扩充中，数字会随案例库更新。
 `
 writeFileSync(MD_OUT, md, 'utf8')

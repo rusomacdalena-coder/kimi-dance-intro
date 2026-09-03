@@ -1,6 +1,6 @@
 // 由 scripts/build-data.mjs 生成，禁止手改；数字全部来自投放区原始 breakdown.csv。
 export const lapianAggregate = {
-  "updatedAt": "2026-07-11",
+  "updatedAt": "2026-09-03",
   "dramaCount": 6,
   "totalMinutes": 544,
   "totalShots": 13087,

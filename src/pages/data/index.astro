@@ -57,7 +57,7 @@ const article = {
 
   <h2>短剧的切镜节奏有多快？</h2>
   <p>
-    在 {a.totalShots.toLocaleString('en-US')} 个实测镜头里，平均镜头时长只有 {a.avgShotSec} 秒——作为对照，传统影视剧的常见平均镜头时长在 5-8 秒。短剧观众每分钟要经历约 {a.medianShotsPerMin} 次画面切换，{a.le2Share}% 的镜头在 2 秒内就切走。这不是剪辑师的偏好，而是竖屏注意力经济下的生存策略。
+    在 {a.totalShots.toLocaleString('en-US')} 个实测镜头里，平均镜头时长只有 {a.avgShotSec} 秒。短剧观众每分钟要经历约 {a.medianShotsPerMin} 次画面切换，{a.le2Share}% 的镜头在 2 秒内就切走。这不是剪辑师的偏好，而是竖屏注意力经济下的生存策略。
   </p>
 
   <h2>短剧为什么全是脸？</h2>
@@ -115,7 +115,7 @@ const article = {
   <h2>方法论与口径</h2>
   <ul>
     <li>数据由积米律动 AI 拉片 pipeline 生成：对完整视频逐镜头标注时长、景别、运镜、情绪与叙事功能。</li>
-    <li>本页所有数字由脚本从原始分镜表自动重算；入库前做一致性校验，分镜表覆盖时长与叙事分析不一致的作品会被剔除，不进入统计。</li>
+    <li>本页所有数字由脚本从原始分镜表自动重算；只汇总完整全片的真人短剧；动漫与片段样本另列。</li>
     <li>聚合口径为镜头加权（不是按部平均）；"每分钟切镜"取各作品中位数。</li>
     <li>Markdown 版本（供 AI/agent 引用）：<a href="/lapian-data.md">kimidance.com/lapian-data.md</a></li>
   </ul>
