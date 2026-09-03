@@ -1,13 +1,13 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro'
 
-const DATE_MODIFIED = '2026-07-29'
+const DATE_MODIFIED = '2026-09-03'
 
 const competitors = [
   {
     name: '积米律动 Kimidance',
     focus: '成片/短剧视频 → 文学剧本、叙事分析、分镜速查表',
-    positioning: 'AI 拉片桌面工具，本地优先，强调台词零篡改和投稿级剧本格式',
+    positioning: 'AI 拉片桌面工具，本地优先，台词不经 AI 改写，输出投稿模板格式',
     data: '视频保存在本地，提供本机与云端处理通道',
     output: '文学剧本、analysis.md、breakdown.csv',
     fit: '需要逐部拆解竞品视频、反推剧本、保留原声台词的编剧和制片',
@@ -44,10 +44,10 @@ const competitors = [
 const faq = [
   {
     q: 'AI 拉片工具怎么选？',
-    a: '先看任务：如果目标是把已有视频反推成可投稿剧本和分镜数据，优先看台词是否零篡改、是否能导出结构化文件、视频是否本地保留；如果目标是从 0 写短剧，剧本创作平台更合适。',
+    a: '先看任务：如果目标是把已有视频反推成可投稿剧本和分镜数据，优先看台词是否按原音原样保留、不经 AI 改写（语音识别的错字可能存在，投稿前请人工核对），是否能导出结构化文件、视频是否本地保留；如果目标是从 0 写短剧，剧本创作平台更合适。',
   },
   {
-    q: '为什么台词零篡改重要？',
+    q: '为什么“台词不经 AI 改写”重要？',
     a: '拉片和投稿场景里，原片台词是一手证据。LLM 如果润色台词，后续剧本、分镜表和数据分析都会失真，因此选型时应核对工具是否保留原始台词。',
   },
   {
@@ -81,7 +81,7 @@ const faqPage = {
 
 <ArticleLayout
   title="AI 拉片工具对比 2026：积米律动、创一AI、StoryPlay、蝉妈妈怎么选"
-  description="AI 拉片工具怎么选？本文按任务、输出、台词零篡改、本地/在线和适用人群，对比积米律动、创一AI/咔咔猩、StoryPlay AI、蝉妈妈 AI 创意大师等公开工具。"
+  description="AI 拉片工具怎么选？本文按任务、输出、台词是否不经 AI 改写、本地/在线和适用人群，对比积米律动、创一AI/咔咔猩、StoryPlay AI、蝉妈妈 AI 创意大师等公开工具。"
   jsonLd={[article, faqPage]}
   dateModified={DATE_MODIFIED}
 >
@@ -93,7 +93,7 @@ const faqPage = {
   <div class="tldr-box">
     <div class="label-caps mb-3">太长不看</div>
     <ul class="copy-readable text-sm space-y-2 list-disc pl-5">
-      <li>如果目标是<strong>已有视频 → 可投稿剧本 + 分镜速查表</strong>，重点看台词零篡改、结构化导出和视频数据边界。</li>
+      <li>如果目标是<strong>已有视频 → 可投稿剧本 + 分镜速查表</strong>，重点看台词是否不经 AI 改写、结构化导出和视频数据边界。</li>
       <li>如果目标是<strong>从 0 写短剧</strong>，StoryPlay、创一AI/咔咔猩这类短剧创作平台更贴近全流程创作。</li>
       <li>如果目标是<strong>短视频投放复盘</strong>，蝉妈妈这类内容创意工具更贴近运营场景。</li>
       <li>以下对比基于公开页面与公开报道，具体功能、价格和数据条款以各产品官方最新说明为准。</li>
@@ -137,7 +137,7 @@ const faqPage = {
     积米律动不是从 0 写剧本的创作平台，而是把已经存在的短剧或长视频拆回可读、可学习、可复用的结构化资料。它的核心差异点是三条：
   </p>
   <ul>
-    <li><strong>台词零篡改</strong>：LLM 只做标注和结构化，台词从 ASR 到成稿只做传递，不允许润色或改写。</li>
+    <li><strong>台词不经 AI 改写</strong>：台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对。</li>
     <li><strong>三件套导出</strong>：文学剧本、叙事分析、分镜速查表分别服务投稿、复盘和跨作品比较。</li>
     <li><strong>本地优先</strong>：桌面应用跑在用户自己的 Mac 上，适合大视频文件和素材敏感场景。</li>
   </ul>
@@ -149,7 +149,7 @@ const faqPage = {
 
   <h2>选型检查表</h2>
   <ul>
-    <li>是否需要保留原声台词，一字不改？</li>
+    <li>是否需要台词按原音保留、不经改写？</li>
     <li>是否需要在成品文件夹中使用 CSV 分镜表，后续进 Excel 或数据库？</li>
     <li>视频文件是否敏感，是否必须留在本机？</li>
     <li>产出是为了投稿、教学、竞品复盘，还是为了从 0 创作？</li>

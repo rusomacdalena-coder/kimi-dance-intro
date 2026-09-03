@@ -192,7 +192,7 @@ const outputs = [
     title: '文学剧本',
     file: '拉片.md',
     size: '184 KB',
-    desc: '场头 + 动作行 + 角色台词 + OS/VO 标记。台词零篡改——每一句都是原声实录。',
+    desc: '场头 + 动作行 + 角色台词 + OS/VO 标记。台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对。',
   },
   {
     title: '叙事分析',
@@ -308,12 +308,11 @@ function Workflow() {
 
 /* ─── Differentiators ──────────────────────────────────────────────────── */
 const diffs = [
-  { title: '台词零篡改', desc: '全流程台词只做传递，LLM 不被允许改写' },
+  { title: '台词不经 AI 改写', desc: '台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对' },
   { title: '三层架构', desc: '识别、分析、成稿分层处理' },
   { title: '费用确认', desc: '开始任务前查看费用预估并确认' },
   { title: '本地运行', desc: '跑在你的 mac 上，极致的速度' },
   { title: '投稿格式', desc: '自动输出行业标准投稿模板格式' },
-  { title: '质量红线', desc: 'recall ≥ 95%  ·  tamper = 0 强制校验' },
 ]
 
 function Differentiators() {
@@ -381,7 +380,7 @@ function Footer() {
       <div className="max-w-5xl mx-auto space-y-5">
         <p className="text-xs text-muted-foreground/70 text-center max-w-xl mx-auto leading-relaxed">
           积米律动（Kimidance）是一款 AI
-          拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表，全程台词零篡改。
+          拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表；台词不经 AI 改写。
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
           <a href="/what-is-ai-lapian/" className="hover:text-cream transition-colors">

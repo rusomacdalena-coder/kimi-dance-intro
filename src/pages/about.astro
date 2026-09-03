@@ -1,7 +1,7 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
-const DATE_MODIFIED = '2026-07-29'
+const DATE_MODIFIED = '2026-09-03'
 
 const aboutPage = {
   '@context': 'https://schema.org',
@@ -26,7 +26,7 @@ const aboutPage = {
 
   <p>
     积米律动（Kimidance）是一款 AI
-    拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表，全程台词零篡改。目前以 macOS
+    拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表；台词不经 AI 改写。目前以 macOS
     桌面应用形态公测中，可在<a href="/download/">下载页</a>获取客户端。
   </p>
 
@@ -44,8 +44,7 @@ const aboutPage = {
   <h2>三条产品红线</h2>
   <ul>
     <li>
-      <strong>台词零篡改</strong>——大模型在整条流水线里只做标注和结构化，台词从语音识别到成稿只做传递、不允许改写，由校验器强制执行
-      tamper = 0。投稿场景一字之差就可能废稿，所以这条是红线而不是特性。
+      <strong>台词不经 AI 改写</strong>——台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对。投稿场景一字之差就可能废稿，所以这条按红线对待。
     </li>
     <li>
       <strong>本地优先</strong>——积米律动跑在你自己的 Mac 上，视频文件保存在本地，提供本机与云端两种处理通道。

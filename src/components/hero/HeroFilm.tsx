@@ -82,7 +82,7 @@ export default function HeroFilm() {
 
   return (
     <div
-      aria-label="积米律动产品演示：12 秒印刷风循环短片——短剧关键帧被拆成印刷分色版，再产出文学剧本、三步流程与台词零篡改承诺"
+      aria-label="积米律动产品演示：12 秒印刷风循环短片——短剧关键帧被拆成印刷分色版，再产出文学剧本、三步流程与“台词不经 AI 改写”"
       className="kd-heroloop"
       ref={boxRef}
       role="img"

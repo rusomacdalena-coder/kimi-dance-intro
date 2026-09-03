@@ -1,7 +1,7 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 
-const DATE_MODIFIED = '2026-07-29'
+const DATE_MODIFIED = '2026-09-03'
 
 const faq = [
   {
@@ -84,7 +84,7 @@ const article = {
   </p>
   <p>以积米律动（Kimidance）为例，一次 AI 拉片输出三件产物：</p>
   <ul>
-    <li><strong>文学剧本</strong>——投稿模板格式：场头 + △ 动作行 + 角色台词 + OS/VO 标记，台词零篡改、每一句都是原声实录；</li>
+    <li><strong>文学剧本</strong>——投稿模板格式：场头 + △ 动作行 + 角色台词 + OS/VO 标记，台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对；</li>
     <li><strong>叙事节奏分析</strong>——钩子、冲突点、高潮、情绪曲线，一眼看出这部剧的节奏设计；</li>
     <li><strong>分镜速查表</strong>——CSV 表格，每个镜头一行：景别、运镜、角色、台词、情绪、叙事功能。</li>
   </ul>
@@ -112,7 +112,7 @@ const article = {
       <tr>
         <td>台词记录</td>
         <td>手抄易漏易错</td>
-        <td>语音识别逐句实录（积米律动强制零篡改校验）</td>
+        <td>语音识别逐句转写；台词不经 AI 改写（识别错字可能存在，投稿前请人工核对）</td>
       </tr>
       <tr>
         <td>适用场景</td>
@@ -136,7 +136,7 @@ const article = {
     <li><strong>切镜与逐镜头标注</strong>——自动检测镜头边界，标注景别、运镜、画面内容；</li>
     <li><strong>角色识别与确认</strong>——跨镜头识别人物，统一角色命名；</li>
     <li><strong>剧本生成</strong>——按投稿模板组装成文学剧本，台词只做传递不做改写；</li>
-    <li><strong>质量校验</strong>——强制红线：台词 recall ≥ 95%、tamper = 0，不达标不出稿。</li>
+    <li><strong>质量校验</strong>——台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对。</li>
   </ol>
 
   <h2>什么是 agent 拉片？</h2>

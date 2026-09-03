@@ -369,7 +369,7 @@ export function KimidanceHeroPiece(props) {
             padding: '0 40px 32px', boxSizing: 'border-box',
           }}>
             <Micro style={{ fontSize: 22, color: 'var(--lq-onvoid)', letterSpacing: '0.32em' }}>TRUST</Micro>
-            <div style={{ fontSize: 56, fontWeight: 700, letterSpacing: '0.02em' }}>台词零篡改</div>
+            <div style={{ fontSize: 44, fontWeight: 700, letterSpacing: '0.02em' }}>台词不经 AI 改写</div>
             <div style={{ marginLeft: 'auto', fontSize: 28, color: 'var(--lq-onvoid)', fontVariantNumeric: 'tabular-nums' }}>
               {tally}/60 句一字未改 · 8 分钟测试视频
             </div>
