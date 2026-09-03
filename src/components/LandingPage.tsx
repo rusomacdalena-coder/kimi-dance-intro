@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import BetaForm from './BetaForm'
 import HeroFilm from './hero/HeroFilm'
 import SamplePreview from './SamplePreview'
 
@@ -431,18 +430,28 @@ export default function LandingPage() {
       <Differentiators />
       <SamplePreview />
       <ForWho />
-
-      {/* Beta form */}
+      {/* Beta apply — static entry via email (no form backend) */}
       <section id="beta" className="py-28 px-6 scroll-mt-20 bg-warm-gradient">
         <div className="max-w-xl mx-auto">
           <div className="label-caps mb-4 text-center">Join Beta</div>
-          <h2 className="text-editorial text-3xl sm:text-4xl font-bold text-center mb-3">
-            申请内测名额
+          <h2 className="text-editorial text-3xl sm:text-4xl font-bold text-center mb-8">
+            申请内测
           </h2>
-          <p className="text-center copy-readable mb-12">
-            目前提供 macOS 客户端，凭邀请码注册
-          </p>
-          <BetaForm />
+          <div className="p-8 rounded-2xl surface-glass text-center">
+            <p className="copy-readable text-sm mb-6">
+              发邮件到{' '}
+              <a href="mailto:oliverzhu929598@gmail.com?subject=%E5%86%85%E6%B5%8B%E7%94%B3%E8%AF%B7" className="text-copper underline underline-offset-4">
+                oliverzhu929598@gmail.com
+              </a>
+              ，写上：你是做什么的、想拆哪类视频。人工审核，通过后回信附邀请码。
+            </p>
+            <a
+              href="mailto:oliverzhu929598@gmail.com?subject=%E5%86%85%E6%B5%8B%E7%94%B3%E8%AF%B7"
+              className="inline-block px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
+            >
+              写邮件申请 &rarr;
+            </a>
+          </div>
         </div>
       </section>
 
