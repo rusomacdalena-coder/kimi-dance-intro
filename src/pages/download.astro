@@ -8,16 +8,16 @@ const MAC_SHA256 = 'c15fd3ec6c35a23ae5f86fc5d1586b5e9d118ca43444a0c1c7e42f5f3837
 const MAC_SIZE = '约 38 MB'
 
 const WIN_URL =
-  'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.10-r15-x64.exe'
-const WIN_SHA256 = 'bc1204c181ffa5721789e0042ea28e5f0da0df3bf270fbb90335458ad3fd3d0e'
+  'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.11-r16-x64.exe'
+const WIN_SHA256 = '66735b16d67c7b42ef2514ee34e287a80cb052dd16cc7a7d5594b9d4807c6118'
 const WIN_SIZE = '约 93 MB'
-const WIN_FILENAME = 'Kimidance-Windows-Setup-0.4.10-r15-x64.exe'
+const WIN_FILENAME = 'Kimidance-Windows-Setup-0.4.11-r16-x64.exe'
 
 const softwareApp = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Kimidance 积米律动',
-  softwareVersion: 'macOS 0.4.11 / Windows 0.4.10-r15',
+  softwareVersion: '0.4.11',
   operatingSystem: ['macOS', 'Windows'],
   applicationCategory: 'MultimediaApplication',
   inLanguage: 'zh-CN',
@@ -78,7 +78,7 @@ const softwareApp = {
       </svg>
       <div class="text-lg font-bold text-cream">Windows</div>
       <div class="text-xs text-muted-foreground leading-relaxed">
-        版本 0.4.10 · {WIN_SIZE}<br />
+        版本 0.4.11 · {WIN_SIZE}<br />
         Windows 10 / 11（64 位）<br />
         安装到当前用户，通常无需管理员权限
       </div>
@@ -86,7 +86,7 @@ const softwareApp = {
         href={WIN_URL}
         class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
       >
-        下载 Windows 版 0.4.10
+        下载 Windows 版 0.4.11
       </a>
     </div>
   </div>
@@ -111,8 +111,8 @@ const softwareApp = {
     <code>%LOCALAPPDATA%\Programs\Kimidance</code> 已不存在，再运行新安装包。卸载不会删除你的成品文件目录，但仍建议先备份。首次安装的新用户不受影响，直接往下看。
   </div>
   <p>
-    Windows 安装包<strong>没有购买代码签名证书</strong>，所以首次运行时系统会拦一次。这是一个"系统不认识这个发布者"的提示，不是说文件有问题——你可以先用下面的 SHA-256
-    核对，确认下载到的就是官方文件，再按下面三步安装。
+    双击安装器后若出现"Windows 已保护你的电脑"，点"更多信息"，再点"仍要运行"。这是因为安装包未做代码签名，SmartScreen
+    对所有未签名程序都这样提示。下载后可用下面的 SHA-256 核对文件是否与官方发布一致。
   </p>
   <ol>
     <li>双击下载的 <code>.exe</code>；</li>
@@ -177,14 +177,14 @@ Get-FileHash -Algorithm SHA256 "$env:USERPROFILE\Downloads\{WIN_FILENAME}"
   <p>
     当前 macOS 版本仅支持 Apple Silicon（M1 及以后），不支持 Intel Mac。
   </p>
-  <h3>Windows 为什么会弹蓝色警告？安全吗？</h3>
+  <h3>Windows 为什么会弹"Windows 已保护你的电脑"？</h3>
   <p>
-    因为我们暂时没有购买 Windows 代码签名证书。SmartScreen 对所有未签名、下载量还不大的程序都会给这个提示，它表达的是"系统不认识这个发布者"，不是"检测到病毒"。判断文件是否可信，用上面的
-    SHA-256 核对最可靠。我们会在下载量积累后评估是否购买证书。
+    因为安装包未做代码签名，SmartScreen 对所有未签名程序都这样提示。点"更多信息"，再点"仍要运行"即可继续安装；下载后可用上面的
+    SHA-256 核对文件是否与官方发布一致。我们会在下载量积累后评估是否购买证书。
   </p>
   <h3>杀毒软件报毒 / 直接删掉了安装包怎么办？</h3>
   <p>
-    未签名的新程序偶尔会被误判。请先核对 SHA-256，确认无误后在杀毒软件里把该文件或 Kimidance 安装目录加入信任（白名单），再重新安装。如果你不确定，把报毒的软件名称和提示截图发邮件给我们。
+    未签名的新程序可能被杀毒软件拦截。请先核对 SHA-256 确认文件与官方发布一致，再决定是否在杀毒软件里把该文件或 Kimidance 安装目录加入信任（白名单）并重新安装。如果你不确定，把报毒的软件名称和提示截图发邮件给我们。
   </p>
   <h3>公司电脑装不了，要给 IT 什么信息？</h3>
   <p>
