@@ -317,8 +317,8 @@ const evidenceText = (d) =>
   [`画幅 ffprobe`, d.typeBasis, ...d.evidence.map((e) => `[${e.label}](${e.url})`)].join('；')
 const md = `# 微短剧叙事节奏数据（拉片指数 v0）
 
-> 网页版：https://kimidance.com/data/ ｜ 数据来源：积米律动 pipeline 全片逐镜头标注 ｜ 最后更新：${TODAY}
-> 引用本页数据请注明来源：积米律动（kimidance.com/data/）。
+> 数据来源：积米律动 pipeline 全片逐镜头标注 ｜ 最后更新：${TODAY}
+> 引用本页数据请注明来源：积米律动。
 
 ## 样本
 

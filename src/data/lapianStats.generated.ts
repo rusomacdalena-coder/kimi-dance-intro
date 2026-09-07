@@ -12,7 +12,7 @@ export const lapianAnnotated = {
 } as const
 
 export const lapianAggregate = {
-  "updatedAt": "2026-09-03",
+  "updatedAt": "2026-09-07",
   "dramaCount": 4,
   "totalMinutes": 511,
   "totalShots": 12382,

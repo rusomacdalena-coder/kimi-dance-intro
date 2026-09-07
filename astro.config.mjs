@@ -31,7 +31,9 @@ export default defineConfig({
       filter: (page) =>
         (hasPublishedCases || !page.endsWith('/cases/')) &&
         // 历史哈希 slug 的跳转页不进 sitemap
-        !/\/cases\/case-[0-9a-f]{8}\/$/.test(page),
+        !/\/cases\/case-[0-9a-f]{8}\/$/.test(page) &&
+        // 2026-09-07 数据页下架（判断层包「SEO-撤数据页」）：跳转页不进 sitemap
+        !page.endsWith('/data/'),
     }),
   ],
 })
