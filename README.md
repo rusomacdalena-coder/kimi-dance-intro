@@ -2,13 +2,13 @@
 
 > 积米律动（Kimidance）是一款 AI 拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表；台词不经 AI 改写。
 
-官网：**[kimidance.com](https://kimidance.com)** ｜ 内测申请：[kimidance.com/#beta](https://kimidance.com/#beta)
+官网：**[kimidance.com](https://kimidance.com)** ｜ 内测申请：发邮件到 oliverzhu929598@gmail.com（主题「内测申请」）
 
 ## 它能做什么
 
 | 输入 | 输出 |
 |------|------|
-| 一部视频（mp4/mov/mkv/avi，≤ 2 GB） | **文学剧本** — 投稿模板格式（场头 + △ 动作行 + 角色台词 + OS/VO 标记），台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对 |
+| 一部视频（mp4/mov/mkv/avi，≤ 2 GB） | **文学剧本** — 按行业通用剧本模板输出（场头 + △ 动作行 + 角色台词 + OS/VO 标记），台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对 |
 | | **叙事节奏分析** — 钩子 / 冲突点 / 高潮 / 情绪曲线 |
 | | **分镜速查表** — 每个镜头一行（景别 / 运镜 / 角色 / 台词 / 情绪 / 叙事功能），CSV 直接进 Excel |
 
@@ -70,4 +70,4 @@ npm run build
 ## 联系方式
 
 - 邮箱：oliverzhu929598@gmail.com
-- 内测申请：[kimidance.com/#beta](https://kimidance.com/#beta)
+- 内测申请：发邮件到 oliverzhu929598@gmail.com（主题「内测申请」）

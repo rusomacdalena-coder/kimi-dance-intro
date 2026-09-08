@@ -35,7 +35,9 @@ export default defineConfig({
         // 2026-09-07 数据页下架（判断层包「SEO-撤数据页」）：跳转页不进 sitemap
         !page.endsWith('/data/') &&
         // 2026-09-08 工具对比页下架（判断层「官网收缩第一包」B1）
-        !page.endsWith('/compare/ai-lapian-tools/'),
+        !page.endsWith('/compare/ai-lapian-tools/') &&
+        // 2026-09-08 关于页下架（判断层「官网收缩第二包」第 3 部分）
+        !page.endsWith('/about/'),
     }),
   ],
 })

@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro'
+import { BETA_MAILTO } from '../../lib/links.mjs'
 import { cases, type CaseStudy } from '../../data/cases'
 
 export function getStaticPaths() {
@@ -109,7 +110,7 @@ const article = {
       这份案例由积米律动自动拉片生成。想拆解你自己的视频？
     </p>
     <a
-      href="/#beta"
+      href={BETA_MAILTO}
       class="inline-block px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
     >
       申请内测 &rarr;

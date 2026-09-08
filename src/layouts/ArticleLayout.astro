@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro'
+import { BETA_MAILTO } from '../lib/links.mjs'
 
 interface Props {
   title: string
@@ -14,19 +15,16 @@ interface Props {
 const { title, description, ogImage, jsonLd = [], dateModified, noindex = false } = Astro.props
 
 const navLinks = [
-  { label: '功能', href: '/#features' },
   { label: '产出示例', href: '/#sample' },
-  { label: 'AI 拉片', href: '/what-is-ai-lapian/' },
   { label: '案例库', href: '/cases/' },
   { label: '下载', href: '/download/' },
-  { label: '关于', href: '/about/' },
 ]
 ---
 
 <Base title={title} description={description} ogImage={ogImage} ogType="article" jsonLd={jsonLd} noindex={noindex}>
   <div class="min-h-screen bg-background text-foreground">
     <nav
-      class="fixed top-0 inset-x-0 z-50 bg-background/78 backdrop-blur-xl border-b border-border/60"
+      class="fixed top-0 inset-x-0 z-50 bg-background/95 border-b border-border"
     >
       <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="/" class="flex items-center gap-2.5">
@@ -47,15 +45,12 @@ const navLinks = [
               </a>
             ))
           }
-          <a
-            href="/#beta"
-            class="text-sm font-medium px-5 py-2 rounded-full bg-primary/90 text-primary-foreground hover:bg-primary transition-colors"
-          >
-            申请内测
+          <a href={BETA_MAILTO} class="btn-primary btn-sm">
+            申请邀请码
           </a>
         </div>
-        <a href="/#beta" class="md:hidden text-sm font-medium px-4 py-1.5 rounded-full bg-primary/90 text-primary-foreground">
-          申请内测
+        <a href={BETA_MAILTO} class="md:hidden btn-primary btn-sm">
+          申请邀请码
         </a>
       </div>
     </nav>
@@ -73,27 +68,20 @@ const navLinks = [
       </article>
     </main>
 
-    <footer class="border-t border-border/40 py-10 px-6">
-      <div class="max-w-5xl mx-auto space-y-5">
-        <p class="text-xs text-muted-foreground/70 text-center max-w-xl mx-auto leading-relaxed">
-          积米律动（Kimidance）是一款 AI
-          拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表；台词不经 AI 改写。
-        </p>
-        <div
-          class="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground"
-        >
-          <a href="/what-is-ai-lapian/" class="hover:text-cream transition-colors">什么是 AI 拉片</a>
+    <footer class="border-t border-border py-8 px-4 md:px-6">
+      <div
+        class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground"
+      >
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="/what-is-ai-lapian/" class="hover:text-cream transition-colors">AI 拉片</a>
+          <span>·</span>
           <a href="/cases/" class="hover:text-cream transition-colors">案例库</a>
-          <a href="/guides/lapian-template/" class="hover:text-cream transition-colors">拉片模板</a>
-          <a href="/download/" class="hover:text-cream transition-colors">下载客户端</a>
-          <a href="/about/" class="hover:text-cream transition-colors">关于积米律动</a>
-          <a href="mailto:oliverzhu929598@gmail.com" class="hover:text-cream transition-colors">
-            oliverzhu929598@gmail.com
-          </a>
+          <span>·</span>
+          <a href="/download/" class="hover:text-cream transition-colors">下载</a>
+          <span>·</span>
+          <a href="mailto:oliverzhu929598@gmail.com" class="hover:text-cream transition-colors">oliverzhu929598@gmail.com</a>
         </div>
-        <div class="text-xs text-muted-foreground/50 text-center">
-          &copy; 2026 积米律动 &middot; Kimidance
-        </div>
+        <div>kimidance.com · 积米律动 · Get your hands dirty</div>
       </div>
     </footer>
   </div>
