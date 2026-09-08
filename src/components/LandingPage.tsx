@@ -32,11 +32,8 @@ function Nav() {
     >
       <div className="max-w-6xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
         <a href="/" className="flex items-center gap-2.5">
-          <img src="/logo.png" alt="积米律动" className="w-8 h-8" />
-          <div className="flex items-baseline gap-1.5">
-            <span className="text-lg font-bold tracking-wide text-cream">积米律动</span>
-            <span className="text-xs text-muted-foreground">Kimidance</span>
-          </div>
+          <img src="/jimisha.png" alt="积米鲨" className="h-9 w-auto" />
+          <span className="text-lg font-bold tracking-wide text-cream">积米律动</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
