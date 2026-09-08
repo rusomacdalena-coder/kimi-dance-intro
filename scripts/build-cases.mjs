@@ -187,6 +187,17 @@ function findFiles(dir) {
   }
 }
 
+// 卡片摘要覆盖表（判断层 2026-09-08「官网收缩第二包」第 4 部分定稿，一字不改）。
+// 命中 slug 即跳过 extractSummary；analysis.md 等流水线产出文件一字不动。
+const SUMMARY_OVERRIDES = {
+  'shi-guang-he-ni-dou-hen-mei': '真人短剧，竖屏，70 集合集 164 分钟；拆成 433 场、3,443 个镜头。',
+  'fan-ren-bai-shi-shu': 'AI 漫剧，横屏，135 分钟；拆成 551 场、3,221 个镜头。',
+  'mo-shi-cong-ban-kong-quan-qiu-cang-ku-kai-shi-di-yi-ji': '3D 动漫，竖屏，126 分钟；拆成 699 场、3,111 个镜头。',
+  'ri-xin-yi-wan-wo-zai-bo-wu-guan-zhi-ye-ban': 'AI 漫剧，横屏，86 分钟；拆成 291 场、2,607 个镜头。',
+  'ying-he-bao-zi-pu': 'AI 漫剧，竖屏，片段 21.6 分钟；拆成 70 场、493 个镜头。',
+  'da-ming-li-jing-long-de-bie-yang-ren-sheng': 'AI 漫剧，横屏，片段约前 12 分钟，早期版本产出；拆成 25 场、212 个镜头。',
+}
+
 function extractSummary(analysisText, title) {
   // 逐行清洗后取第一条成句的行，而不是把整段无空行的列表压成一行，避免 run-on 摘要。
   const candidate = analysisText
@@ -342,7 +353,7 @@ function buildCase(dir) {
     title: `${displayTitle}｜AI 拉片案例`,
     sourceTitle,
     displayTitle,
-    summary: extractSummary(analysisText, sourceTitle),
+    summary: SUMMARY_OVERRIDES[slug] ?? extractSummary(analysisText, sourceTitle),
     publishedAt: TODAY,
     updatedAt: TODAY,
     durationLabel: formatDuration(rows.reduce((sum, row) => {

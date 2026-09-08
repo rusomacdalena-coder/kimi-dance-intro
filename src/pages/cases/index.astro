@@ -1,8 +1,9 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro'
 import { cases } from '../../data/cases'
+import { BETA_MAILTO } from '../../lib/links.mjs'
 
-const DATE_MODIFIED = '2026-07-07'
+const DATE_MODIFIED = '2026-09-08'
 
 const collectionPage = {
   '@context': 'https://schema.org',
@@ -31,7 +32,7 @@ const collectionPage = {
   <div class="tldr-box">
     <div class="label-caps mb-3">公开尺度</div>
     <p class="copy-readable text-sm my-0">
-      案例库只公开叙事结构、节奏统计、情绪/切镜数据、分镜摘要和方法论点评；不公开完整剧本正文，不公开成段台词。每一页都由积米律动 pipeline 产出后自动裁剪，用于展示 AI 拉片如何把视频拆成可复盘的结构化分析。
+      <strong>每一页是一部剧被积米律动拆开之后的样子：分镜速查表节选（最多 10 行）和叙事分析节选。</strong>不放完整剧本，不放成段台词。想看剧本长什么样，<a href="/#sample">去首页看《时光和你都很美》的十行</a>。
     </p>
   </div>
 
@@ -74,10 +75,10 @@ const collectionPage = {
       想把自己的视频变成同样的叙事分析和分镜摘要？
     </p>
     <a
-      href="/#beta"
-      class="inline-block px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
+      href={BETA_MAILTO}
+      class="btn-primary"
     >
-      申请内测 &rarr;
+      申请邀请码
     </a>
   </div>
 </ArticleLayout>
