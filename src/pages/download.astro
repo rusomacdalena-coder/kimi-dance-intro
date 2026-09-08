@@ -1,7 +1,8 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
+import { BETA_MAILTO } from '../lib/links.mjs'
 
-const DATE_MODIFIED = '2026-09-03'
+const DATE_MODIFIED = '2026-09-08'
 
 const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.4.11-arm64.dmg'
 const MAC_SHA256 = 'c15fd3ec6c35a23ae5f86fc5d1586b5e9d118ca43444a0c1c7e42f5f3837a0e1'
@@ -44,8 +45,13 @@ const softwareApp = {
 
   <p>
     积米律动目前处于<strong>公测期，采用邀请码注册</strong>。macOS 与 Windows 客户端均已开放下载，你可以先<a
-      href="/#beta">在首页申请邀请码</a
+      href={BETA_MAILTO}>写邮件申请邀请码</a
     >——通过后凭码注册即赠送体验积分。
+  </p>
+
+  <div class="kd-label mt-10">—— 使用须知</div>
+  <p>
+    积米律动是一个拉片学习工具。你上传的视频，版权属于原作者或版权方；工具输出的剧本、叙事分析和分镜表，仅供个人学习、研究和教学参考，请勿用于商业发行、署名投稿或任何侵犯原作品权利的用途。使用本工具即表示你已了解并同意以上说明。
   </p>
 
   <!-- 平台下载卡片 -->
@@ -64,7 +70,7 @@ const softwareApp = {
       </div>
       <a
         href={MAC_URL}
-        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
+        class="btn-primary mt-2"
       >
         下载 macOS 版 0.4.11
       </a>
@@ -84,7 +90,7 @@ const softwareApp = {
       </div>
       <a
         href={WIN_URL}
-        class="mt-2 text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary/90 !text-primary-foreground !no-underline hover:bg-primary transition-colors"
+        class="btn-primary mt-2"
       >
         下载 Windows 版 0.4.11
       </a>
@@ -101,11 +107,11 @@ const softwareApp = {
   </ol>
 
   <h3>Windows</h3>
-  <div class="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 my-4 not-prose text-sm leading-relaxed">
+  <div class="border border-border bg-muted px-4 py-3 my-4 not-prose text-sm leading-relaxed">
     <strong>已经装过 0.4.8 的老用户：</strong>直接安装本版即可，<strong>不需要先卸载</strong>。0.4.8
     升级时会报 <code>0x80070002</code> 的问题已在本版修复。你的成品文件目录不受影响。
   </div>
-  <div class="rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 my-4 not-prose text-sm leading-relaxed">
+  <div class="border border-border bg-muted px-4 py-3 my-4 not-prose text-sm leading-relaxed">
     <strong>装的是 0.2.x 或更早版本的老用户：</strong>请先卸载旧版本，再安装本版。免卸载升级只在 0.4.8
     上验证过，0.2.x 及更早不在其列。卸载方法：打开"设置 → 应用 → 已安装的应用"，找到 Kimidance，点卸载；完成后确认文件夹
     <code>%LOCALAPPDATA%\Programs\Kimidance</code> 已不存在，再运行新安装包。卸载不会删除你的成品文件目录，但仍建议先备份。首次安装的新用户不受影响，直接往下看。
@@ -161,7 +167,7 @@ Get-FileHash -Algorithm SHA256 "$env:USERPROFILE\Downloads\{WIN_FILENAME}"
 
   <h2>快速开始</h2>
   <ol>
-    <li><a href="/#beta">申请邀请码</a>（收到申请后人工审核，通过后联系你）；</li>
+    <li><a href={BETA_MAILTO}>申请邀请码</a>（收到申请后人工审核，通过后联系你）；</li>
     <li>打开客户端，凭邀请码注册账号——注册即赠送体验积分；</li>
     <li>登录后导入一部短剧或长视频；</li>
     <li>等待处理完成，在任务历史中打开成品文件夹。</li>
