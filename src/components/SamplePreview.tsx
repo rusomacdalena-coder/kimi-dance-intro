@@ -29,14 +29,13 @@ const BREAKDOWN_ROWS: string[][] = [
   ['shot_0057', '00:02:23–00:02:24', '1.4', '特写', '固定', '', '', '一个果实从树枝上掉落', '凄凉', '铺垫'],
 ]
 
-const INK = '#131313'
-const STONE = '#F1EEE7'
-const DIM = 'rgba(241, 238, 231, 0.62)'
-const RULE = 'rgba(241, 238, 231, 0.18)'
+const STONE = 'hsl(35 30% 92%)' /* cream on the dark ground */
+const DIM = 'hsl(32 13% 76%)'
+const RULE = 'rgba(255, 255, 255, 0.12)'
 
 type Tab = 'script' | 'breakdown'
 
-/* 全站唯一深色块：背景 Ink，文字 Stone */
+/* 深底上的卡片（判断层 2026-09-08「官网回滚到深色」第 3 条）：背景比页面略浅一档 + 1px 边框，文字不动 */
 export default function SamplePreview() {
   const [tab, setTab] = useState<Tab>('script')
 
@@ -46,8 +45,8 @@ export default function SamplePreview() {
   })
 
   return (
-    <section id="sample" className="py-20 md:py-28 px-4 md:px-6 scroll-mt-20" style={{ background: INK, color: STONE }}>
-      <div className="max-w-4xl mx-auto">
+    <section id="sample" className="py-20 md:py-28 px-4 md:px-6 scroll-mt-20" style={{ color: STONE }}>
+      <div className="max-w-4xl mx-auto kd-card p-5 md:p-8">
         <div className="kd-label" style={{ color: DIM }}>—— 真实产出 · 《时光和你都很美》</div>
 
         {/* 两个标签页 */}

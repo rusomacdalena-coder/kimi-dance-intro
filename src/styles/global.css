@@ -2,35 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── 纸白黑字（判断层 2026-09-08「官网收缩第二包」色板）───────────────────
-   Paper #F9F8F5 页面底 · Stone #F1EEE7 面板/副按钮 · Ink #131313 文字/主按钮。
-   全站零彩色；第二屏（#sample）是唯一深色块，颜色写在组件里。 */
 @layer base {
   :root {
-    --background: 45 25% 97%; /* Paper #F9F8F5 */
-    --foreground: 0 0% 7.5%; /* Ink #131313 */
-    --card: 42 26% 93%; /* Stone #F1EEE7 */
-    --card-foreground: 0 0% 7.5%;
-    --primary: 0 0% 7.5%;
-    --primary-foreground: 45 25% 97%;
-    --secondary: 42 26% 93%;
-    --secondary-foreground: 0 0% 7.5%;
-    --muted: 42 26% 93%;
-    --muted-foreground: 0 0% 38%;
-    --accent: 42 26% 93%;
-    --accent-foreground: 0 0% 7.5%;
-    --destructive: 0 0% 30%;
-    --destructive-foreground: 45 25% 97%;
-    --border: 0 0% 84%;
-    --input: 42 26% 93%;
-    --ring: 0 0% 7.5%;
-    --radius: 0rem;
+    /* Warm charcoal palette — matches mockup atmosphere */
+    --background: 20 10% 5%;
+    --foreground: 35 28% 96%;
+    --card: 20 8% 10%;
+    --card-foreground: 35 24% 94%;
+    --primary: 32 80% 55%;
+    --primary-foreground: 30 30% 98%;
+    --secondary: 20 6% 13%;
+    --secondary-foreground: 35 12% 78%;
+    --muted: 20 7% 16%;
+    --muted-foreground: 32 13% 76%;
+    --accent: 20 7% 16%;
+    --accent-foreground: 35 15% 85%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 28 10% 24%;
+    --input: 20 7% 17%;
+    --ring: 32 80% 55%;
+    --radius: 0.5rem;
 
-    --warm-glow: 45 25% 97%;
-    --cream: 0 0% 7.5%;
-    --ink: #131313;
-    --stone: #f1eee7;
-    --paper: #f9f8f5;
+    /* Editorial extras */
+    --warm-glow: 30 60% 12%;
+    --cream: 36 36% 96%;
   }
 }
 
@@ -46,7 +42,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    background: var(--paper);
+    background:
+      linear-gradient(180deg, hsl(20 10% 6%) 0%, hsl(20 10% 4.5%) 100%);
   }
   html {
     scroll-behavior: smooth;
@@ -54,30 +51,47 @@
 }
 
 @layer utilities {
-  /* 旧站的金色渐变字：现在就是墨色 */
   .text-gradient {
-    color: hsl(var(--foreground));
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(32 80% 55%), hsl(40 90% 65%));
   }
 
-  /* Editorial headline — serif */
+  /* Editorial headline — large serif-like feel */
   .text-editorial {
     font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC',
       Georgia, 'Times New Roman', serif;
-    color: hsl(var(--foreground));
+    color: hsl(var(--cream));
     letter-spacing: 0;
+    text-shadow: 0 1px 18px hsl(35 30% 90% / 0.08);
   }
 
-  .bg-warm-glow,
+  /* Warm atmospheric glow for backgrounds */
+  .bg-warm-glow {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      hsl(30 40% 10%) 0%,
+      hsl(20 10% 5%) 70%
+    );
+  }
+
+  /* Subtle warm gradient overlay */
   .bg-warm-gradient {
-    background: transparent;
+    background: linear-gradient(
+      180deg,
+      hsl(20 10% 5%) 0%,
+      hsl(25 12% 7%) 50%,
+      hsl(20 10% 5%) 100%
+    );
   }
 
+  /* Copper accent text */
   .text-copper {
-    color: hsl(0 0% 30%);
+    color: hsl(32 70% 60%);
   }
 
+  /* Cream white text */
   .text-cream {
-    color: hsl(var(--foreground));
+    color: hsl(35 30% 92%);
   }
 
   /* Small caps tracking for labels */
@@ -85,42 +99,126 @@
     font-size: 0.7rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: hsl(0 0% 40%);
+    color: hsl(30 78% 61%);
     font-weight: 700;
   }
 
-  /* 「—— 小标题」装置 */
-  .kd-label {
-    font-size: 0.8125rem;
-    letter-spacing: 0.06em;
-    color: hsl(0 0% 38%);
-    font-weight: 600;
-  }
-
   .copy-readable {
-    color: hsl(0 0% 24%);
+    color: hsl(32 15% 80%);
     line-height: 1.75;
     font-weight: 450;
   }
 
-  .surface-glass,
-  .surface-glass-soft,
-  .preview-frame,
-  .field-glass {
-    background: var(--stone);
-    border: 1px solid hsl(var(--border));
-    box-shadow: none;
-    backdrop-filter: none;
+  .surface-glass {
+    background:
+      linear-gradient(180deg, hsl(24 10% 15% / 0.8), hsl(20 10% 10% / 0.62));
+    border: 1px solid hsl(35 32% 86% / 0.17);
+    box-shadow:
+      0 24px 80px hsl(0 0% 0% / 0.3),
+      inset 0 1px 0 hsl(35 35% 98% / 0.12);
+    backdrop-filter: blur(12px) saturate(132%);
+  }
+
+  .surface-glass-soft {
+    background:
+      linear-gradient(180deg, hsl(22 10% 14% / 0.68), hsl(20 10% 9% / 0.5));
+    border: 1px solid hsl(35 30% 86% / 0.14);
+    box-shadow:
+      0 18px 54px hsl(0 0% 0% / 0.2),
+      inset 0 1px 0 hsl(35 35% 98% / 0.1);
+    backdrop-filter: blur(10px) saturate(126%);
+  }
+
+  .preview-frame {
+    background:
+      linear-gradient(180deg, hsl(24 12% 15% / 0.86), hsl(20 11% 8% / 0.76));
+    border: 1px solid hsl(35 34% 88% / 0.2);
+    box-shadow:
+      0 26px 90px hsl(0 0% 0% / 0.32),
+      0 0 0 1px hsl(32 72% 62% / 0.05),
+      inset 0 1px 0 hsl(35 38% 98% / 0.14);
+    backdrop-filter: blur(8px) saturate(135%);
   }
 
   .preview-image {
+    filter: contrast(1.08) brightness(1.05) saturate(1.04);
     image-rendering: auto;
     transform: translateZ(0);
     backface-visibility: hidden;
   }
+
+  .field-glass {
+    background:
+      linear-gradient(180deg, hsl(24 7% 17% / 0.9), hsl(20 7% 14% / 0.92));
+    border: 1px solid hsl(35 20% 76% / 0.13);
+    box-shadow: inset 0 1px 0 hsl(35 24% 92% / 0.05);
+  }
 }
 
-/* ── Buttons（iOS 样式，主副两枚 + 下载页两枚共用）──────────────────── */
+/* ── Article pages (about / guides) ─────────────────────────────────── */
+@layer components {
+  .article-prose {
+    @apply max-w-2xl mx-auto;
+  }
+  .article-prose h2 {
+    @apply text-editorial text-2xl sm:text-3xl font-bold mt-14 mb-5;
+  }
+  .article-prose h3 {
+    @apply text-cream font-semibold text-lg mt-9 mb-3;
+  }
+  .article-prose p {
+    @apply copy-readable text-[15px] my-4;
+  }
+  .article-prose ul,
+  .article-prose ol {
+    @apply copy-readable text-[15px] my-4 pl-6 space-y-2;
+  }
+  .article-prose ul {
+    @apply list-disc;
+  }
+  .article-prose ol {
+    @apply list-decimal;
+  }
+  .article-prose strong {
+    @apply text-cream font-semibold;
+  }
+  .article-prose a {
+    color: hsl(32 70% 60%);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: hsl(32 70% 60% / 0.4);
+  }
+  .article-prose a:hover {
+    text-decoration-color: hsl(32 70% 60%);
+  }
+  .article-prose table {
+    @apply w-full text-sm my-6 border-collapse;
+  }
+  .article-prose th {
+    @apply text-left text-xs text-muted-foreground font-semibold px-3 py-2.5 border-b border-border;
+  }
+  .article-prose td {
+    @apply px-3 py-2.5 border-b border-border/50 copy-readable text-sm align-top;
+  }
+  .article-prose blockquote {
+    @apply border-l-2 border-primary/50 pl-4 my-6 text-muted-foreground;
+  }
+  .tldr-box {
+    @apply rounded-2xl surface-glass-soft p-6 my-8;
+  }
+}
+
+/* ── 2026-09-08 判断层「官网回滚到深色」：深底上的按钮 / 卡片 / 小标题装置 ── */
+@layer utilities {
+  /* 「—— 小标题」装置 */
+  .kd-label {
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    color: hsl(var(--muted-foreground));
+    font-weight: 600;
+  }
+}
+
 @layer components {
   .btn-primary,
   .btn-secondary {
@@ -136,19 +234,20 @@
     font-weight: 600;
     line-height: 1;
     text-decoration: none !important;
-    border: 0;
     box-shadow: none;
     background-image: none;
     white-space: nowrap;
     transition: opacity 120ms ease;
   }
   .btn-primary {
-    background: var(--ink);
-    color: var(--paper) !important;
+    background: #f9f8f5;
+    color: #131313 !important;
+    border: 0;
   }
   .btn-secondary {
-    background: var(--stone);
-    color: var(--ink) !important;
+    background: rgba(255, 255, 255, 0.08);
+    color: #f9f8f5 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
   .btn-primary:active,
   .btn-secondary:active {
@@ -186,60 +285,12 @@
     bottom: 0;
     z-index: 40;
     padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
-    background: var(--paper);
-    border-top: 1px solid hsl(var(--border));
+    background: hsl(var(--background));
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
-}
-
-/* ── Article pages ─────────────────────────────────────────────────── */
-@layer components {
-  .article-prose {
-    @apply max-w-2xl mx-auto;
-  }
-  .article-prose h2 {
-    @apply text-editorial text-2xl sm:text-3xl font-bold mt-14 mb-5;
-  }
-  .article-prose h3 {
-    @apply text-cream font-semibold text-lg mt-9 mb-3;
-  }
-  .article-prose p {
-    @apply copy-readable text-[15px] my-4;
-  }
-  .article-prose ul,
-  .article-prose ol {
-    @apply copy-readable text-[15px] my-4 pl-6 space-y-2;
-  }
-  .article-prose ul {
-    @apply list-disc;
-  }
-  .article-prose ol {
-    @apply list-decimal;
-  }
-  .article-prose strong {
-    @apply text-cream font-semibold;
-  }
-  .article-prose a {
-    color: hsl(var(--foreground));
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-color: hsl(0 0% 60%);
-  }
-  .article-prose a:hover {
-    text-decoration-color: hsl(var(--foreground));
-  }
-  .article-prose table {
-    @apply w-full text-sm my-6 border-collapse;
-  }
-  .article-prose th {
-    @apply text-left text-xs text-muted-foreground font-semibold px-3 py-2.5 border-b border-border;
-  }
-  .article-prose td {
-    @apply px-3 py-2.5 border-b border-border/50 copy-readable text-sm align-top;
-  }
-  .article-prose blockquote {
-    @apply border-l-2 border-primary/50 pl-4 my-6 text-muted-foreground;
-  }
-  .tldr-box {
-    @apply rounded-2xl surface-glass-soft p-6 my-8;
+  /* 深底上的卡片：比页面略浅一档 + 1px 边 */
+  .kd-card {
+    background: hsl(var(--card));
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 }
