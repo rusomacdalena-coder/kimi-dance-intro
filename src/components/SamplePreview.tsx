@@ -1,231 +1,113 @@
 import { useState } from 'react'
 
-/* ── 风水天师 mock 剧本样本 ────────────────────────────────────────────── */
-const scriptSample = `场1-1 夜 内 玄学事务所·办公室
+/* ── 真实产出 · 《时光和你都很美》──────────────────────────────────────
+   两处内容从 SEO｜GEO/09-数据播种内容包.md 第九节逐字复制（判断层 2026-09-08
+   「官网收缩第二包」第二屏定稿），不得改动一字。
+   来源文件：P1-案例库素材投放区/时光和你都很美_70集合集/
+     +拉片.md 场1-9 整场；breakdown.csv shot_0052–shot_0057。 */
+const SCRIPT_TEXT = `场1-9 日 外 户外花园
+人物：时瑶，林嘉歌
 
-人物：林天师，小莲
+△时瑶站在花园的一侧，平静地看向身边的男子。
+△林嘉歌旁若无人地坐在长椅上撸猫，时瑶静静立于他身后。
+时瑶（带着一丝质问）：喂 你怎么不说话
+△时瑶目不转睛地盯着他，神情专注且探究。
+时瑶：你在听我说话吗
+△林嘉歌微微垂下眼眸，神色淡然自若。
+林嘉歌：怎么可能
+△林嘉歌紧紧抱着猫，侧头看向别处，语气冷淡。
+林嘉歌：不会娶的
+△林嘉歌低头看着猫，眉宇间流露出一抹不易察觉的落寞。`
 
-△ 灰暗的办公室，窗帘半拉。桌上散落着罗盘和符纸。
-△ 林天师坐在桌前，手指摩挲着一枚铜钱，眉头紧锁。
-
-林天师（皱眉）：这个案子不简单，得亲自去一趟。
-小莲（OS）：师父每次说这话，回来都得躺三天。
-
-△ 林天师抓起包，头也不回地走出门。
-
-场1-2 夜 外 老宅·门口
-
-人物：林天师，张管家
-
-△ 破旧的宅院大门，两盏红灯笼在风中摇晃。
-△ 一个穿灰色长衫的老人站在门口，神色焦虑。
-
-张管家（急切）：林天师，您可算来了！
-张管家（压低声音）：老爷三天没出过房间了，里面一直有动静。
-林天师（平静）：带路吧。
-
-△ 林天师从包中取出罗盘，指针剧烈摆动。
-林天师（自言自语）：果然，是冲着主位来的。`
-
-const breakdownRows = [
-  {
-    shot: '001',
-    scene: '场1-1',
-    scale: '中景',
-    move: '固定',
-    char: '林天师',
-    line: '这个案子不简单，得亲自去一趟。',
-    emotion: '凝重',
-    function: '建置悬念',
-  },
-  {
-    shot: '002',
-    scene: '场1-1',
-    scale: '特写',
-    move: '推',
-    char: '林天师',
-    line: '—',
-    emotion: '决心',
-    function: '角色动机',
-  },
-  {
-    shot: '003',
-    scene: '场1-2',
-    scale: '全景',
-    move: '固定',
-    char: '张管家',
-    line: '林天师，您可算来了！',
-    emotion: '焦虑',
-    function: '场景转换',
-  },
-  {
-    shot: '004',
-    scene: '场1-2',
-    scale: '近景',
-    move: '手持',
-    char: '林天师',
-    line: '果然，是冲着主位来的。',
-    emotion: '警觉',
-    function: '钩子 / 悬念升级',
-  },
+const BREAKDOWN_HEAD = ['镜头号', '起止', '时长(s)', '景别', '运镜', '角色', '台词', '画面描述', '情绪', '叙事功能']
+const BREAKDOWN_ROWS: string[][] = [
+  ['shot_0052', '00:02:12–00:02:15', '2.56', '全景', '固定', '时瑶/林嘉歌', '时瑶: 喂 你怎么不说话', '林嘉歌坐在长椅上撸猫，时瑶在背景中', '质问', '冲突'],
+  ['shot_0053', '00:02:15–00:02:17', '1.6', '特写', '固定', '时瑶', '时瑶: 你在听我说话吗', '时瑶面部特写，神情专注', '探究', '铺垫'],
+  ['shot_0054', '00:02:17–00:02:19', '2.92', '特写', '固定', '林嘉歌', '林嘉歌: 怎么可能', '林嘉歌面部特写，微微垂眸', '淡然', '过渡'],
+  ['shot_0055', '00:02:19–00:02:21', '1.92', '全景', '固定', '林嘉歌/时瑶', '林嘉歌: 不会娶的', '林嘉歌抱着猫，侧头看向一旁', '坚定/冷淡', '转折'],
+  ['shot_0056', '00:02:21–00:02:23', '1.16', '近景', '固定', '林嘉歌', '', '林嘉歌低头看猫，神情落寞', '伤感', '铺垫'],
+  ['shot_0057', '00:02:23–00:02:24', '1.4', '特写', '固定', '', '', '一个果实从树枝上掉落', '凄凉', '铺垫'],
 ]
+
+const INK = '#131313'
+const STONE = '#F1EEE7'
+const DIM = 'rgba(241, 238, 231, 0.62)'
+const RULE = 'rgba(241, 238, 231, 0.18)'
 
 type Tab = 'script' | 'breakdown'
 
+/* 全站唯一深色块：背景 Ink，文字 Stone */
 export default function SamplePreview() {
   const [tab, setTab] = useState<Tab>('script')
 
+  const tabStyle = (active: boolean) => ({
+    color: active ? STONE : DIM,
+    borderBottom: active ? `2px solid ${STONE}` : '2px solid transparent',
+  })
+
   return (
-    <section id="sample" className="py-28 px-6 scroll-mt-20">
+    <section id="sample" className="py-20 md:py-28 px-4 md:px-6 scroll-mt-20" style={{ background: INK, color: STONE }}>
       <div className="max-w-4xl mx-auto">
-        <div className="label-caps mb-4 text-center">Sample Output</div>
-        <h2 className="text-editorial text-3xl sm:text-4xl font-bold text-center mb-3">
-          真实产出预览
-        </h2>
-        <p className="text-center copy-readable mb-12">
-          以下为模拟剧本格式，实际产出来自你上传的视频
-        </p>
+        <div className="kd-label" style={{ color: DIM }}>—— 真实产出 · 《时光和你都很美》</div>
 
-        {/* Tab switcher */}
-        <div className="flex justify-center gap-2 mb-6">
-          <button
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              tab === 'script'
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-muted/80 text-muted-foreground hover:text-foreground'
-            }`}
-            onClick={() => setTab('script')}
-          >
-            📝 文学剧本
+        {/* 两个标签页 */}
+        <div className="mt-6 flex gap-6 text-sm font-semibold" style={{ borderBottom: `1px solid ${RULE}` }}>
+          <button type="button" className="pb-3" style={tabStyle(tab === 'script')} onClick={() => setTab('script')}>
+            文学剧本
           </button>
-          <button
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              tab === 'breakdown'
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-muted/80 text-muted-foreground hover:text-foreground'
-            }`}
-            onClick={() => setTab('breakdown')}
-          >
-            📋 分镜速查表
+          <button type="button" className="pb-3" style={tabStyle(tab === 'breakdown')} onClick={() => setTab('breakdown')}>
+            分镜速查表
           </button>
         </div>
 
-        {/* Content */}
-        <div className="rounded-2xl surface-glass overflow-hidden">
-          {/* Title bar */}
-          <div className="px-5 py-3 border-b border-border/70 flex items-center gap-2 bg-muted/40">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-destructive/60" />
-              <div className="w-3 h-3 rounded-full bg-warning/60" />
-              <div className="w-3 h-3 rounded-full bg-success/60" />
-            </div>
-            <span className="text-xs text-muted-foreground font-mono ml-2">
-              {tab === 'script'
-                ? '风水天师第二季+拉片.md'
-                : 'breakdown.csv'}
-            </span>
-          </div>
-
-          {tab === 'script' ? (
-            <div className="p-6 overflow-x-auto">
-              <pre className="text-sm leading-relaxed whitespace-pre-wrap font-sans">
-                {scriptSample.split('\n').map((line, i) => {
-                  // Scene headers
-                  if (line.match(/^场\d/)) {
-                    return (
-                      <div key={i} className="text-primary font-bold mt-6 mb-2 first:mt-0">
-                        {line}
-                      </div>
-                    )
-                  }
-                  // Character list
-                  if (line.startsWith('人物：')) {
-                    return (
-                      <div key={i} className="text-muted-foreground text-xs mb-3">
-                        {line}
-                      </div>
-                    )
-                  }
-                  // Action lines
-                  if (line.startsWith('△')) {
-                    return (
-                      <div key={i} className="text-muted-foreground my-1">
-                        {line}
-                      </div>
-                    )
-                  }
-                  // Dialogue
-                  if (line.match(/^.+[（(]/)) {
-                    const match = line.match(/^(.+?)[（(](.+?)[）)][:：](.+)$/)
-                    if (match) {
-                      return (
-                        <div key={i} className="my-1">
-                          <span className="text-foreground font-medium">
-                            {match[1]}
-                          </span>
-                          <span className="text-muted-foreground">
-                            （{match[2]}）：
-                          </span>
-                          <span className="text-foreground">{match[3]}</span>
-                        </div>
-                      )
-                    }
-                  }
-                  // Empty lines
-                  if (!line.trim()) {
-                    return <div key={i} className="h-2" />
-                  }
-                  // Fallback
-                  return (
-                    <div key={i} className="text-foreground my-1">
-                      {line}
-                    </div>
-                  )
-                })}
-              </pre>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-border text-muted-foreground text-xs text-left">
-                    <th className="px-4 py-3 font-semibold">镜号</th>
-                    <th className="px-4 py-3 font-semibold">场景</th>
-                    <th className="px-4 py-3 font-semibold">景别</th>
-                    <th className="px-4 py-3 font-semibold">运镜</th>
-                    <th className="px-4 py-3 font-semibold">角色</th>
-                    <th className="px-4 py-3 font-semibold">台词</th>
-                    <th className="px-4 py-3 font-semibold">情绪</th>
-                    <th className="px-4 py-3 font-semibold">叙事功能</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {breakdownRows.map((r) => (
-                    <tr
-                      key={r.shot}
-                      className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+        {tab === 'script' ? (
+          <pre
+            className="mt-6 text-[15px] leading-[1.9] whitespace-pre-wrap"
+            style={{ fontFamily: 'inherit', color: STONE, margin: 0 }}
+          >
+            {SCRIPT_TEXT}
+          </pre>
+        ) : (
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full text-sm" style={{ color: STONE, borderCollapse: 'collapse' }}>
+              <thead>
+                <tr>
+                  {BREAKDOWN_HEAD.map((h) => (
+                    <th
+                      key={h}
+                      className="px-3 py-2 text-left text-xs font-semibold whitespace-nowrap"
+                      style={{ color: DIM, borderBottom: `1px solid ${RULE}` }}
                     >
-                      <td className="px-4 py-3 font-mono text-muted-foreground">
-                        {r.shot}
-                      </td>
-                      <td className="px-4 py-3 text-primary">{r.scene}</td>
-                      <td className="px-4 py-3">{r.scale}</td>
-                      <td className="px-4 py-3">{r.move}</td>
-                      <td className="px-4 py-3">{r.char}</td>
-                      <td className="px-4 py-3 max-w-[200px] truncate text-muted-foreground">
-                        {r.line}
-                      </td>
-                      <td className="px-4 py-3">{r.emotion}</td>
-                      <td className="px-4 py-3 text-muted-foreground">
-                        {r.function}
-                      </td>
-                    </tr>
+                      {h}
+                    </th>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
+                </tr>
+              </thead>
+              <tbody>
+                {BREAKDOWN_ROWS.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, i) => (
+                      <td
+                        key={i}
+                        className={`px-3 py-2 align-top ${i === 0 || i === 1 || i === 2 ? 'whitespace-nowrap' : ''}`}
+                        style={{ borderBottom: `1px solid ${RULE}`, fontFamily: i === 0 ? 'ui-monospace, Menlo, monospace' : 'inherit' }}
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        <p className="mt-6 text-sm" style={{ color: DIM }}>
+          台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对。
+        </p>
+        <a href="/cases/" className="inline-block mt-4 text-sm font-semibold underline underline-offset-4" style={{ color: STONE }}>
+          更多拆解 →
+        </a>
       </div>
     </section>
   )

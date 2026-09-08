@@ -1,6 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import HeroFilm from './hero/HeroFilm'
 import SamplePreview from './SamplePreview'
+import { BETA_MAILTO } from '../lib/links.mjs'
+
+/* 首页三屏（判断层 2026-09-08「官网收缩第二包」第 1 部分定稿；文案一字不改） */
+
+const DOWNLOAD_URL = 'https://kimidance.com/download/'
+
+const NAV = [
+  { label: '产出示例', href: '#sample' },
+  { label: '案例库', href: '/cases/' },
+  { label: '下载', href: '/download/' },
+]
 
 /* ─── Nav ─────────────────────────────────────────────────────────────── */
 function Nav() {
@@ -13,62 +24,37 @@ function Nav() {
     return () => window.removeEventListener('scroll', h)
   }, [])
 
-  const links = [
-    { label: '功能', href: '#features' },
-    { label: '工作流程', href: '#workflow' },
-    { label: '产出示例', href: '#sample' },
-    { label: 'AI 拉片', href: '/what-is-ai-lapian/' },
-    { label: '案例库', href: '/cases/' },
-    { label: '下载', href: '/download/' },
-  ]
-
   return (
     <nav
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-background/78 backdrop-blur-xl border-b border-border/60 shadow-lg shadow-black/20'
-          : ''
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+        scrolled ? 'bg-background/95 border-b border-border' : ''
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2.5 group">
-          <img
-            src="/logo.png"
-            alt="积米律动"
-            className="w-8 h-8"
-          />
+      <div className="max-w-6xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+        <a href="/" className="flex items-center gap-2.5">
+          <img src="/logo.png" alt="积米律动" className="w-8 h-8" />
           <div className="flex items-baseline gap-1.5">
-            <span className="text-lg font-bold tracking-wide text-cream">
-              积米律动
-            </span>
+            <span className="text-lg font-bold tracking-wide text-cream">积米律动</span>
             <span className="text-xs text-muted-foreground">Kimidance</span>
           </div>
         </a>
 
-        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-muted-foreground hover:text-cream transition-colors"
-            >
+          {NAV.map((l) => (
+            <a key={l.href} href={l.href} className="text-sm text-muted-foreground hover:text-cream transition-colors">
               {l.label}
             </a>
           ))}
-          <a
-            href="#beta"
-            className="text-sm font-medium px-5 py-2 rounded-full bg-primary/90 text-primary-foreground hover:bg-primary transition-colors"
-          >
-            申请内测
+          <a href={BETA_MAILTO} className="btn-primary btn-sm">
+            申请邀请码
           </a>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           className="md:hidden p-2 text-muted-foreground"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="菜单"
+          type="button"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {menuOpen ? (
@@ -81,8 +67,8 @@ function Nav() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border px-6 pb-4 space-y-3">
-          {links.map((l) => (
+        <div className="md:hidden bg-background border-b border-border px-4 pb-4 space-y-3">
+          {NAV.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -92,12 +78,8 @@ function Nav() {
               {l.label}
             </a>
           ))}
-          <a
-            href="#beta"
-            className="block text-sm text-muted-foreground hover:text-cream"
-            onClick={() => setMenuOpen(false)}
-          >
-            申请内测
+          <a href={BETA_MAILTO} className="block text-sm text-muted-foreground hover:text-cream" onClick={() => setMenuOpen(false)}>
+            申请邀请码
           </a>
         </div>
       )}
@@ -105,268 +87,82 @@ function Nav() {
   )
 }
 
-/* ─── Hero ─────────────────────────────────────────────────────────────── */
-function Hero() {
+/* ─── 第一屏 ───────────────────────────────────────────────────────────── */
+function Hero({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) {
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-16 bg-warm-glow overflow-hidden">
-      {/* Atmospheric glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[hsl(30_40%_12%)] rounded-full blur-[160px] opacity-60" />
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+    <section ref={heroRef} className="pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+        <div>
+          <div className="kd-label">—— 积米律动 · AI 拉片工具</div>
+          <h1 className="text-editorial font-bold text-[32px] leading-[1.25] sm:text-4xl md:text-5xl md:leading-[1.2] mt-4">
+            爆款的剧本没人会给你。那就把它变回剧本。
+          </h1>
+          <p className="copy-readable text-base md:text-lg mt-5">
+            积米律动把一部你想学的剧——短剧或长视频——直接变成文学剧本、叙事节奏分析、分镜速查表。台词不经 AI 改写。
+          </p>
+          <div className="mt-7 flex flex-col md:flex-row md:flex-wrap gap-2 md:gap-3">
+            <a href={DOWNLOAD_URL} className="btn-primary">
+              下载客户端 · Mac / Windows
+            </a>
+            <a href={BETA_MAILTO} className="btn-secondary">
+              没有邀请码？写邮件申请 →
+            </a>
+          </div>
+          <p className="mt-4 text-xs md:text-sm text-muted-foreground">
+            公测中 · 注册赠 100 积分 · ¥1 / 视频分钟 · 任务开始前先看费用预估
+          </p>
+        </div>
+        <div>
+          <HeroFilm />
+        </div>
       </div>
+    </section>
+  )
+}
 
-      <div className="relative w-full max-w-4xl mx-auto px-6 text-center">
-        <div className="label-caps mb-8">Private Beta &middot; 2026</div>
+/* ─── 第三屏 ───────────────────────────────────────────────────────────── */
+function Block({ label, children, id }: { label: string; children: React.ReactNode; id?: string }) {
+  return (
+    <div id={id} className="scroll-mt-20">
+      <div className="kd-label">—— {label}</div>
+      <div className="mt-3">{children}</div>
+    </div>
+  )
+}
 
-        <h1 className="text-editorial text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.15] tracking-tight">
-          <span className="block">稍等片刻</span>
-          <span className="block">一部短剧视频</span>
-          <span className="block text-gradient">变成可用的文学剧本</span>
-        </h1>
+function ThirdScreen() {
+  return (
+    <section className="py-20 md:py-28 px-4 md:px-6">
+      <div className="max-w-3xl mx-auto space-y-14">
+        <Block label="怎么用">
+          <p className="copy-readable text-base md:text-lg">
+            选一个本地视频 → 确认费用预估 → 任务完成后打开成品文件夹（剧本 .md ／ 叙事分析 .md ／ 分镜表 .csv）
+          </p>
+        </Block>
 
-        <p className="mt-8 text-lg copy-readable max-w-xl mx-auto">
-          上传视频，自动拉片、识别角色、分析叙事。
-          <br className="hidden sm:block" />
-          一个午觉的时间，拿到一份可读可投稿的剧本。
+        <Block label="三件产物">
+          <ul className="copy-readable text-base md:text-lg space-y-3">
+            <li>文学剧本——场头、△ 动作行、角色台词、OS/VO 标记，按行业通用剧本模板输出。</li>
+            <li>叙事节奏分析——钩子、冲突点、高潮、情绪曲线。</li>
+            <li>分镜速查表——每镜一行：景别、运镜、角色、台词、情绪、叙事功能，CSV。</li>
+          </ul>
+        </Block>
+
+        <Block label="使用须知" id="about">
+          <p className="copy-readable text-base md:text-lg">
+            积米律动是一个拉片学习工具。你上传的视频，版权属于原作者或版权方；工具输出的剧本、叙事分析和分镜表，仅供个人学习、研究和教学参考，请勿用于商业发行、署名投稿或任何侵犯原作品权利的用途。使用本工具即表示你已了解并同意以上说明。
+          </p>
+        </Block>
+
+        <Block label="名字">
+          <p className="copy-readable text-base md:text-lg">
+            积米对字节，律动对跳动——把奔流而过的视频，一颗一颗积回可以阅读的剧本。Kimidance 与舞蹈无关。
+          </p>
+        </Block>
+
+        <p className="text-sm text-muted-foreground">
+          联系：<a href="mailto:oliverzhu929598@gmail.com" className="underline underline-offset-4 text-cream">oliverzhu929598@gmail.com</a>
         </p>
-
-        {/* Stats row — editorial data points */}
-        <div className="mt-10 flex items-center justify-center gap-8 sm:gap-12">
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-cream">
-              1/10
-            </div>
-            <div className="text-xs text-muted-foreground mt-1">竞品成本</div>
-          </div>
-          <div className="w-px h-10 bg-border" />
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-cream">
-              2<span className="text-base text-muted-foreground ml-0.5">GB</span>
-            </div>
-            <div className="text-xs text-muted-foreground mt-1">单文件上限</div>
-          </div>
-          <div className="w-px h-10 bg-border" />
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-cream">
-              30<span className="text-base text-copper">+</span>
-            </div>
-            <div className="text-xs text-muted-foreground mt-1">内测已完成</div>
-          </div>
-        </div>
-
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#beta"
-            className="px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-base hover:bg-primary/90 transition-colors shadow-xl shadow-primary/25"
-          >
-            申请内测 &rarr;
-          </a>
-          <a
-            href="#sample"
-            className="px-8 py-3.5 rounded-full border border-border/70 bg-card/25 backdrop-blur text-muted-foreground font-medium text-base hover:text-cream hover:border-primary/40 transition-all"
-          >
-            &darr; 看看产出长什么样
-          </a>
-        </div>
-
-      </div>
-    </section>
-  )
-}
-
-/* ─── Film band — full-width press-sheet strip, right after the hero ──── */
-function FilmBand() {
-  return (
-    <section aria-label="产品演示胶片" className="relative">
-      <div className="mx-auto max-w-6xl">
-        <HeroFilm />
-      </div>
-    </section>
-  )
-}
-
-/* ─── Features ─────────────────────────────────────────────────────────── */
-const outputs = [
-  {
-    title: '文学剧本',
-    file: '拉片.md',
-    size: '184 KB',
-    desc: '场头 + 动作行 + 角色台词 + OS/VO 标记。台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对。',
-  },
-  {
-    title: '叙事分析',
-    file: 'analysis.md',
-    size: '21 KB',
-    desc: '钩子、冲突点、高潮、情绪曲线，一眼看出节奏设计。',
-  },
-  {
-    title: '分镜速查表',
-    file: 'breakdown.csv',
-    size: '94 KB',
-    desc: '每镜一行：景别、运镜、角色、台词、情绪、叙事功能。Excel 直接打开。',
-  },
-]
-
-function Features() {
-  return (
-    <section id="features" className="py-28 px-6 scroll-mt-20 bg-warm-gradient">
-      <div className="max-w-5xl mx-auto">
-        <div className="label-caps mb-4 text-center">Output</div>
-        <h2 className="text-editorial text-3xl sm:text-4xl font-bold text-center mb-16">
-          一个视频进去，三件套出来
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {outputs.map((o) => (
-            <div
-              key={o.title}
-              className="group p-8 rounded-2xl surface-glass-soft hover:border-primary/35 transition-all duration-300"
-            >
-              <h3 className="text-editorial text-2xl font-bold mb-2">
-                {o.title}
-              </h3>
-              <div className="flex items-center gap-2 mb-5">
-                <span className="text-xs text-muted-foreground font-mono bg-muted/60 px-2 py-0.5 rounded">
-                  {o.file}
-                </span>
-                <span className="text-xs text-muted-foreground/50">
-                  {o.size}
-                </span>
-              </div>
-              <p className="text-sm copy-readable">
-                {o.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── Workflow ──────────────────────────────────────────────────────────── */
-const steps = [
-  {
-    num: '01',
-    title: '把视频丢进来',
-    desc: '新建任务并选择一个本地视频文件',
-    detail: 'mp4 · mov · mkv · avi · 单文件上限 2 GB',
-  },
-  {
-    num: '02',
-    title: '确认费用并处理',
-    desc: '查看本次任务的费用预估，确认后开始处理',
-    detail: '处理前明确展示预计消耗积分',
-  },
-  {
-    num: '03',
-    title: '打开成品文件夹',
-    desc: '任务完成后，从任务历史打开成品文件夹',
-    detail: '查看文学剧本、叙事分析和分镜表',
-  },
-]
-
-function Workflow() {
-  return (
-    <section id="workflow" className="py-28 px-6 scroll-mt-20">
-      <div className="max-w-4xl mx-auto">
-        <div className="label-caps mb-4 text-center">How it works</div>
-        <h2 className="text-editorial text-3xl sm:text-4xl font-bold text-center mb-16">
-          三步完成
-        </h2>
-
-        <div className="space-y-0">
-          {steps.map((s, i) => (
-            <div key={s.num} className="flex gap-6 sm:gap-8">
-              {/* Timeline */}
-              <div className="flex flex-col items-center">
-                <div className="w-14 h-14 rounded-xl surface-glass-soft text-copper font-bold text-xl flex items-center justify-center shrink-0">
-                  {s.num}
-                </div>
-                {i < steps.length - 1 && (
-                  <div className="w-px flex-1 min-h-[60px] bg-gradient-to-b from-border to-transparent my-2" />
-                )}
-              </div>
-              {/* Content */}
-              <div className="pb-12 pt-3">
-                <h3 className="text-editorial text-xl font-bold mb-2">{s.title}</h3>
-                <p className="copy-readable text-sm">
-                  {s.desc}
-                </p>
-                <p className="text-muted-foreground/40 text-xs mt-2 font-mono">
-                  {s.detail}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── Differentiators ──────────────────────────────────────────────────── */
-const diffs = [
-  { title: '台词不经 AI 改写', desc: '台词按原音原样保留、不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对' },
-  { title: '三层架构', desc: '识别、分析、成稿分层处理' },
-  { title: '费用确认', desc: '开始任务前查看费用预估并确认' },
-  { title: '本地运行', desc: '跑在你的 mac 上，极致的速度' },
-  { title: '投稿格式', desc: '自动输出行业标准投稿模板格式' },
-]
-
-function Differentiators() {
-  return (
-    <section className="py-28 px-6 bg-warm-gradient">
-      <div className="max-w-5xl mx-auto">
-        <div className="label-caps mb-4 text-center">Why Kimidance</div>
-        <h2 className="text-editorial text-3xl sm:text-4xl font-bold text-center mb-16">
-          为什么选积米
-        </h2>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
-          {diffs.map((d) => (
-            <div key={d.title}>
-              <h3 className="text-cream font-semibold text-base mb-1.5">
-                {d.title}
-              </h3>
-              <p className="text-sm copy-readable">
-                {d.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── Who ──────────────────────────────────────────────────────────────── */
-const personas = [
-  { label: '短剧编剧', desc: '快速拆解竞品剧本结构' },
-  { label: '漫剧制片', desc: '生成分镜速查表' },
-  { label: '剧本写手', desc: '从爆款视频学节奏设计' },
-  { label: '影视教学', desc: 'AI 辅助拉片作业' },
-]
-
-function ForWho() {
-  return (
-    <section className="py-28 px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <div className="label-caps mb-4">For Who</div>
-        <h2 className="text-editorial text-3xl sm:text-4xl font-bold mb-14">
-          谁在用
-        </h2>
-        <div className="flex flex-wrap justify-center gap-5">
-          {personas.map((p) => (
-            <div
-              key={p.label}
-              className="px-7 py-5 rounded-2xl surface-glass-soft hover:border-primary/35 transition-all text-left min-w-[180px]"
-            >
-              <div className="text-cream font-semibold text-base mb-1">{p.label}</div>
-              <div className="text-xs text-muted-foreground leading-relaxed">{p.desc}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )
@@ -375,81 +171,59 @@ function ForWho() {
 /* ─── Footer ───────────────────────────────────────────────────────────── */
 function Footer() {
   return (
-    <footer className="border-t border-border/40 py-10 px-6">
-      <div className="max-w-5xl mx-auto space-y-5">
-        <p className="text-xs text-muted-foreground/70 text-center max-w-xl mx-auto leading-relaxed">
-          积米律动（Kimidance）是一款 AI
-          拉片工具：输入一部短剧或长视频，自动输出文学剧本、叙事节奏分析和分镜速查表；台词不经 AI 改写。
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
-          <a href="/what-is-ai-lapian/" className="hover:text-cream transition-colors">
-            什么是 AI 拉片
-          </a>
-          <a href="/cases/" className="hover:text-cream transition-colors">
-            案例库
-          </a>
-          <a href="/guides/lapian-template/" className="hover:text-cream transition-colors">
-            拉片模板
-          </a>
-          <a href="/download/" className="hover:text-cream transition-colors">
-            下载客户端
-          </a>
-          <a href="/about/" className="hover:text-cream transition-colors">
-            关于积米律动
-          </a>
-          <a
-            href="mailto:oliverzhu929598@gmail.com"
-            className="hover:text-cream transition-colors"
-          >
-            oliverzhu929598@gmail.com
-          </a>
+    <footer className="border-t border-border py-8 px-4 md:px-6">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+        <div className="flex items-center gap-4">
+          <a href="/what-is-ai-lapian/" className="hover:text-cream transition-colors">AI 拉片</a>
+          <span>·</span>
+          <a href="/cases/" className="hover:text-cream transition-colors">案例库</a>
+          <span>·</span>
+          <a href="/download/" className="hover:text-cream transition-colors">下载</a>
         </div>
-        <div className="text-xs text-muted-foreground/50 text-center">
-          &copy; 2026 积米律动 &middot; Kimidance
-        </div>
+        <div>kimidance.com · 积米律动 · Get your hands dirty</div>
       </div>
     </footer>
   )
 }
 
+/* ─── 手机端底部固定栏：滚过第一屏后出现 ───────────────────────────────── */
+function StickyCta({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) {
+  const [show, setShow] = useState(false)
+  useEffect(() => {
+    const h = () => {
+      const el = heroRef.current
+      const limit = el ? el.offsetTop + el.offsetHeight - 64 : 600
+      setShow(window.scrollY > limit)
+    }
+    h()
+    window.addEventListener('scroll', h, { passive: true })
+    window.addEventListener('resize', h)
+    return () => {
+      window.removeEventListener('scroll', h)
+      window.removeEventListener('resize', h)
+    }
+  }, [heroRef])
+  if (!show) return null
+  return (
+    <div className="md:hidden kd-sticky-cta">
+      <a href={DOWNLOAD_URL} className="btn-primary">
+        下载客户端 · Mac / Windows
+      </a>
+    </div>
+  )
+}
+
 /* ─── Landing Page ─────────────────────────────────────────────────────── */
 export default function LandingPage() {
+  const heroRef = useRef<HTMLElement>(null)
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <Hero />
-      <FilmBand />
-      <Features />
-      <Workflow />
-      <Differentiators />
+      <Hero heroRef={heroRef} />
       <SamplePreview />
-      <ForWho />
-      {/* Beta apply — static entry via email (no form backend) */}
-      <section id="beta" className="py-28 px-6 scroll-mt-20 bg-warm-gradient">
-        <div className="max-w-xl mx-auto">
-          <div className="label-caps mb-4 text-center">Join Beta</div>
-          <h2 className="text-editorial text-3xl sm:text-4xl font-bold text-center mb-8">
-            申请内测
-          </h2>
-          <div className="p-8 rounded-2xl surface-glass text-center">
-            <p className="copy-readable text-sm mb-6">
-              发邮件到{' '}
-              <a href="mailto:oliverzhu929598@gmail.com?subject=%E5%86%85%E6%B5%8B%E7%94%B3%E8%AF%B7&body=%E6%88%91%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%9A%0A%E6%83%B3%E6%8B%86%E5%93%AA%E7%B1%BB%E8%A7%86%E9%A2%91%EF%BC%9A%0A%E4%BB%8E%E5%93%AA%E7%9C%8B%E5%88%B0%20kimidance%20%E7%9A%84%EF%BC%88%E7%9F%A5%E4%B9%8E%20/%20%E5%B0%8F%E7%BA%A2%E4%B9%A6%20/%20%E6%9C%8B%E5%8F%8B%E6%8E%A8%E8%8D%90%20/%20%E5%85%B6%E5%AE%83%EF%BC%89%EF%BC%9A%0A" className="text-copper underline underline-offset-4">
-                oliverzhu929598@gmail.com
-              </a>
-              ，写上：你是做什么的、想拆哪类视频。人工审核，通过后回信附邀请码。
-            </p>
-            <a
-              href="mailto:oliverzhu929598@gmail.com?subject=%E5%86%85%E6%B5%8B%E7%94%B3%E8%AF%B7&body=%E6%88%91%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%9A%0A%E6%83%B3%E6%8B%86%E5%93%AA%E7%B1%BB%E8%A7%86%E9%A2%91%EF%BC%9A%0A%E4%BB%8E%E5%93%AA%E7%9C%8B%E5%88%B0%20kimidance%20%E7%9A%84%EF%BC%88%E7%9F%A5%E4%B9%8E%20/%20%E5%B0%8F%E7%BA%A2%E4%B9%A6%20/%20%E6%9C%8B%E5%8F%8B%E6%8E%A8%E8%8D%90%20/%20%E5%85%B6%E5%AE%83%EF%BC%89%EF%BC%9A%0A"
-              className="inline-block px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
-            >
-              写邮件申请 &rarr;
-            </a>
-          </div>
-        </div>
-      </section>
-
+      <ThirdScreen />
       <Footer />
+      <StickyCta heroRef={heroRef} />
     </div>
   )
 }

@@ -61,7 +61,7 @@ const FRAMES = [
   { n: '027', size: '全景', cam: '固定', mood: '平静' },
   { n: '028', size: '中景', cam: '推', mood: '从容' },
 ];
-const SHOT_TOTAL = 39;
+const SHOT_TOTAL = 51; /* 北派寻宝笔记 第 3 集 03_output/breakdown.csv 数据行数（2026-09-08 核） */
 
 const FW = 163, FH = 290;
 
@@ -116,10 +116,15 @@ function Micro({ children, style }) {
   );
 }
 
-/* Verbatim from the same run's 03+拉片.md — the script these frames produced. */
+/* Slug line verbatim from the same run's 03+拉片.md (北派寻宝笔记 第 3 集 03_output, L36) and
+   SHOT_TOTAL from that run's breakdown.csv (51 rows) — the script these frames produced.
+   The cast / action / dialogue lines below come from an earlier run of the same episode and
+   do NOT appear verbatim in the current 03+拉片.md (which attributes 寻龙千万 看蝉山 and
+   土 土行 to 孙老二, and has no 银湖 cast line); left untouched by order (判断层 2026-09-08
+   第二包 (a)(b) only). */
 const SCRIPT_FILE = '03+拉片.md';
 const SCRIPT_LINES = [
-  { k: 'slug', t: '场1-1  日  外  城墙顶端', gap: 0.00 },
+  { k: 'slug', t: '场1-2 日 外 宫殿建筑·台阶', gap: 0.00 },
   { k: 'cast', t: '人物：沈远峰，银湖', gap: 0.20 },
   { k: 'act', t: '△ 银湖神情肃穆地背手站立，目光深邃。', gap: 0.16 },
   { k: 'dlg', t: '银湖（严肃有威信，看向前方）：寻龙千万 看蝉山', gap: 0.34 },
@@ -248,7 +253,7 @@ export function KimidanceHeroPiece(props) {
           position: 'absolute', left: 142, top: 486, width: 700,
           fontSize: 28, lineHeight: 1.62, color: MUTE, textWrap: 'pretty',
         }}>
-          全自动 AI 拉片工具。输入一个短剧视频，输出投稿级文学剧本、叙事分析、分镜速查表。
+          全自动 AI 拉片工具。输入一个短剧视频，输出文学剧本、叙事分析、分镜速查表。
         </div>
 
         {/* 三步 — driven by the single sweeping hairline */}
@@ -286,7 +291,7 @@ export function KimidanceHeroPiece(props) {
             </div>
             <div style={{
               position: 'absolute', left: 0, right: 0, top: `${scan * 100}%`, height: 74,
-              marginTop: -74, opacity: scanAlpha * 0.45, mixBlendMode: 'screen',
+              marginTop: -74, opacity: scanAlpha * 0.45, mixBlendMode: 'multiply',
               backgroundImage: 'linear-gradient(to top, var(--color-neutral-500), transparent)',
             }} />
             <div style={{
@@ -387,7 +392,7 @@ export function KimidanceHeroPiece(props) {
 
       {/* newsprint grain, stepped — lives on the paper, not in the camera */}
       <div style={{
-        position: 'absolute', inset: -8, opacity: 0.05, mixBlendMode: 'screen',
+        position: 'absolute', inset: -8, opacity: 0.05, mixBlendMode: 'multiply',
         backgroundImage: 'radial-gradient(circle, var(--color-neutral-900) 22%, transparent 24%)',
         backgroundSize: '3px 3px',
         backgroundPosition: `${grainStep * 0.7}px ${(grainStep * 1.3) % 3}px`,
@@ -395,7 +400,7 @@ export function KimidanceHeroPiece(props) {
       {/* register slam — one frame of extra ink through the whole sheet */}
       <div style={{
         position: 'absolute', inset: 0, background: INK,
-        opacity: flash * 0.055, mixBlendMode: 'screen',
+        opacity: flash * 0.055, mixBlendMode: 'multiply',
       }} />
     </div>
   );
