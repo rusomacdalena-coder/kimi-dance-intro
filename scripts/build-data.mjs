@@ -1,5 +1,5 @@
 // 拉片数据页构建：从投放区完整 breakdown.csv 计算叙事节奏统计，
-// 生成 src/data/lapianStats.generated.ts + public/lapian-data.md。
+// 生成 src/data/lapianStats.generated.ts（2026-09-08 起不再产出 public/lapian-data.md：判断层「官网收缩第一包」B2）。
 //
 // 口径约束（判断层 2026-09-03 裁定 E）：
 // - 只统计"已发布案例"（以 public/cases/cases.json 为准，slug 与案例页同源）；
@@ -15,7 +15,6 @@ const DEFAULT_INPUT = '/Users/oliver/Documents/SEO｜GEO/P1-案例库素材投�
 const INPUT_DIR = process.argv[2] || DEFAULT_INPUT
 const CASE_INDEX = 'public/cases/cases.json'
 const DATA_OUT = 'src/data/lapianStats.generated.ts'
-const MD_OUT = 'public/lapian-data.md'
 const TODAY = new Date().toISOString().slice(0, 10)
 
 // ── 样本分型（人工核实字段；数字部分仍全部由 CSV 重算）─────────────────
@@ -308,66 +307,7 @@ writeFileSync(
   'utf8',
 )
 
-// ── Markdown 镜像 ───────────────────────────────────────────────────────
 const a = aggregate
-const n = (x) => x.toLocaleString('en-US')
-const typeLabel = (x) => (/^[A-Za-z0-9]/.test(x) ? ` ${x}` : x)
-const typeSummary = typeRows.map((t) => `${t.dramaCount} 部${typeLabel(t.type)}`).join('、')
-const evidenceText = (d) =>
-  [`画幅 ffprobe`, d.typeBasis, ...d.evidence.map((e) => `[${e.label}](${e.url})`)].join('；')
-const md = `# 微短剧叙事节奏数据（拉片指数 v0）
-
-> 数据来源：积米律动 pipeline 全片逐镜头标注 ｜ 最后更新：${TODAY}
-> 引用本页数据请注明来源：积米律动。
-
-## 样本
-
-已标注 ${annotated.dramaCount} 部微短剧 / ${annotated.totalMinutes} 分钟 / ${n(annotated.totalShots)} 个镜头（工作量事实）。统计汇总取其中 ${a.dramaCount} 部全片（${a.totalMinutes} 分钟 / ${n(a.totalShots)} 镜头）：${typeSummary}；${fragments.length} 部片段单列不入汇总。真人样本只有 1 部，本页不做真人与漫剧的比较，只列数。
-
-## 核心数字（${a.dramaCount} 部全片，镜头加权）
-
-- 平均镜头时长 ${a.avgShotSec} 秒；每分钟切镜中位数 ${a.medianShotsPerMin} 次（各片 60 秒窗口取中位，共 ${a.windowCount} 个窗口）。
-- ${a.le2Share}% 的镜头不超过 2 秒；${a.le5Share}% 的镜头不超过 5 秒。
-- 特写 + 近景占全部镜头的 ${a.closeupShare}%。
-- 首个"钩子"镜头的出现时间不做汇总，逐部见下表"首钩(秒)"列。
-
-## 汇总与分型
-
-| 口径 | 部数 | 时长(分) | 镜头数 | 平均镜头(秒) | 每分钟切镜(60 秒窗口中位) | ≤5s 镜头占比 | 特写+近景占比 |
-|---|---|---|---|---|---|---|---|
-| 汇总（全片） | ${a.dramaCount} | ${a.totalMinutes} | ${n(a.totalShots)} | ${a.avgShotSec} | ${a.medianShotsPerMin} | ${a.le5Share}% | ${a.closeupShare}% |
-${typeRows
-  .map(
-    (t) =>
-      `| ${t.type}（${t.titles.join('、')}） | ${t.dramaCount} | ${t.totalMinutes} | ${n(t.totalShots)} | ${t.avgShotSec} | ${t.medianShotsPerMin} | ${t.le5Share}% | ${t.closeupShare}% |`,
-  )
-  .join('\n')}
-
-## 叙事功能分布（${a.dramaCount} 部全片，Top）
-
-${a.narrativeTop.map((x) => `- ${x.name}：${n(x.count)} 个镜头（${x.share}%）`).join('\n')}
-
-## 各作品数据
-
-| 作品 | 类型 | 画幅 | 时长(分) | 镜头数 | 平均镜头(秒) | 每分钟切镜(60 秒窗口中位) | ≤5s 镜头占比 | 特写+近景占比 | 首钩(秒) | 依据 |
-|---|---|---|---|---|---|---|---|---|---|---|
-${publicDramas
-  .map(
-    (d) =>
-      `| [${d.title}](https://kimidance.com/cases/${d.slug}/)${d.inAggregate ? '' : `（${d.note} · 不入汇总）`} | ${d.type} | ${d.aspect} | ${d.minutes} | ${n(d.shots)} | ${d.avgShotSec} | ${d.shotsPerMinMedian ?? '—'} | ${d.le5Share}% | ${d.closeupShare}% | ${d.firstHookSec ?? '未标注'} | ${evidenceText(d)} |`,
-  )
-  .join('\n')}
-
-## 方法论
-
-- 数据由积米律动（Kimidance）AI 拉片 pipeline 生成：全片逐镜头标注景别、运镜、时长、场景、情绪与叙事功能。
-- 本页所有数字由脚本从原始分镜表（breakdown.csv）自动重算，不做人工修饰。
-- 汇总口径为镜头加权（不是按部平均）；只汇总完整全片，片段单列不入汇总；汇总之下按类型（真人 / AI 漫剧 / 3D 动漫）给分型子行。
-- 每分钟切镜次数按各片 60 秒窗口取中位：丢掉末尾不足 60 秒的窗口，数每个窗口内起始的镜头数，全部窗口合并取中位。
-- 类型与画幅依据：画幅 = ffprobe 读取本机源片分辨率；类型 = 公开页面（表中链接）+ 抽帧目检。
-- 样本量仍在扩充中，数字会随案例库更新。
-`
-writeFileSync(MD_OUT, md, 'utf8')
 
 console.log(`Data built: annotated ${annotated.dramaCount} dramas / ${annotated.totalShots} shots / ${annotated.totalMinutes} min; aggregate ${a.dramaCount} full / ${a.totalShots} shots / ${a.totalMinutes} min`)
 console.log(`平均镜头=${a.avgShotSec}s 切镜中位=${a.medianShotsPerMin} (${a.windowCount} windows) ≤2s=${a.le2Share}% ≤5s=${a.le5Share}% 特写近景=${a.closeupShare}%`)

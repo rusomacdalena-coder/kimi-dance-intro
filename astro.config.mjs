@@ -33,7 +33,9 @@ export default defineConfig({
         // 历史哈希 slug 的跳转页不进 sitemap
         !/\/cases\/case-[0-9a-f]{8}\/$/.test(page) &&
         // 2026-09-07 数据页下架（判断层包「SEO-撤数据页」）：跳转页不进 sitemap
-        !page.endsWith('/data/'),
+        !page.endsWith('/data/') &&
+        // 2026-09-08 工具对比页下架（判断层「官网收缩第一包」B1）
+        !page.endsWith('/compare/ai-lapian-tools/'),
     }),
   ],
 })
