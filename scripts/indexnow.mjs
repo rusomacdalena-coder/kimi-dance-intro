@@ -17,12 +17,9 @@ const urls = [
   `https://${HOST}/`,
   `https://${HOST}/what-is-ai-lapian/`,
   `https://${HOST}/about/`,
-  `https://${HOST}/compare/ai-lapian-tools/`,
   `https://${HOST}/guides/lapian-template/`,
-  `https://${HOST}/data/`,
   `https://${HOST}/compare-ai-lapian-tools.md`,
   `https://${HOST}/lapian-template.md`,
-  `https://${HOST}/lapian-data.md`,
   `https://${HOST}/llms.txt`,
   ...(caseUrls.length ? [`https://${HOST}/cases/`, ...caseUrls] : []),
 ]
