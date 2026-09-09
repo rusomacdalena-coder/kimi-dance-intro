@@ -151,12 +151,6 @@ function ThirdScreen() {
           </p>
         </Block>
 
-        <Block label="名字">
-          <p className="copy-readable text-base md:text-lg">
-            积米对字节，律动对跳动——把奔流而过的视频，一颗一颗积回可以阅读的剧本。Kimidance 与舞蹈无关。
-          </p>
-        </Block>
-
         <p className="text-sm text-muted-foreground">
           联系：<a href="mailto:oliverzhu929598@gmail.com" className="underline underline-offset-4 text-cream">oliverzhu929598@gmail.com</a>
         </p>
