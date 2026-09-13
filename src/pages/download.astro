@@ -2,11 +2,12 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 import { BETA_MAILTO } from '../lib/links.mjs'
 
-const DATE_MODIFIED = '2026-09-08'
+const DATE_MODIFIED = '2026-09-13'
 
-const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-Mac-0.4.11-arm64.dmg'
-const MAC_SHA256 = 'c15fd3ec6c35a23ae5f86fc5d1586b5e9d118ca43444a0c1c7e42f5f3837a0e1'
-const MAC_SIZE = '约 38 MB'
+const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-0.4.12-macOS.dmg'
+const MAC_SHA256 = '757bb76740b5c411600911a43c970358b84b8f5d20f41de5ed99649135bd2020'
+const MAC_SIZE = '约 39 MB'
+const MAC_FILENAME = 'Kimidance-0.4.12-macOS.dmg'
 
 const WIN_URL =
   'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.11-r16-x64.exe'
@@ -18,7 +19,7 @@ const softwareApp = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Kimidance 积米律动',
-  softwareVersion: '0.4.11',
+  softwareVersion: '0.4.12 (macOS) / 0.4.11 (Windows)',
   operatingSystem: ['macOS', 'Windows'],
   applicationCategory: 'MultimediaApplication',
   inLanguage: 'zh-CN',
@@ -64,7 +65,7 @@ const softwareApp = {
       </svg>
       <div class="text-lg font-bold text-cream">Mac</div>
       <div class="text-xs text-muted-foreground leading-relaxed">
-        版本 0.4.11 · {MAC_SIZE}<br />
+        版本 0.4.12 · {MAC_SIZE}<br />
         Apple Silicon（M1 及以后）专用<br />
         建议 macOS 14 及以上
       </div>
@@ -72,7 +73,7 @@ const softwareApp = {
         href={MAC_URL}
         class="btn-primary mt-2"
       >
-        下载 macOS 版 0.4.11
+        下载 macOS 版 0.4.12
       </a>
     </div>
 
@@ -156,7 +157,7 @@ const softwareApp = {
     >——安装包未签名，这是你自己确认"下载到的确实是官方文件"最直接的办法。
   </p>
   <pre class="overflow-x-auto"><code># macOS（终端）
-shasum -a 256 ~/Downloads/Kimidance-Mac-0.4.11-arm64.dmg
+shasum -a 256 ~/Downloads/{MAC_FILENAME}
 # 应输出：{MAC_SHA256}</code></pre>
   <pre class="overflow-x-auto"><code># Windows（PowerShell）
 Get-FileHash -Algorithm SHA256 "$env:USERPROFILE\Downloads\{WIN_FILENAME}"
