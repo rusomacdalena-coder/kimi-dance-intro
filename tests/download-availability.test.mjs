@@ -33,30 +33,33 @@ test('download page publishes the verified macOS 0.4.13 release', async () => {
     // (the plain string "0.4.8" stays legal: Windows upgrade guidance cites it)
     assert.doesNotMatch(content, /Kimidance-Mac-0\.4\.8-arm64\.dmg/)
     assert.doesNotMatch(content, /2502c7c178d6a0374d4b680d7e254bb08675ab4c6dab24dc71756913e2d453a8/)
-    // only the authorized r16 installer may be served from api.kimidance.com
+    // only the authorized 0.4.13-r1 installer may be served from api.kimidance.com
     assert.doesNotMatch(
       content,
-      /https:\/\/api\.kimidance\.com\/downloads\/(?!Kimidance-Windows-Setup-0\.4\.11-r16-x64\.exe)[^"' ]+\.(?:exe|msi)/,
+      /https:\/\/api\.kimidance\.com\/downloads\/(?!Kimidance-Windows-Setup-0\.4\.13-r1-x64\.exe)[^"' ]+\.(?:exe|msi)/,
     )
   }
 })
 
-test('download page publishes the authorized Windows 0.4.11-r16 release', async () => {
+test('download page publishes the authorized Windows 0.4.13-r1 release', async () => {
   const page = await readFile(new URL('../src/pages/download.astro', import.meta.url), 'utf8')
   const built = await readFile(new URL('../docs/download/index.html', import.meta.url), 'utf8')
 
   for (const content of [page, built]) {
-    // exact authorized bytes: sha256 for 0.4.11/r16 (判断层 R-4c fact base, server-verified 2026-09-03)
-    assert.match(content, /66735b16d67c7b42ef2514ee34e287a80cb052dd16cc7a7d5594b9d4807c6118/)
-    assert.match(content, /Kimidance-Windows-Setup-0\.4\.11-r16-x64\.exe/)
-    assert.match(content, /下载 Windows 版 0\.4\.11/)
+    // exact authorized bytes: sha256 for Windows 0.4.13-r1 (server sha256sum, 2026-09-18)
+    assert.match(content, /9ceedddf73c07ef341d64d18676b7cc8d07511ec26f78adb5ca5216cd725cfc7/)
+    assert.match(content, /Kimidance-Windows-Setup-0\.4\.13-r1-x64\.exe/)
+    assert.match(content, /下载 Windows 版 0\.4\.13/)
+    // superseded 0.4.11-r16 Windows artifacts must not resurface
+    assert.doesNotMatch(content, /Kimidance-Windows-Setup-0\.4\.11-r16-x64\.exe/)
+    assert.doesNotMatch(content, /66735b16d67c7b42ef2514ee34e287a80cb052dd16cc7a7d5594b9d4807c6118/)
     // superseded 0.4.10-r15 Windows artifacts must not resurface (no-backflow, 2026-09-08)
     assert.doesNotMatch(content, /Kimidance-Windows-Setup-0\.4\.10-r15-x64\.exe/)
     assert.doesNotMatch(content, /bc1204c181ffa5721789e0042ea28e5f0da0df3bf270fbb90335458ad3fd3d0e/)
     // sole download source: the domestic mirror (never the private source repo)
     assert.match(
       content,
-      /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Windows-Setup-0\.4\.11-r16-x64\.exe/,
+      /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Windows-Setup-0\.4\.13-r1-x64\.exe/,
     )
     // superseded 0.4.9-r14 Windows artifacts must not resurface on the page
     assert.doesNotMatch(content, /Kimidance-Windows-Setup-0\.4\.9-r14-x64\.exe/)
