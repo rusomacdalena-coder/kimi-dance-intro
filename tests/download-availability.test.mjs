@@ -2,25 +2,25 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
-test('download page publishes the verified macOS 0.4.16 release', async () => {
+test('download page publishes the verified macOS 0.4.17 release', async () => {
   const page = await readFile(new URL('../src/pages/download.astro', import.meta.url), 'utf8')
   const built = await readFile(new URL('../docs/download/index.html', import.meta.url), 'utf8')
 
   for (const content of [page, built]) {
-    // exact authorized bytes: sha256 for Mac 0.4.16 (server sha256sum, 2026-09-22)
+    // exact authorized bytes: sha256 for Mac 0.4.17 (desktop package, 2026-09-22)
     assert.match(
       content,
-      /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-0\.4\.16-macOS\.dmg/,
+      /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-0\.4\.17-macOS\.dmg/,
     )
-    assert.match(content, /f284ecf6b2a61b910435a8700b973d8dad833179a04d1b1a1a1e53a8351088b9/)
-    assert.match(content, /下载 macOS 版 0\.4\.16/)
+    assert.match(content, /08018c3498e8a91ab7bb8005eccc62d9e731fd57bb4eb1c0dca9851680d7e6e4/)
+    assert.match(content, /下载 macOS 版 0\.4\.17/)
     // superseded 0.4.11 Mac artifacts must not resurface (no-backflow, 2026-09-13)
     assert.doesNotMatch(content, /Kimidance-Mac-0\.4\.11-arm64\.dmg/)
     assert.doesNotMatch(content, /c15fd3ec6c35a23ae5f86fc5d1586b5e9d118ca43444a0c1c7e42f5f3837a0e1/)
-    // only the authorized 0.4.16 DMG may be served from api.kimidance.com
+    // only the authorized 0.4.17 DMG may be served from api.kimidance.com
     assert.doesNotMatch(
       content,
-      /https:\/\/api\.kimidance\.com\/downloads\/(?!Kimidance-0\.4\.16-macOS\.dmg)[^"' ]+\.dmg/,
+      /https:\/\/api\.kimidance\.com\/downloads\/(?!Kimidance-0\.4\.17-macOS\.dmg)[^"' ]+\.dmg/,
     )
     // superseded 0.4.10 Mac artifacts must not resurface (no-backflow, 2026-09-08)
     assert.doesNotMatch(content, /Kimidance-Mac-0\.4\.10-arm64\.dmg/)
