@@ -2,7 +2,7 @@
 import ArticleLayout from '../layouts/ArticleLayout.astro'
 import { BETA_MAILTO } from '../lib/links.mjs'
 
-const DATE_MODIFIED = '2026-09-22'
+const DATE_MODIFIED = '2026-09-23'
 
 const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-0.4.17-macOS.dmg'
 const MAC_SHA256 = '08018c3498e8a91ab7bb8005eccc62d9e731fd57bb4eb1c0dca9851680d7e6e4'
@@ -10,16 +10,16 @@ const MAC_SIZE = '约 40 MB'
 const MAC_FILENAME = 'Kimidance-0.4.17-macOS.dmg'
 
 const WIN_URL =
-  'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.13-r1-x64.exe'
-const WIN_SHA256 = '9ceedddf73c07ef341d64d18676b7cc8d07511ec26f78adb5ca5216cd725cfc7'
+  'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.17-r2-x64.exe'
+const WIN_SHA256 = '673db250fead1f691b3dd14cab8eed4436bca6e65cdc67ac52b190a1002ad133'
 const WIN_SIZE = '约 94 MB'
-const WIN_FILENAME = 'Kimidance-Windows-Setup-0.4.13-r1-x64.exe'
+const WIN_FILENAME = 'Kimidance-Windows-Setup-0.4.17-r2-x64.exe'
 
 const softwareApp = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'Kimidance 积米律动',
-  softwareVersion: '0.4.17 (macOS) / 0.4.13 (Windows)',
+  softwareVersion: '0.4.17 (macOS) / 0.4.17 (Windows)',
   operatingSystem: ['macOS', 'Windows'],
   applicationCategory: 'MultimediaApplication',
   inLanguage: 'zh-CN',
@@ -85,7 +85,7 @@ const softwareApp = {
       </svg>
       <div class="text-lg font-bold text-cream">Windows</div>
       <div class="text-xs text-muted-foreground leading-relaxed">
-        版本 0.4.13 · {WIN_SIZE}<br />
+        版本 0.4.17 · {WIN_SIZE}<br />
         Windows 10 / 11（64 位）<br />
         安装到当前用户，通常无需管理员权限
       </div>
@@ -93,7 +93,7 @@ const softwareApp = {
         href={WIN_URL}
         class="btn-primary mt-2"
       >
-        下载 Windows 版 0.4.13
+        下载 Windows 版 0.4.17
       </a>
     </div>
   </div>
