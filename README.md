@@ -28,7 +28,6 @@
 
 ## 架构
 
-[→ 完整架构文档](ARCHITECTURE.md)
 
 **Pipeline**：Python 3.12 + Whisper ASR + PySceneDetect + 多模态大模型标注 + LLM 成稿
 **形态**：macOS 桌面应用（本地运行，视频不离开你的电脑）
