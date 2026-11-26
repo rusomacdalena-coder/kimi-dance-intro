@@ -4,7 +4,8 @@
 - 仓库：https://github.com/rusomacdalena-coder/kimi-dance-intro
 - 分支：`cursor/service-outage-notice-9352`
 - 基线：`main`（`750a4fe`，与 `origin/main` 一致）
-- 状态：审查请求待开出后填写链接。未合并。未推 `main`。未跑 `npm run indexnow`。线上 https://kimidance.com 与 https://kimidance.com/download/ 本单没有发布。
+- 提交：`33f98c05ce1d1e11a357fbf030a89044e49d1203`
+- 状态：审查请求待推送后填写链接。未合并。未推 `main`。未跑 `npm run indexnow`。线上 https://kimidance.com 与 https://kimidance.com/download/ 本单没有发布。
 - 开工时仓库根目录没有 `PROGRESS.md`。本单新建了 `PROGRESS.md`。
 
 声明原文（两句，与定稿一致）：

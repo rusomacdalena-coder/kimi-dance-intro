@@ -1,7 +1,7 @@
 # 当前状态
 
 - 2026-11-26：开工时仓库根目录没有 `PROGRESS.md`。本文件从这一天写起。
-- 2026-11-26：服务中断声明已写在分支 `cursor/service-outage-notice-9352`，相对 `main`（`750a4fe`）。已修：本地源码和 `docs/index.html`、`docs/download/index.html`。未合并，未发版，用户未在 https://kimidance.com 或 https://kimidance.com/download/ 拿到。审查请求链接：待本提交之后补。
+- 2026-11-26：服务中断声明已提交 `33f98c05ce1d1e11a357fbf030a89044e49d1203`，分支 `cursor/service-outage-notice-9352`，相对 `main`（`750a4fe`）。已修：本地源码和 `docs/index.html`、`docs/download/index.html`。未合并，未发版，用户未在 https://kimidance.com 或 https://kimidance.com/download/ 拿到。审查请求链接：待推送后补。
 - 2026-11-26：声明原文是「服务暂时中断，正在紧急处理。已安装的软件可能暂时无法登录或开始任务，请稍后再试。」出处：`src/lib/service-outage.mjs` 的 `SERVICE_OUTAGE_NOTICE`。
 - 2026-11-26：`npm test` 9 条通过。本地预览 http://127.0.0.1:4321/ 与 http://127.0.0.1:4321/download/ 最上沿能看到声明。截图在审查请求说明里。线上页面未核，因为本单不发布。
 
