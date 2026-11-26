@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import HeroFilm from './hero/HeroFilm'
 import SamplePreview from './SamplePreview'
 import { BETA_MAILTO } from '../lib/links.mjs'
+import { SERVICE_OUTAGE_NOTICE, SERVICE_OUTAGE_NOTICE_CSS } from '../lib/service-outage.mjs'
 
 /* 首页三屏（判断层 2026-09-08「官网收缩第二包」第 1 部分定稿；文案一字不改） */
 
@@ -26,7 +27,7 @@ function Nav() {
 
   return (
     <nav
-      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
+      className={`transition-colors duration-300 ${
         scrolled ? 'bg-background/95 border-b border-border' : ''
       }`}
     >
@@ -87,7 +88,7 @@ function Nav() {
 /* ─── 第一屏 ───────────────────────────────────────────────────────────── */
 function Hero({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) {
   return (
-    <section ref={heroRef} className="pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+    <section ref={heroRef} className="service-outage-hero pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-center">
         <div>
           <div className="kd-label">—— 积米律动 · AI 拉片工具</div>
@@ -209,7 +210,13 @@ export default function LandingPage() {
   const heroRef = useRef<HTMLElement>(null)
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Nav />
+      <div className="service-outage-bar">
+        <style>{SERVICE_OUTAGE_NOTICE_CSS}</style>
+        <p className="service-outage-notice" role="status">
+          {SERVICE_OUTAGE_NOTICE}
+        </p>
+        <Nav />
+      </div>
       <Hero heroRef={heroRef} />
       <SamplePreview />
       <ThirdScreen />

@@ -1,6 +1,7 @@
 ---
 import Base from './Base.astro'
-import { BETA_MAILTO } from '../lib/links.mjs'
+import ArticleTopNav from '../components/ArticleTopNav.astro'
+import { SERVICE_OUTAGE_NOTICE, SERVICE_OUTAGE_NOTICE_CSS } from '../lib/service-outage.mjs'
 
 interface Props {
   title: string
@@ -10,49 +11,44 @@ interface Props {
   /** ISO date, e.g. 2026-07-05 */
   dateModified?: string
   noindex?: boolean
+  /** 仅下载页打开。其它文章页不渲染声明，顶栏标记保持原样。 */
+  serviceOutageNotice?: boolean
 }
 
-const { title, description, ogImage, jsonLd = [], dateModified, noindex = false } = Astro.props
-
-const navLinks = [
-  { label: '产出示例', href: '/#sample' },
-  { label: '案例库', href: '/cases/' },
-  { label: '下载', href: '/download/' },
-]
+const {
+  title,
+  description,
+  ogImage,
+  jsonLd = [],
+  dateModified,
+  noindex = false,
+  serviceOutageNotice = false,
+} = Astro.props
 ---
 
 <Base title={title} description={description} ogImage={ogImage} ogType="article" jsonLd={jsonLd} noindex={noindex}>
   <div class="min-h-screen bg-background text-foreground">
-    <nav
-      class="fixed top-0 inset-x-0 z-50 bg-background/95 border-b border-border"
-    >
-      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-2.5">
-          <img src="/jimisha.png" alt="积米鲨" class="h-9 w-auto" />
-          <span class="text-lg font-bold tracking-wide text-cream">积米律动</span>
-        </a>
-        <div class="hidden md:flex items-center gap-8">
-          {
-            navLinks.map((l) => (
-              <a
-                href={l.href}
-                class="text-sm text-muted-foreground hover:text-cream transition-colors"
-              >
-                {l.label}
-              </a>
-            ))
-          }
-          <a href={BETA_MAILTO} class="btn-primary btn-sm">
-            申请邀请码
-          </a>
+    {
+      serviceOutageNotice ? (
+        <div class="service-outage-bar">
+          <style is:inline set:html={SERVICE_OUTAGE_NOTICE_CSS} />
+          <p class="service-outage-notice" role="status">
+            {SERVICE_OUTAGE_NOTICE}
+          </p>
+          <ArticleTopNav />
         </div>
-        <a href={BETA_MAILTO} class="md:hidden btn-primary btn-sm">
-          申请邀请码
-        </a>
-      </div>
-    </nav>
+      ) : (
+        <ArticleTopNav fixed />
+      )
+    }
 
-    <main class="pt-28 pb-24 px-6 bg-warm-gradient">
+    <main
+      class={
+        serviceOutageNotice
+          ? 'service-outage-main pt-28 pb-24 px-6 bg-warm-gradient'
+          : 'pt-28 pb-24 px-6 bg-warm-gradient'
+      }
+    >
       <article class="article-prose">
         <slot />
         {

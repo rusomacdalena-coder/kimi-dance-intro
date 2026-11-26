@@ -1,0 +1,49 @@
+---
+import { BETA_MAILTO } from '../lib/links.mjs'
+
+interface Props {
+  /** 没有声明时，导航保持原来的固定顶栏。 */
+  fixed?: boolean
+}
+
+const { fixed = false } = Astro.props
+
+const navLinks = [
+  { label: '产出示例', href: '/#sample' },
+  { label: '案例库', href: '/cases/' },
+  { label: '下载', href: '/download/' },
+]
+---
+
+<nav
+  class={
+    fixed
+      ? 'fixed top-0 inset-x-0 z-50 bg-background/95 border-b border-border'
+      : 'bg-background/95 border-b border-border'
+  }
+>
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2.5">
+      <img src="/jimisha.png" alt="积米鲨" class="h-9 w-auto" />
+      <span class="text-lg font-bold tracking-wide text-cream">积米律动</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      {
+        navLinks.map((l) => (
+          <a
+            href={l.href}
+            class="text-sm text-muted-foreground hover:text-cream transition-colors"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+      <a href={BETA_MAILTO} class="btn-primary btn-sm">
+        申请邀请码
+      </a>
+    </div>
+    <a href={BETA_MAILTO} class="md:hidden btn-primary btn-sm">
+      申请邀请码
+    </a>
+  </div>
+</nav>
