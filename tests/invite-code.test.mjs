@@ -18,7 +18,7 @@ test('returns an empty string when the code is absent or empty', () => {
   assert.equal(readInviteCode('?code='), '')
 })
 
-test('invite page exposes copy guidance and the verified macOS download', async () => {
+test('invite page exposes copy guidance and no installer download', async () => {
   const page = await readFile(new URL('../src/pages/invite.astro', import.meta.url), 'utf8')
   const built = await readFile(new URL('../docs/invite/index.html', import.meta.url), 'utf8')
 
@@ -27,11 +27,11 @@ test('invite page exposes copy guidance and the verified macOS download', async 
   assert.match(page, /document\.execCommand\(['"]copy['"]\)/)
   assert.match(page, /aria-live=["']polite["']/)
   assert.match(page, /复制邀请码/)
-  assert.match(page, /下载 App/)
   assert.match(page, /打开 App/)
   assert.match(page, /没有邀请码/)
-  assert.match(page, /下载 macOS App 0\.4\.25/)
-  assert.match(page, /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-0\.4\.25-macOS\.dmg/)
+  assert.match(page, /客户端下载暂时关闭，服务正在修复，请稍后再试。/)
+  assert.doesNotMatch(page, /下载 macOS App 0\.4\.25/)
+  assert.doesNotMatch(page, /https:\/\/api\.kimidance\.com\/downloads\//)
   // superseded 0.4.11 Mac artifact must not resurface (no-backflow, 2026-09-13)
   assert.doesNotMatch(page, /Kimidance-Mac-0\.4\.11-arm64\.dmg/)
   assert.doesNotMatch(page, /c15fd3ec6c35a23ae5f86fc5d1586b5e9d118ca43444a0c1c7e42f5f3837a0e1/)
@@ -44,8 +44,9 @@ test('invite page exposes copy guidance and the verified macOS download', async 
   // superseded 0.4.8 Mac artifacts must not resurface (mirrors download test)
   assert.doesNotMatch(page, /Kimidance-Mac-0\.4\.8-arm64\.dmg/)
   assert.doesNotMatch(page, /2502c7c178d6a0374d4b680d7e254bb08675ab4c6dab24dc71756913e2d453a8/)
-  assert.match(built, /下载 macOS App 0\.4\.25/)
-  assert.match(built, /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-0\.4\.25-macOS\.dmg/)
+  assert.match(built, /客户端下载暂时关闭，服务正在修复，请稍后再试。/)
+  assert.doesNotMatch(built, /下载 macOS App 0\.4\.25/)
+  assert.doesNotMatch(built, /https:\/\/api\.kimidance\.com\/downloads\//)
   assert.doesNotMatch(built, /Kimidance-Mac-0\.4\.11-arm64\.dmg/)
   assert.doesNotMatch(built, /c15fd3ec6c35a23ae5f86fc5d1586b5e9d118ca43444a0c1c7e42f5f3837a0e1/)
   assert.doesNotMatch(built, /Kimidance-Mac-0\.4\.10-arm64\.dmg/)

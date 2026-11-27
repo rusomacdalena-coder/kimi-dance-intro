@@ -1,12 +1,10 @@
 ---
 import ArticleLayout from '../layouts/ArticleLayout.astro'
-
-const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-0.4.25-macOS.dmg'
 ---
 
 <ArticleLayout
-  title="积米律动邀请码 — 复制邀请码并下载 App"
-  description="复制积米律动公测邀请码，下载 macOS App，并在注册页粘贴邀请码完成注册。"
+  title="积米律动邀请码 — 复制邀请码"
+  description="复制积米律动公测邀请码，并在注册页粘贴邀请码完成注册。客户端下载暂时关闭，服务正在修复。"
 >
   <div class="label-caps mb-4">Invitation</div>
   <h1 class="text-editorial text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
@@ -44,25 +42,17 @@ const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-0.4.25-macOS.dmg'
   <section id="no-code" class="not-prose my-8 rounded-2xl surface-glass p-6 sm:p-8" hidden>
     <h2 class="m-0 text-xl font-bold text-cream">链接里没有邀请码</h2>
     <p class="mb-0 mt-3 text-sm leading-relaxed text-muted-foreground">
-      请向邀请人索取完整链接，或先下载 App，之后在注册页手动粘贴邀请码。
+      请向邀请人索取完整链接。客户端下载暂时关闭，服务正在修复，请稍后再试。
     </p>
   </section>
 
   <h2>三步开始使用</h2>
   <ol>
     <li><strong>复制邀请码</strong>：页面会自动复制；如未成功，请点上方按钮。</li>
-    <li><strong>下载 App</strong>：下载当前公测版 macOS 安装包。</li>
+    <li><strong>安装包</strong>：客户端下载暂时关闭，服务正在修复，请稍后再试。说明见 <a href="/download/">下载页</a>。</li>
     <li><strong>打开 App</strong>：在注册页粘贴邀请码，填写邮箱和密码，一步完成注册。</li>
   </ol>
 
-  <div class="not-prose my-8 flex flex-col gap-3 sm:flex-row">
-    <a
-      href={MAC_URL}
-      class="inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm font-semibold !text-primary-foreground !no-underline transition-colors hover:bg-primary/90"
-    >
-      下载 macOS App 0.4.25
-    </a>
-  </div>
 </ArticleLayout>
 
 <script>

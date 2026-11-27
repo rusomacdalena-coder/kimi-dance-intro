@@ -41,28 +41,22 @@ test('用户打开积米律动官网的下载页，应在页面最上方看到�
   assert.equal(html.split(NOTICE).length - 1, 1)
 })
 
-test('用户打开官网首页和下载页时，除了最上方多了这则声明，其余内容和登声明前一样，下载入口和现有版本说明仍在。', async () => {
+test('首页不再出现「下载客户端」；下载页保留版本说明，但不再提供安装包链接。', async () => {
   const home = await readFile(new URL('../docs/index.html', import.meta.url), 'utf8')
   const download = await readFile(new URL('../docs/download/index.html', import.meta.url), 'utf8')
   const downloadSource = await readFile(new URL('../src/pages/download.astro', import.meta.url), 'utf8')
 
   assert.match(home, /爆款的剧本没人会给你。那就把它变回剧本。/)
   assert.match(home, /台词不经 AI 改写。/)
-  assert.match(home, /下载客户端 · Mac \/ Windows/)
+  assert.doesNotMatch(home, /下载客户端/)
   assert.match(home, /公测中 · 注册赠 100 积分 · ¥1 \/ 视频分钟 · 任务开始前先看费用预估/)
 
   assert.match(download, /下载积米律动客户端/)
   assert.match(download, /公测期，采用邀请码注册/)
-  assert.match(
-    download,
-    /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-0\.4\.25-macOS\.dmg/,
-  )
-  assert.match(
-    download,
-    /https:\/\/api\.kimidance\.com\/downloads\/Kimidance-Windows-Setup-0\.4\.25-r1-x64\.exe/,
-  )
-  assert.match(download, /下载 macOS 版 0\.4\.25/)
-  assert.match(download, /下载 Windows 版 0\.4\.25/)
+  assert.match(download, /客户端下载暂时关闭，服务正在修复，请稍后再试。/)
+  assert.doesNotMatch(download, /https:\/\/api\.kimidance\.com\/downloads\//)
+  assert.doesNotMatch(download, /下载 macOS 版/)
+  assert.doesNotMatch(download, /下载 Windows 版/)
   assert.match(download, /版本 0\.4\.25/)
   assert.match(download, /91017d604202c5288da4347ba7b56dee3d52c38b82916f03205c373267d4e867/)
   assert.match(download, /1b6d2073234a9419f390a3aba5123ce91d0133db321d9fb10a6f97585baa1824/)

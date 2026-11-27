@@ -13,7 +13,7 @@ AI 拉片，是把这件事交给机器：语音识别抄台词，视觉模型�
 - 台词会不会被改？——积米律动的台词不经 AI 改写；语音识别的错字可能存在，投稿前请人工核对。
 - 要多久？——随视频长度和电脑性能变化，任务开始前会显示费用预估。
 
-想看 AI 拉出来的剧本长什么样 → 首页真实产出：https://kimidance.com/#sample ｜ 想自己试 → 下载客户端：https://kimidance.com/download/
+想看 AI 拉出来的剧本长什么样 → 首页真实产出：https://kimidance.com/#sample ｜ 想自己试 → 下载页：https://kimidance.com/download/
 
 ---
 

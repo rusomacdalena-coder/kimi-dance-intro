@@ -19,7 +19,7 @@ npm test           # node --test tests/*.test.mjs（纯本地文件断言，不�
 
 - 对外文案过宣传边界：一句式「台词不经 AI 改写」；展开式必须带「语音识别的错字可能存在，投稿前请人工核对」。不写耗时数字；不写"安全 / 放心 / 无害 / 绝不"；"全球首个"必须留证或改可证句。
 - 案例库不发完整剧本正文（`scripts/build-cases.mjs` 执行，分镜最多 10 行）。
-- 下载链接只指向 `api.kimidance.com/downloads/`，不指向源码仓 release；改下载页必须同步 `tests/`。
+- 下载链接只指向 `api.kimidance.com/downloads/`，不指向源码仓 release；改下载页必须同步 `tests/`。2026-11-27 起安装包链接暂停：页面上不得出现可点的安装包按钮，也不得出现 `api.kimidance.com/downloads/` 或指向 `.dmg` / `.exe` 的 href，直到另行恢复。
 - `docs/` 不手改、不放内部文件：它会被公开发布，且每次 build 清空。
 
 ## 跨会话延续（以 PROGRESS.md 为准）
