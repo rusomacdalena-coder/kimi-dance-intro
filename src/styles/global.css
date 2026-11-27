@@ -277,17 +277,6 @@
       width: auto;
     }
   }
-  /* 手机端底部固定栏（滚过第一屏后出现） */
-  .kd-sticky-cta {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 40;
-    padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
-    background: hsl(var(--background));
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
   /* 深底上的卡片：比页面略浅一档 + 1px 边 */
   .kd-card {
     background: hsl(var(--card));

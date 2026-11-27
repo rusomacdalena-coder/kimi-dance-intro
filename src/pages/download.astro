@@ -4,13 +4,15 @@ import { BETA_MAILTO } from '../lib/links.mjs'
 
 const DATE_MODIFIED = '2026-10-29'
 
-const MAC_URL = 'https://api.kimidance.com/downloads/Kimidance-0.4.25-macOS.dmg'
+/* ============================================================
+ * 安装包链接暂停（2026-11-27）
+ * 本页不放可点的安装包按钮，也不写 api.kimidance.com/downloads/。
+ * 校验值与文件名留给已经拿到安装包的人核对。
+ * ============================================================ */
 const MAC_SHA256 = '91017d604202c5288da4347ba7b56dee3d52c38b82916f03205c373267d4e867'
 const MAC_SIZE = '约 41 MB'
 const MAC_FILENAME = 'Kimidance-0.4.25-macOS.dmg'
 
-const WIN_URL =
-  'https://api.kimidance.com/downloads/Kimidance-Windows-Setup-0.4.25-r1-x64.exe'
 const WIN_SHA256 = '1b6d2073234a9419f390a3aba5123ce91d0133db321d9fb10a6f97585baa1824'
 const WIN_SIZE = '约 94 MB'
 const WIN_FILENAME = 'Kimidance-Windows-Setup-0.4.25-r1-x64.exe'
@@ -46,9 +48,9 @@ const softwareApp = {
   </h1>
 
   <p>
-    积米律动目前处于<strong>公测期，采用邀请码注册</strong>。macOS 与 Windows 客户端均已开放下载，你可以先<a
+    积米律动目前处于<strong>公测期，采用邀请码注册</strong>。客户端下载暂时关闭，服务正在修复，请稍后再试。你可以先<a
       href={BETA_MAILTO}>写邮件申请邀请码</a
-    >——通过后凭码注册即赠送体验积分。
+    >——通过后凭码注册即赠送体验积分。其它问题请邮件联系 <a href="mailto:oliverzhu929598@gmail.com">oliverzhu929598@gmail.com</a>。
   </p>
 
   <div class="kd-label mt-10">—— 使用须知</div>
@@ -70,12 +72,6 @@ const softwareApp = {
         仅支持 Apple 芯片（M1 及之后）的 Mac<br />
         建议 macOS 14 及以上
       </div>
-      <a
-        href={MAC_URL}
-        class="btn-primary mt-2"
-      >
-        下载 macOS 版 0.4.25
-      </a>
     </div>
 
     <div class="rounded-2xl surface-glass p-6 flex flex-col gap-3">
@@ -90,12 +86,6 @@ const softwareApp = {
         Windows 10 / 11（64 位）<br />
         安装到当前用户，通常无需管理员权限
       </div>
-      <a
-        href={WIN_URL}
-        class="btn-primary mt-2"
-      >
-        下载 Windows 版 0.4.25
-      </a>
     </div>
   </div>
 

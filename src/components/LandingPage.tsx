@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import HeroFilm from './hero/HeroFilm'
 import SamplePreview from './SamplePreview'
 import { BETA_MAILTO } from '../lib/links.mjs'
@@ -6,7 +6,11 @@ import { SERVICE_OUTAGE_NOTICE, SERVICE_OUTAGE_NOTICE_CSS } from '../lib/service
 
 /* 首页三屏（判断层 2026-09-08「官网收缩第二包」第 1 部分定稿；文案一字不改） */
 
-const DOWNLOAD_URL = 'https://kimidance.com/download/'
+/* ============================================================
+ * 首页下载按钮（2026-11-27 暂停）
+ * 不放可点的「下载客户端」，含手机底部固定栏。
+ * 导航与页脚的「下载」仍去 /download/ 的暂停说明。
+ * ============================================================ */
 
 const NAV = [
   { label: '产出示例', href: '#sample' },
@@ -86,9 +90,9 @@ function Nav() {
 }
 
 /* ─── 第一屏 ───────────────────────────────────────────────────────────── */
-function Hero({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) {
+function Hero() {
   return (
-    <section ref={heroRef} className="service-outage-hero pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+    <section className="service-outage-hero pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 md:gap-14 items-center">
         <div>
           <div className="kd-label">—— 积米律动 · AI 拉片工具</div>
@@ -99,9 +103,6 @@ function Hero({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) {
             积米律动把一部你想学的剧——短剧或长视频——直接变成文学剧本、叙事节奏分析、分镜速查表。台词不经 AI 改写。
           </p>
           <div className="mt-7 flex flex-col md:flex-row md:flex-wrap gap-2 md:gap-3">
-            <a href={DOWNLOAD_URL} className="btn-primary">
-              下载客户端 · Mac / Windows
-            </a>
             <a href={BETA_MAILTO} className="btn-secondary">
               没有邀请码？写邮件申请 →
             </a>
@@ -178,36 +179,8 @@ function Footer() {
   )
 }
 
-/* ─── 手机端底部固定栏：滚过第一屏后出现 ───────────────────────────────── */
-function StickyCta({ heroRef }: { heroRef: React.RefObject<HTMLElement> }) {
-  const [show, setShow] = useState(false)
-  useEffect(() => {
-    const h = () => {
-      const el = heroRef.current
-      const limit = el ? el.offsetTop + el.offsetHeight - 64 : 600
-      setShow(window.scrollY > limit)
-    }
-    h()
-    window.addEventListener('scroll', h, { passive: true })
-    window.addEventListener('resize', h)
-    return () => {
-      window.removeEventListener('scroll', h)
-      window.removeEventListener('resize', h)
-    }
-  }, [heroRef])
-  if (!show) return null
-  return (
-    <div className="md:hidden kd-sticky-cta">
-      <a href={DOWNLOAD_URL} className="btn-primary">
-        下载客户端 · Mac / Windows
-      </a>
-    </div>
-  )
-}
-
 /* ─── Landing Page ─────────────────────────────────────────────────────── */
 export default function LandingPage() {
-  const heroRef = useRef<HTMLElement>(null)
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="service-outage-bar">
@@ -217,11 +190,10 @@ export default function LandingPage() {
         </p>
         <Nav />
       </div>
-      <Hero heroRef={heroRef} />
+      <Hero />
       <SamplePreview />
       <ThirdScreen />
       <Footer />
-      <StickyCta heroRef={heroRef} />
     </div>
   )
 }
