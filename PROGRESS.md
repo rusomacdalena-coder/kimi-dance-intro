@@ -5,7 +5,7 @@
 - 2026-11-26：声明原文是「服务暂时中断，正在紧急处理。已安装的软件可能暂时无法登录或开始任务，请稍后再试。」出处：`src/lib/service-outage.mjs` 的 `SERVICE_OUTAGE_NOTICE`。
 - 2026-11-26：`npm test` 9 条通过。本地预览 http://127.0.0.1:4321/ 与 http://127.0.0.1:4321/download/ 最上沿能看到声明。截图在审查请求说明里。线上页面未核，因为本单不发布。
 - 2026-11-27：上一条「未合并」已过时。现核 `git log`：`main` 顶端是 `0e2366f9fe85c8c8bff35276cbdc0f0344a9c84b`「首页和下载页顶部加上服务中断声明」，与 `origin/main` 一致。GitHub Pages（`gh api repos/rusomacdalena-coder/kimi-dance-intro/pages`，2026-11-27）：`source.branch` = `main`，`source.path` = `/docs`，`cname` = `kimidance.com`，`status` = `built`。
-- 2026-11-27：安装包链接暂停。已修：本地源码和 `docs/` 构建结果，报告 `reports/pause-downloads.md`。未合并，未发版，用户未在 https://kimidance.com 或 https://kimidance.com/download/ 拿到。审查请求：本提交之后补 URL。`npm test` 10 条通过（2026-11-27，本地 `node --test tests/*.test.mjs`）。
+- 2026-11-27：安装包链接暂停。已修：提交 `5355802337a2ac00a1c111c1cda606016f2cad49`，报告 `reports/pause-downloads.md`。未合并，未发版，用户未在 https://kimidance.com 或 https://kimidance.com/download/ 拿到。审查请求：https://github.com/rusomacdalena-coder/kimi-dance-intro/pull/3 。`npm test` 10 条通过（2026-11-27，本地 `node --test tests/*.test.mjs`）。
 
 # 已定决策（附理由）
 

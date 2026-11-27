@@ -2,6 +2,9 @@
 
 日期：2026-11-27。授权原文：「做」。本单只开审查请求，不合并 `main`。
 
+审查请求：https://github.com/rusomacdalena-coder/kimi-dance-intro/pull/3
+提交：`5355802337a2ac00a1c111c1cda606016f2cad49`
+
 ## 发布位置
 
 2026-11-27 查询 `gh api repos/rusomacdalena-coder/kimi-dance-intro/pages`：
