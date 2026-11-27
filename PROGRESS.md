@@ -6,6 +6,8 @@
 - 2026-11-26：`npm test` 9 条通过。本地预览 http://127.0.0.1:4321/ 与 http://127.0.0.1:4321/download/ 最上沿能看到声明。截图在审查请求说明里。线上页面未核，因为本单不发布。
 - 2026-11-27：上一条「未合并」已过时。现核 `git log`：`main` 顶端是 `0e2366f9fe85c8c8bff35276cbdc0f0344a9c84b`「首页和下载页顶部加上服务中断声明」，与 `origin/main` 一致。GitHub Pages（`gh api repos/rusomacdalena-coder/kimi-dance-intro/pages`，2026-11-27）：`source.branch` = `main`，`source.path` = `/docs`，`cname` = `kimidance.com`，`status` = `built`。
 - 2026-11-27：安装包链接暂停。已修：提交 `5355802337a2ac00a1c111c1cda606016f2cad49`，报告 `reports/pause-downloads.md`。未合并，未发版，用户未在 https://kimidance.com 或 https://kimidance.com/download/ 拿到。审查请求：https://github.com/rusomacdalena-coder/kimi-dance-intro/pull/3 。`npm test` 10 条通过（2026-11-27，本地 `node --test tests/*.test.mjs`）。
+- 2026-11-27：上一条「未合并、未发版」已过时。`rusomacdalena-coder` 合并了审查请求 #3，合并提交 `38ad985e2aa43dfa34d4fc9c2a1fe1c7b408b0e0`。GitHub Pages 构建 `1408472903` 状态 `built`，对应提交 `38ad985`（`gh api repos/rusomacdalena-coder/kimi-dance-intro/pages/builds`，2026-11-27）。同一时刻用 curl 打开 https://kimidance.com/ ：正文没有「下载客户端」，导航和页脚「下载」仍指向 `/download/`。https://kimidance.com/download/ ：有「客户端下载暂时关闭，服务正在修复，请稍后再试。」和 `oliverzhu929598@gmail.com`，没有「下载 macOS 版」「下载 Windows 版」，也没有 `api.kimidance.com/downloads`。标题当时仍是「下载积米律动 Kimidance — macOS 与 Windows 客户端」。
+- 2026-11-27：Codex 在 https://github.com/rusomacdalena-coder/kimi-dance-intro/pull/3#discussion_r4718874768 要求改下载页标题和描述。本条只记录，修复提交号待补。
 
 # 已定决策（附理由）
 
@@ -17,6 +19,7 @@
 - 2026-11-27：安装包链接暂停。首页去掉「下载客户端 · Mac / Windows」，含手机底部固定栏。`/download/` 留下，正文写「客户端下载暂时关闭，服务正在修复，请稍后再试。」并保留 `oliverzhu929598@gmail.com`。导航和页脚「下载」仍指向 `/download/`。邀请页去掉指向安装包的按钮。理由：Oliver 2026-11-27 授权「做」；验收允许下载页留下暂停说明，也允许导航指向该页。
 - 2026-11-27：下载页仍保留安装指引、SHA-256 和安装包文件名，这些是纯文本，不是链接。理由：验收禁止的是可点按钮和安装包 URL；已经拿到安装包的人还要能核对。
 - 2026-11-27：不合并 `main`，不跑 IndexNow，不登录、不改 `api.kimidance.com`，不删除服务器上的安装包。理由：本单只开审查请求。
+- 2026-11-27：下载页 `<title>`、`og:title`、`twitter:title` 和 description 改为「积米律动 Kimidance — 客户端下载暂时关闭」和暂停说明。正文标题「下载积米律动客户端」不动。理由：搜索和社交预览仍在承诺可以下载 macOS 与 Windows 客户端；Codex 审查意见 `discussion_r4718874768`。
 
 # 试过但失败的路
 

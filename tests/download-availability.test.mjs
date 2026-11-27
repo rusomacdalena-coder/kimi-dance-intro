@@ -8,6 +8,9 @@ test('download page pauses installer links and keeps the macOS 0.4.25 record', a
 
   for (const content of [page, built]) {
     assert.match(content, /客户端下载暂时关闭，服务正在修复，请稍后再试。/)
+    assert.match(content, /积米律动 Kimidance — 客户端下载暂时关闭/)
+    assert.doesNotMatch(content, /下载积米律动 Kimidance — macOS 与 Windows 客户端/)
+    assert.doesNotMatch(content, /下载积米律动（Kimidance）AI 拉片工具 macOS 与 Windows 客户端/)
     assert.match(content, /mailto:oliverzhu929598@gmail.com/)
     assert.doesNotMatch(content, /https:\/\/api\.kimidance\.com\/downloads\//)
     assert.doesNotMatch(content, /下载 macOS 版/)

@@ -54,6 +54,12 @@
 
 去掉只被安装包按钮使用的类之后，构建样式从 `docs/_astro/_slug_.DskvkCzu.css` 换成 `docs/_astro/_slug_.DTIl23Tl.css`。案例库等页面的 HTML 只改了这一个样式文件名。颜色和字体没有改。
 
+## 合并后线上核对（2026-11-27）
+
+`rusomacdalena-coder` 合并了 https://github.com/rusomacdalena-coder/kimi-dance-intro/pull/3 ，合并提交 `38ad985e2aa43dfa34d4fc9c2a1fe1c7b408b0e0`。Pages 构建 `1408472903` 状态 `built`。
+
+curl https://kimidance.com/ ：没有「下载客户端」。curl https://kimidance.com/download/ ：有暂停说明和 `oliverzhu929598@gmail.com`，没有「下载 macOS 版」「下载 Windows 版」，没有 `api.kimidance.com/downloads`。当时的 `<title>` 仍是「下载积米律动 Kimidance — macOS 与 Windows 客户端」。
+
 ## 明确没做
 
 - 没有合并 `main`
